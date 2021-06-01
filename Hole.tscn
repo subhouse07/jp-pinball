@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/hole-proto.png-c4be7430b1f202db7a751a40be24fcaa.stex"
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 5.70661
+height = 7.03056
+
+[node name="Hole" type="Area2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 2 )

@@ -1,0 +1,8 @@
+Things to add:
+1. Ball sprites - rotating and stuff
+ - flipper sprites - figure out perspective
+2. Camera node - follow ball up and down table
+3. springy things to bounce off
+4. catch-release doors - various times, depending on whats happening
+5. teleport doors
+6. scene-change doors
