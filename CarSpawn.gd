@@ -4,13 +4,14 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-const MAX_CAR_NODES = 5
+const MAX_CAR_NODES = 8
 var count = 0
 var speed = 100
 var sprite_resources = []
-var car_unit_speed = 0.3
+var car_unit_speed = 0.4
 var car_nodes = []
 var moving = []
+var node_paths = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,7 +32,7 @@ func _ready():
 func _process(delta):
 	for i in MAX_CAR_NODES:
 		if moving[i]:
-			var follow_node = $Path2D.get_child(i)
+			var follow_node = node_paths[i]
 			var new_unit_offset = follow_node.unit_offset + car_unit_speed * delta
 			if new_unit_offset >= 1.0:
 				_end_car_movement(i)
@@ -66,14 +67,19 @@ func _populate_path_follows():
 		
 	
 		path_follow.add_child(car_nodes[i])
-		
-		$Path2D.add_child(path_follow)
+		var rand_select = randi() % 2
+		if rand_select == 0:
+			$Path2D.add_child(path_follow)
+			node_paths.append(path_follow)
+		else:
+			$Path2D2.add_child(path_follow)
+			node_paths.append(path_follow)
 		
 		
 		
 func _end_car_movement(index):
 	moving[index] = false
-	var follow_node = $Path2D.get_child(index)
+	var follow_node = node_paths[index]
 	var car_node = follow_node.get_child(0)
 	var car_type = _select_car()
 	follow_node.offset = 0

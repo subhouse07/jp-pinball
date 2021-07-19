@@ -1,8 +1,22 @@
 Things to add:
 1. Ball sprites - rotating and stuff
- - flipper sprites - figure out perspective
-2. Camera node - follow ball up and down table
-3. springy things to bounce off
-4. catch-release doors - various times, depending on whats happening
-5. teleport doors
 6. scene-change doors
+
+Special Stages
+Computer Screen
+ - To unlock, hit the computer target three times - starts boot up sequence. After the third hit, computer screen will glow and suck you in when you hit it.
+ - To beat stage, hit computer icons to open programs. Hit targets in the programs to complete your work.
+   - Presentation, email .... logging work hours?
+
+Tennis
+ - To unlock, ... i don't know yet
+ - To beat stage, you have to play against an opponent. You have to win a "game" against them, although if they score once, the stage is over. 
+ - When you hit the ball, they will attempt to return it. If they make contact with the ball it will trigger a quick sequence where they "wind-up" to return and a little meter will fill up in the general direction that they are going to hit. 
+ - Think about design stuff, like obstacles, otherwise it'll probably be super easy to return every one of the opponents hits
+
+CEO Office
+ - To unlock, break through the board room doors and hit all the executives at the table. A door will open up in the middle of the room for you to go into.
+
+ - To beat stage, simply hit the ceo a number of times. He will be moving around the stage launching items at you to hinder you, and every now and then he will duck behind his desk.
+
+

@@ -7,10 +7,10 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 193.716, 335.868, 0, 0, 0, 0, 360.374, 335.714, 0, 0, 0, 0, 365.155, -212.455, 0, 0, 0, 0, 364.75, -932.75, 0, 0, 0, 0, 181.397, -930.908, 0, 0, 0, 0, -89.8257, -933.027, 0, 0, 0, 0, -96, 336, 0, 0, 0, 0, 193.716, 335.868 )
 }
 
-[sub_resource type="StreamTexture" id=3]
+[sub_resource type="StreamTexture" id=2]
 load_path = "res://.import/launch-bucket-proto.png-5e18772b17b3d0394d6e6967085e30ec.stex"
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 
 [node name="Launcher" type="Node2D"]
 script = ExtResource( 1 )
@@ -24,15 +24,16 @@ rotation = -0.00092721
 
 [node name="Sprite" type="Sprite" parent="Path2D/PathFollow2D"]
 rotation = 0.00092721
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
 position = Vector2( -193.405, -336.047 )
 rotation = 0.00092721
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
 position = Vector2( 193.731, 341.307 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="ResetTimer" type="Timer" parent="."]
 one_shot = true

@@ -6,19 +6,27 @@ extends Node2D
 # var b = "text"
 export(int) var rotation_speed
 export(bool) var is_flipped
+export(bool) var use_polygon
 var max_rotation
 var init_rotation
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_flipped:
-		max_rotation = -20
-		init_rotation = 15
+		max_rotation = -22
+		init_rotation = 17.5
+		if use_polygon:
+			$LeftArea/CollisionShape2D.disabled = true
+			$LeftArea/CollisionPolygon2D.disabled = false
 		$RightArea.queue_free()
 		$RightSprite.queue_free()
 	else:
-		max_rotation = 20
-		init_rotation = -15
+		max_rotation = 22
+		init_rotation = -17.5
+		if use_polygon:
+			$RightArea/CollisionShape2D.disabled = true
+			$RightArea/CollisionPolygon2D.disabled = false
 		$LeftArea.queue_free()
 		$LeftSprite.queue_free()
 		
@@ -36,6 +44,7 @@ func _physics_process(delta):
 		else:
 			retract_right(delta)
 	
+
 func flip_left(delta):
 	var new_degrees = rotation_degrees - rotation_speed * delta
 	if new_degrees < max_rotation:
@@ -59,3 +68,5 @@ func retract_right(delta):
 	if new_degrees < init_rotation:
 		new_degrees = init_rotation
 	rotation_degrees = new_degrees
+
+

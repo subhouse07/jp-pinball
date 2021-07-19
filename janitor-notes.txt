@@ -1,0 +1,9 @@
+How does the bathroom janitor work?
+
+At the beginning of each ball, the janitor will be working in the bathroom - the cart will be in front of the bathroom entrance, blocking the ball's path to the exit. The janitor closet door above (the wedge) will be closed.
+
+If the ball collides with the cart, the janitor will poke his head out of the bathroom. If you hit the cart three times, the janitor will leave the bathroom and go to the closet, putting the cart in the door, creating a wedge shape.
+
+Depending on how big I need the wedge to be, maybe the janitor will be standing against the wall, or maybe in front of the cart mopping, so as to create a large space to collide with before falling through to the exit.
+
+To make the janitor return to the bathroom, you must travel all the way up the side road to the manhole cover. You fall in the manhole and emerge from the bathroom door, launching upwards.

@@ -1,0 +1,164 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://LobbyCoordinator.gd" type="Script" id=1]
+[ext_resource path="res://LobbyWorker.tscn" type="PackedScene" id=2]
+[ext_resource path="res://LobbyVisitor.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 6 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 9 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 9, 7 )
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 336, 80, 0, 0, 0, 0, 336, 112, 0, 0, 0, 0, 280, 120, 0, 0, 0, 0, 200, 128 )
+}
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 336, 24, 0, 0, 0, 0, 336, 51, 0, 0, 0, 0, 293, 51, 0, 0, 0, 0, 241, 124, 0, 0, 0, 0, 200, 128 )
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 336, -40, 0, 0, 0, 0, 336, -15, 0, 0, 0, 0, 294, -15, 0, 0, 0, 0, 280, 69, 0, 0, 0, 0, 241, 124, 0, 0, 0, 0, 200, 128 )
+}
+
+[sub_resource type="Curve2D" id=8]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -37, 310, 0, 0, 0, 0, 62, 310, 0, 0, 0, 0, 62, 231, 0, 0, 0, 0, 91, 233, 0, 0, 0, 0, 90, 249, 0, 0, 0, 0, 91, 233, 0, 0, 0, 0, 148, 233, 0, 0, 0, 0, 199, 152, 0, 0, 0, 0, 201, 128, 0, 0, 0, 0, 300, 117, 0, 0, 0, 0, 301, 82, 0, 0, 0, 0, 243, 123, 0, 0, 0, 0, 194, 227, 0, 0, 0, 0, 193, 390, 0, 0, 0, 0, -37, 389, 0, 0, 0, 0, -37, 310 )
+}
+
+[sub_resource type="Curve2D" id=9]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -37, 310, 0, 0, 0, 0, 62, 310, 0, 0, 0, 0, 62, 231, 0, 0, 0, 0, 99, 233, 0, 0, 0, 0, 98, 249, 0, 0, 0, 0, 100, 233, 0, 0, 0, 0, 148, 233, 0, 0, 0, 0, 199, 152, 0, 0, 0, 0, 201, 128, 0, 0, 0, 0, 241, 123, 0, 0, 0, 0, 301, 26, 0, 0, 0, 0, 243, 123, 0, 0, 0, 0, 194, 227, 0, 0, 0, 0, 193, 390, 0, 0, 0, 0, -37, 389, 0, 0, 0, 0, -37, 310 )
+}
+
+[sub_resource type="Curve2D" id=10]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -37, 310, 0, 0, 0, 0, 62, 310, 0, 0, 0, 0, 62, 231, 0, 0, 0, 0, 112, 233, 0, 0, 0, 0, 111, 251, 0, 0, 0, 0, 113, 233, 0, 0, 0, 0, 148, 233, 0, 0, 0, 0, 199, 152, 0, 0, 0, 0, 201, 128, 0, 0, 0, 0, 241, 123, 0, 0, 0, 0, 275, 68, 0, 0, 0, 0, 279, 26, 0, 0, 0, 0, 302, -38, 0, 0, 0, 0, 243, 123, 0, 0, 0, 0, 194, 227, 0, 0, 0, 0, 193, 390, 0, 0, 0, 0, -37, 389, 0, 0, 0, 0, -37, 310 )
+}
+
+[node name="LobbyCoordinator" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="DeskArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeskArea"]
+position = Vector2( 305, 82 )
+shape = SubResource( 1 )
+
+[node name="DeskArea2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeskArea2"]
+position = Vector2( 306, 24 )
+shape = SubResource( 1 )
+
+[node name="DeskArea3" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeskArea3"]
+position = Vector2( 306, -41 )
+shape = SubResource( 1 )
+
+[node name="VisitorVanishArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisitorVanishArea"]
+position = Vector2( 193, 324 )
+shape = SubResource( 2 )
+
+[node name="VisitorWaitingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisitorWaitingArea"]
+position = Vector2( 98, 262 )
+shape = SubResource( 3 )
+
+[node name="MeetingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeetingArea"]
+position = Vector2( 189, 117 )
+shape = SubResource( 4 )
+
+[node name="WorkerPaths" type="Node2D" parent="."]
+
+[node name="WorkerPath" type="Path2D" parent="WorkerPaths"]
+curve = SubResource( 5 )
+
+[node name="LobbyWorker" parent="WorkerPaths/WorkerPath" instance=ExtResource( 2 )]
+position = Vector2( 336, 80 )
+unit_speed = 0.22
+
+[node name="WorkerPath2" type="Path2D" parent="WorkerPaths"]
+curve = SubResource( 6 )
+
+[node name="LobbyWorker" parent="WorkerPaths/WorkerPath2" instance=ExtResource( 2 )]
+position = Vector2( 336, 24 )
+index = 1
+unit_speed = 0.21
+
+[node name="WorkerPath3" type="Path2D" parent="WorkerPaths"]
+curve = SubResource( 7 )
+
+[node name="LobbyWorker" parent="WorkerPaths/WorkerPath3" instance=ExtResource( 2 )]
+position = Vector2( 336, -40 )
+index = 2
+unit_speed = 0.2
+
+[node name="VisitorPaths" type="Node2D" parent="."]
+
+[node name="VisitorPath" type="Path2D" parent="VisitorPaths"]
+curve = SubResource( 8 )
+
+[node name="LobbyVisitor" parent="VisitorPaths/VisitorPath" instance=ExtResource( 3 )]
+position = Vector2( -37, 310 )
+
+[node name="VisitorPath2" type="Path2D" parent="VisitorPaths"]
+curve = SubResource( 9 )
+
+[node name="LobbyVisitor" parent="VisitorPaths/VisitorPath2" instance=ExtResource( 3 )]
+position = Vector2( -37, 310 )
+index = 1
+
+[node name="VisitorPath3" type="Path2D" parent="VisitorPaths"]
+curve = SubResource( 10 )
+
+[node name="LobbyVisitor" parent="VisitorPaths/VisitorPath3" instance=ExtResource( 3 )]
+position = Vector2( -37, 310 )
+index = 2
+
+[node name="VisitTimers" type="Node2D" parent="."]
+
+[node name="VisitTimer" type="Timer" parent="VisitTimers"]
+wait_time = 20.0
+one_shot = true
+
+[node name="VisitTimer2" type="Timer" parent="VisitTimers"]
+wait_time = 20.0
+one_shot = true
+
+[node name="VisitTimer3" type="Timer" parent="VisitTimers"]
+wait_time = 20.0
+one_shot = true
+[connection signal="area_entered" from="DeskArea" to="." method="_on_DeskArea_area_entered"]
+[connection signal="area_entered" from="DeskArea2" to="." method="_on_DeskArea_area_entered"]
+[connection signal="area_entered" from="DeskArea3" to="." method="_on_DeskArea_area_entered"]
+[connection signal="area_entered" from="VisitorVanishArea" to="." method="_on_VisitorVanishArea_area_entered"]
+[connection signal="area_entered" from="VisitorWaitingArea" to="." method="_on_VisitorWaitingArea_area_entered"]
+[connection signal="area_entered" from="MeetingArea" to="." method="_on_MeetingArea_area_entered"]
+[connection signal="desk_reached" from="WorkerPaths/WorkerPath/LobbyWorker" to="." method="_on_LobbyWorker_desk_reached"]
+[connection signal="worker_hit" from="WorkerPaths/WorkerPath/LobbyWorker" to="." method="_on_LobbyWorker_worker_hit"]
+[connection signal="desk_reached" from="WorkerPaths/WorkerPath2/LobbyWorker" to="." method="_on_LobbyWorker_desk_reached"]
+[connection signal="worker_hit" from="WorkerPaths/WorkerPath2/LobbyWorker" to="." method="_on_LobbyWorker_worker_hit"]
+[connection signal="desk_reached" from="WorkerPaths/WorkerPath3/LobbyWorker" to="." method="_on_LobbyWorker_desk_reached"]
+[connection signal="worker_hit" from="WorkerPaths/WorkerPath3/LobbyWorker" to="." method="_on_LobbyWorker_worker_hit"]
+[connection signal="visitor_hit" from="VisitorPaths/VisitorPath/LobbyVisitor" to="." method="_on_LobbyVisitor_visitor_hit"]
+[connection signal="visitor_hit" from="VisitorPaths/VisitorPath2/LobbyVisitor" to="." method="_on_LobbyVisitor_visitor_hit"]
+[connection signal="visitor_hit" from="VisitorPaths/VisitorPath3/LobbyVisitor" to="." method="_on_LobbyVisitor_visitor_hit"]
+[connection signal="timeout" from="VisitTimers/VisitTimer" to="." method="_on_VisitTimer_timeout" binds= [ 0 ]]
+[connection signal="timeout" from="VisitTimers/VisitTimer2" to="." method="_on_VisitTimer_timeout" binds= [ 1 ]]
+[connection signal="timeout" from="VisitTimers/VisitTimer3" to="." method="_on_VisitTimer_timeout" binds= [ 2 ]]

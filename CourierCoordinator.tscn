@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Courier.tscn" type="PackedScene" id=1]
+[ext_resource path="res://CourierCoordinator.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 328, -448, 0, 0, 0, 0, 328, -72, 0, 0, 0, 0, 64, -72, 0, 0, 0, 0, 64, -448, 0, 0, 0, 0, 336, -448 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 328, -448, 0, 0, 0, 0, 328, -304, 0, 0, 0, 0, 64, -208, 0, 0, 0, 0, 64, -72, 0, 0, 0, 0, 328, -72, 0, 0, 0, 0, 328, -208, 0, 0, 0, 0, 64, -304, 0, 0, 0, 0, 64, -448, 0, 0, 0, 0, 328, -448 )
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 152, 48 )
+
+[node name="CourierCoordinator" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="CourierPaths" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="CourierPaths"]
+curve = SubResource( 1 )
+
+[node name="Courier" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
+position = Vector2( 328, -213.125 )
+rotation = 1.57079
+offset = 235.061
+is_lead = true
+
+[node name="Courier2" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
+position = Vector2( 328, -260.065 )
+rotation = 1.5708
+offset = 188.049
+index = 1
+
+[node name="Courier3" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
+position = Vector2( 328, -307.034 )
+rotation = 1.57079
+offset = 141.037
+index = 2
+
+[node name="Courier4" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
+position = Vector2( 328, -354.003 )
+rotation = 1.57081
+offset = 94.0246
+index = 3
+
+[node name="Courier5" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
+position = Vector2( 328, -401.054 )
+rotation = 1.57079
+offset = 47.0123
+index = 4
+
+[node name="Courier6" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
+position = Vector2( 328, -448 )
+rotation = 1.5708
+index = 5
+
+[node name="Path2D2" type="Path2D" parent="CourierPaths"]
+curve = SubResource( 2 )
+
+[node name="ReleaseArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseArea"]
+position = Vector2( 64, -216 )
+shape = SubResource( 3 )
+
+[node name="SlowdownArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlowdownArea"]
+position = Vector2( 144, -416 )
+shape = SubResource( 4 )
+[connection signal="captured_ball" from="CourierPaths/Path2D/Courier" to="." method="_on_Courier_captured_ball"]
+[connection signal="hit" from="CourierPaths/Path2D/Courier" to="." method="_on_Courier_hit"]
+[connection signal="captured_ball" from="CourierPaths/Path2D/Courier2" to="." method="_on_Courier_captured_ball"]
+[connection signal="hit" from="CourierPaths/Path2D/Courier2" to="." method="_on_Courier_hit"]
+[connection signal="captured_ball" from="CourierPaths/Path2D/Courier3" to="." method="_on_Courier_captured_ball"]
+[connection signal="hit" from="CourierPaths/Path2D/Courier3" to="." method="_on_Courier_hit"]
+[connection signal="captured_ball" from="CourierPaths/Path2D/Courier4" to="." method="_on_Courier_captured_ball"]
+[connection signal="hit" from="CourierPaths/Path2D/Courier4" to="." method="_on_Courier_hit"]
+[connection signal="captured_ball" from="CourierPaths/Path2D/Courier5" to="." method="_on_Courier_captured_ball"]
+[connection signal="hit" from="CourierPaths/Path2D/Courier5" to="." method="_on_Courier_hit"]
+[connection signal="captured_ball" from="CourierPaths/Path2D/Courier6" to="." method="_on_Courier_captured_ball"]
+[connection signal="hit" from="CourierPaths/Path2D/Courier6" to="." method="_on_Courier_hit"]
+[connection signal="area_entered" from="ReleaseArea" to="." method="_on_ReleaseArea_area_entered"]
+[connection signal="area_entered" from="SlowdownArea" to="." method="_on_SlowdownArea_area_entered"]
+[connection signal="area_exited" from="SlowdownArea" to="." method="_on_SlowdownArea_area_exited"]

@@ -1,95 +1,61 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Destructible.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CourierCoordinator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://TestScene.gd" type="Script" id=3]
+[ext_resource path="res://Flipper.tscn" type="PackedScene" id=4]
 
-[sub_resource type="RectangleShape2D" id=35]
-extents = Vector2( 4.28763, 21.9434 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 188.965 )
 
-[sub_resource type="PhysicsMaterial" id=40]
-friction = 0.0
-bounce = 1.0
-
-[sub_resource type="RectangleShape2D" id=36]
-extents = Vector2( 4.45248, 23.32 )
-
-[sub_resource type="StreamTexture" id=28]
-load_path = "res://.import/bumper-placeholder.png-d64ef8d70ad4969fe4dd4ea50ff3cd07.stex"
-
-[sub_resource type="PhysicsMaterial" id=41]
-friction = 0.0
-bounce = 1.0
-
-[sub_resource type="RectangleShape2D" id=37]
-extents = Vector2( 10.0107, 22.4966 )
-
-[sub_resource type="StreamTexture" id=38]
-load_path = "res://.import/bumper-placeholder.png-d64ef8d70ad4969fe4dd4ea50ff3cd07.stex"
-
-[sub_resource type="RectangleShape2D" id=39]
-extents = Vector2( 4.28763, 21.9434 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 257.137, 11.4282 )
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource( 3 )
 
+[node name="Flipper" parent="." instance=ExtResource( 4 )]
+position = Vector2( 326.315, 310.28 )
+rotation = -0.261799
+rotation_speed = 1200
+
+[node name="Flipper2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 200.238, 310.734 )
+rotation_speed = 1200
+is_flipped = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0, 186.676 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2( 238.258, 0 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="StaticBody2D3"]
+position = Vector2( 253.532, 361.332 )
+polygon = PoolVector2Array( 9.31528, -47.7534, -2.47055, -42.7024, -3.0318, -30.6359, -13.1339, -28.1104, -65.0478, -41.2993, -60.2773, -58.4168, -241.4, -111.479, -239.512, -15.2043, 213.548, -16.1481, 213.548, -112.423, 90.8442, -61.4541, 91.788, -44.4644, 24.7729, -28.4185, 21.9413, -44.4644 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 479.578, 186.676 )
+shape = SubResource( 1 )
+
+[node name="CourierCoordinator" parent="." instance=ExtResource( 2 )]
+
 [node name="Ball" parent="." instance=ExtResource( 1 )]
-position = Vector2( 229.407, 42.7629 )
-
-[node name="Destructible" parent="." instance=ExtResource( 2 )]
-position = Vector2( 36.8655, 249.669 )
-
-[node name="RightBumper" type="Node2D" parent="."]
-position = Vector2( 241.957, 212.534 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Area2D2" type="Area2D" parent="RightBumper"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBumper/Area2D2"]
-position = Vector2( -12.2564, -6.72716 )
-rotation = 0.523599
-shape = SubResource( 35 )
-disabled = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="RightBumper"]
-constant_linear_velocity = Vector2( -100, -100 )
-physics_material_override = SubResource( 40 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBumper/StaticBody2D"]
-rotation = 0.523599
-shape = SubResource( 36 )
-
-[node name="Sprite" type="Sprite" parent="RightBumper"]
-scale = Vector2( 0.55, 0.55 )
-texture = SubResource( 28 )
-flip_h = true
-
-[node name="LeftBumper" type="Node2D" parent="."]
-position = Vector2( 72.6357, 212.534 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="LeftBumper"]
-constant_linear_velocity = Vector2( 100, -100 )
-physics_material_override = SubResource( 41 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBumper/StaticBody2D"]
-rotation = -0.523599
-shape = SubResource( 37 )
-
-[node name="Sprite" type="Sprite" parent="LeftBumper"]
-scale = Vector2( 0.55, 0.55 )
-texture = SubResource( 38 )
-
-[node name="Area2D" type="Area2D" parent="LeftBumper"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBumper/Area2D"]
-position = Vector2( 12.55, -6.09648 )
-rotation = -0.523599
-shape = SubResource( 39 )
-disabled = true
-[connection signal="body_entered" from="RightBumper/Area2D2" to="." method="_on_Area2D_body_entered" binds= [ false ]]
-[connection signal="body_entered" from="LeftBumper/Area2D" to="." method="_on_Area2D_body_entered" binds= [ true ]]
+position = Vector2( 263.532, 301.464 )
+mode = 2
+mass = 0.5
+gravity_scale = 5.5
+linear_damp = 0.0
+angular_damp = 0.0
+[connection signal="ball_captured" from="CourierCoordinator" to="." method="_on_CourierCoordinator_ball_captured"]
+[connection signal="ball_released" from="CourierCoordinator" to="." method="_on_CourierCoordinator_ball_released"]

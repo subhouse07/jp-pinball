@@ -1,32 +1,19 @@
 extends Node2D
 
+var courier_captured = false
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var value = 250
+func _physics_process(delta):
+	if courier_captured:
+		$Ball.global_position = $CourierCoordinator.capture_coords
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _on_CourierCoordinator_ball_captured():
+	$Ball.global_position
+	$Ball.mode = RigidBody2D.MODE_KINEMATIC
+	courier_captured = true
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_Area2D_body_entered(body, positive):
-	
-	
-	if body.name == "Ball":
-		print("linear velocity: " + String($Ball.linear_velocity))
-		if positive:
-#			print("left bump reflect: " + String(Vector2(1, -1).bounce($Ball.linear_velocity)))
-			$Ball.apply_central_impulse(2*$Ball.linear_velocity.bounce(Vector2(1, -1)) + Vector2(value, -value))
-			
-		else:
-#			print("right bump reflect: ")
-#			print($Ball.linear_velocity.bounce(position.normalized()))
-			$Ball.apply_central_impulse(2*$Ball.linear_velocity.bounce(Vector2(-1, -1)) + Vector2(-value, -value))
-			
+func _on_CourierCoordinator_ball_released():
+	courier_captured = false
+	$Ball.global_position = $CourierCoordinator.capture_coords
+	$Ball.linear_velocity = Vector2(0,0)
+	$Ball.angular_velocity = 0
+	$Ball.mode = RigidBody2D.MODE_CHARACTER
