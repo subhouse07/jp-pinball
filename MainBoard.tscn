@@ -447,8 +447,8 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Launcher" parent="." instance=ExtResource( 8 )]
-max_speed = 400
-acceleration = 20
+max_speed = 800
+acceleration = 3
 prelaunch_speed = 100
 
 [node name="LaunchRail" type="Node2D" parent="."]
@@ -648,12 +648,13 @@ polygon = PoolVector2Array( 0, 48, -41, 24, 0, 1, 39, 23 )
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 49 )
-frame = 1
+frame = 4
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 53 )
+frame = 1
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]
