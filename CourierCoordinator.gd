@@ -68,9 +68,19 @@ func _reparent_couriers():
 
 func _on_SlowdownArea_area_entered(area):
 	if area.name == "CourierArea":
-		area.get_parent().unit_speed /= 3.0
+		var node = area.get_parent()
+		node.hide()
+		node.unit_speed /= 3.0
+		if !node.disabled:
+			node.in_slow_zone = true
+			node.disable_collision()
 		
 
 func _on_SlowdownArea_area_exited(area):
 	if area.name == "CourierArea":
-		area.get_parent().unit_speed *= 3.0
+		var node = area.get_parent()
+		node.show()
+		node.unit_speed *= 3.0
+		if !node.disabled:
+			node.in_slow_zone = false
+			node.enable_collision()

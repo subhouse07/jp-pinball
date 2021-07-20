@@ -107,7 +107,7 @@ load_path = "res://.import/table-front-door-open.png-05326b9cb48874bbf4140b15624
 extents = Vector2( 10, 27.3596 )
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 10, 440.314 )
+extents = Vector2( 10, 462.266 )
 
 [sub_resource type="PhysicsMaterial" id=26]
 friction = 0.0
@@ -340,13 +340,9 @@ bounce = 1.4
 friction = 0.0
 bounce = 0.1
 
-[sub_resource type="PhysicsMaterial" id=87]
-friction = 0.0
-bounce = 0.1
-
 [sub_resource type="PhysicsMaterial" id=78]
 friction = 0.0
-bounce = 0.9
+bounce = 0.1
 
 [sub_resource type="PhysicsMaterial" id=79]
 friction = 0.0
@@ -354,27 +350,31 @@ bounce = 0.9
 
 [sub_resource type="PhysicsMaterial" id=80]
 friction = 0.0
-bounce = 0.1
+bounce = 0.9
 
 [sub_resource type="PhysicsMaterial" id=81]
 friction = 0.0
-bounce = 0.31
+bounce = 0.1
 
 [sub_resource type="PhysicsMaterial" id=82]
 friction = 0.0
+bounce = 0.31
+
+[sub_resource type="PhysicsMaterial" id=83]
+friction = 0.0
 bounce = 0.1
 
-[sub_resource type="StreamTexture" id=83]
+[sub_resource type="StreamTexture" id=84]
 load_path = "res://.import/desk-proto.png-def8da42503c0e6042710f967523f714.stex"
 
-[sub_resource type="RectangleShape2D" id=84]
+[sub_resource type="RectangleShape2D" id=85]
 extents = Vector2( 2.61137, 25.4809 )
 
-[sub_resource type="PhysicsMaterial" id=85]
+[sub_resource type="PhysicsMaterial" id=86]
 friction = 0.0
 bounce = 0.5
 
-[sub_resource type="RectangleShape2D" id=86]
+[sub_resource type="RectangleShape2D" id=87]
 extents = Vector2( 10, 5.36858 )
 
 [node name="MainBoard" type="Node2D"]
@@ -858,20 +858,20 @@ position = Vector2( 0, -25 )
 polygon = PoolVector2Array( 92, -382, 107, -376, 161, -362, 161, -369, 121, -385, 125, -398, 83, -419, 81, -387 )
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="OfficeWalls"]
-physics_material_override = SubResource( 87 )
+physics_material_override = SubResource( 78 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D10"]
 position = Vector2( 0, -25 )
 polygon = PoolVector2Array( 222, -364, 232, -367, 309, -389, 339, -389, 336, -427, 303, -409, 272, -401, 274, -387, 221, -368 )
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="OfficeWalls"]
-physics_material_override = SubResource( 78 )
+physics_material_override = SubResource( 79 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D8"]
 polygon = PoolVector2Array( 138, -361, 77, -362, 110, -371 )
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="OfficeWalls"]
-physics_material_override = SubResource( 79 )
+physics_material_override = SubResource( 80 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D9"]
 position = Vector2( 161, 0 )
@@ -899,7 +899,7 @@ launch_y = 150.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="RailingLeft"]
 constant_linear_velocity = Vector2( 50, 0 )
-physics_material_override = SubResource( 80 )
+physics_material_override = SubResource( 81 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="RailingLeft/StaticBody2D"]
 position = Vector2( 87, 319 )
@@ -916,13 +916,12 @@ polygon = PoolVector2Array( -63, -3, 54, -3, 60, -7, 60, -56, 65, -59, 64, 3, -6
 [node name="LobbyCoordinator" parent="." instance=ExtResource( 14 )]
 
 [node name="CourierCoordinator" parent="." instance=ExtResource( 15 )]
-visible = false
 
 [node name="Ball" parent="." instance=ExtResource( 1 )]
 position = Vector2( 58, 224 )
 mode = 2
 mass = 0.5
-physics_material_override = SubResource( 81 )
+physics_material_override = SubResource( 82 )
 gravity_scale = 5.7
 linear_damp = 0.0
 angular_damp = 0.0
@@ -956,7 +955,7 @@ script = ExtResource( 26 )
 
 [node name="SideDivider" type="StaticBody2D" parent="Janitor"]
 position = Vector2( -281, 126 )
-physics_material_override = SubResource( 82 )
+physics_material_override = SubResource( 83 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -965,17 +964,17 @@ __meta__ = {
 position = Vector2( 322.7, 79.7354 )
 rotation = 1.78896
 scale = Vector2( 0.3, 1.2 )
-texture = SubResource( 83 )
+texture = SubResource( 84 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Janitor/SideDivider"]
 position = Vector2( 322.7, 79.7354 )
 rotation = 1.78896
-shape = SubResource( 84 )
+shape = SubResource( 85 )
 
 [node name="ClosetDoor" type="StaticBody2D" parent="Janitor"]
 position = Vector2( 365, 314 )
 rotation = 3.14159
-physics_material_override = SubResource( 85 )
+physics_material_override = SubResource( 86 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -994,7 +993,7 @@ texture = SubResource( 55 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Janitor/BathroomArea"]
 position = Vector2( 56, 205 )
 rotation = 0.301942
-shape = SubResource( 86 )
+shape = SubResource( 87 )
 
 [node name="MoveTimer" type="Timer" parent="Janitor"]
 wait_time = 2.0
