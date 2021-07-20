@@ -8,6 +8,7 @@ const COLLISION_LAYER_DISABLE = 0
 export var index: int
 export var is_lead = false
 
+var in_slow_zone = false
 var disabled = false
 var final_courier = false
 var unit_speed = 0.15
@@ -31,7 +32,7 @@ func _physics_process(delta):
 
 
 func _on_Area2D_body_entered(body):
-	if !disabled and body.name == "Ball":
+	if body.name == "Ball" and !disabled and !in_slow_zone:
 		if is_lead and !final_courier:
 			emit_signal("captured_ball", index)
 		else: # Collide and disable collision

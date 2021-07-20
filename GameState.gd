@@ -4,7 +4,7 @@ extends Node
 # Declare member variables here. Examples:
 var ball_remaining = 3
 var hp_computer = 3
-var hp_boardroom_doors = 5
+var hp_boardroom_doors = 3
 var hp_centerpiece = 5
 var hp_janitor = 3
 
@@ -30,3 +30,13 @@ func hit_janitor():
 	
 func janitor_to_closet():
 	hp_janitor = 3
+	
+
+# - - - - - - - - -
+# Board Room Doors
+# - - - - - - - - -
+func hit_boardroom_doors():
+	hp_boardroom_doors -= 1
+	
+func reset_boardroom_doors():
+	hp_boardroom_doors = 3

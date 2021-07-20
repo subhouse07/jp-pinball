@@ -37,5 +37,9 @@ shape = SubResource( 3 )
 
 [node name="ResetTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="LaunchTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
 [connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]

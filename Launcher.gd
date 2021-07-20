@@ -16,6 +16,7 @@ const DISEMBARK_STOP_OFFSET = 1210
 const EXITING_STOP_OFFSET = 1375
 
 var launch_speed
+var accel_factor
 export(int) var max_speed
 export(int) var acceleration
 export(int) var prelaunch_speed
@@ -31,6 +32,7 @@ signal ball_captured
 func _ready():
 	launch_status = PRE_LOADING
 	launch_speed = 0
+	accel_factor = 0
 	launching = false
 	disembarked = false
 
@@ -39,12 +41,14 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		if launch_status == PRE_LAUNCH:
 			launch_status = LAUNCHING
+			$LaunchTimer.start()
 		elif launch_status == LAUNCHING:
 			early_disembark = true
 			launch_status = DISEMBARKED
 			
 	if launch_status == DISEMBARKED:
 #		$Path2D/PathFollow2D/Camera2D.current = false
+		accel_factor = 0
 		emit_signal("ball_disembarked", $Path2D/PathFollow2D.global_position, early_disembark)
 		early_disembark = false
 		if $Path2D/PathFollow2D.offset < DISEMBARK_STOP_OFFSET:
@@ -80,7 +84,10 @@ func _physics_process(delta):
 				launch_speed = 0
 			else:
 				if launch_speed < max_speed:
-					launch_speed += acceleration
+					var elapsed = $LaunchTimer.wait_time - $LaunchTimer.time_left
+					var pct = elapsed / $LaunchTimer.wait_time
+					accel_factor += acceleration
+					launch_speed = accel_factor + pow(pct, 3.0) * max_speed
 				$Path2D/PathFollow2D.offset = $Path2D/PathFollow2D.offset + launch_speed * delta
 		EXITING:
 			if $Path2D/PathFollow2D.offset >= EXITING_STOP_OFFSET:
