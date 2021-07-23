@@ -83,8 +83,6 @@ func reset():
 
 
 func _on_VisitorArea_body_entered(body):
-	if body.name == "Ball":
-		print("visitor entered")
 	if body.name == "Ball" and !waiting and !visiting:
 		emit_signal("visitor_hit", index)
 		$CollisionTimer.start()

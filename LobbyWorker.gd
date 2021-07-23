@@ -99,8 +99,6 @@ func reset():
 
 
 func _on_WorkerArea_body_entered(body):
-	if body.name == "Ball":
-		print("worker entered")
 	if body.name == "Ball" and !at_desk:
 #		print("worker hit")
 		emit_signal("worker_hit", index)
