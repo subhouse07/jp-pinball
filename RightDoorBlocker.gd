@@ -36,7 +36,6 @@ func _disable_collision():
 
 func _on_RightDoorArea_body_entered(body):
 	if body.name == "Ball" and $FrontDoorTimer.time_left == 0:
-		print("timer start")
 		$FrontDoorTimer.start()
 
 

@@ -692,7 +692,6 @@ polygon = PoolVector2Array( 0, 48, -41, 24, 0, 1, 39, 23 )
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 50 )
-frame = 1
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -972,7 +971,7 @@ polygon = PoolVector2Array( -63, -3, 54, -3, 60, -7, 60, -56, 65, -59, 64, 3, -6
 [node name="CourierCoordinator" parent="." instance=ExtResource( 15 )]
 
 [node name="Ball" parent="." instance=ExtResource( 1 )]
-position = Vector2( 326.909, 151.47 )
+position = Vector2( 229.68, 143.533 )
 mode = 2
 mass = 0.5
 physics_material_override = SubResource( 83 )
