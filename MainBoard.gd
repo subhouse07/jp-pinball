@@ -25,7 +25,7 @@ func _ready():
 #	$CenterPiece/AnimationPlayer.play("New Anim")
 	
 	# more logic needed for this obviously
-	$Ball.global_position = GameState.main_board_ball_pos
+#	$Ball.global_position = GameState.main_board_ball_pos
 	
 
 #func _process(delta):
