@@ -1,25 +1,18 @@
 extends Node2D
 
+
 var res_door_open
 var res_door_closed
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	res_door_open = preload("res://right-door-open.png")
 	res_door_closed = preload("res://right-door-closed.png")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-#func _on_TrapDoor_door_timed_out(x, y):
-#
-
-
 func _on_TrapDoor_ball_trapped():
 	$TrapDoorTimer.start()
+
 
 func _disable_collision():
 	$DoorBlock.collision_layer = 0
@@ -28,7 +21,17 @@ func _disable_collision():
 	$Doorman.collision_mask = 0
 	$TrapDoor/Area2D.collision_layer = 0
 	$TrapDoor/Area2D.collision_mask = 0
-	
+
+
+func _enable_collision():
+	$DoorBlock.collision_layer = 1
+	$DoorBlock.collision_mask = 1
+	$Doorman.collision_layer = 1
+	$Doorman.collision_mask = 1
+	$TrapDoor/Area2D.collision_layer = 1
+	$TrapDoor/Area2D.collision_mask = 1
+
+
 #func _move_doorman():
 	# trigger sprite animation to move to desk
 	
@@ -54,3 +57,7 @@ func _on_CloseFrontDoorTimer_timeout():
 	$DoorSprite.texture = res_door_closed
 	$RightDoorBody.collision_layer = 1
 	$RightDoorBody.collision_mask = 1
+
+
+func reset():
+	_enable_collision()
