@@ -88,6 +88,7 @@ func _on_TrapDoor_door_timed_out(x, y):
 #	$TeleportTimer.start()
 
 func _on_Launcher_ball_captured():
+	get_tree().call_group("ball_resets", "reset")
 	$Ball.mode = RigidBody2D.MODE_KINEMATIC
 #	$Ball/Camera2D.current = false
 	ball_in_launcher = true
