@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hole-proto.png-c4be7430b1f202db7a751a40be24fcaa.stex"
+path="res://.import/water-cooler.png-1ede22f67ff02b3f10dc9bbd4352aef7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hole-proto.png"
-dest_files=[ "res://.import/hole-proto.png-c4be7430b1f202db7a751a40be24fcaa.stex" ]
+source_file="res://water-cooler.png"
+dest_files=[ "res://.import/water-cooler.png-1ede22f67ff02b3f10dc9bbd4352aef7.stex" ]
 
 [params]
 
