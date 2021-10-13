@@ -11,25 +11,34 @@ const LAUNCHING = 2
 const DISEMBARKED = 3
 const POST_DISEMBARK = 4
 const EXITING = 5
-const PRELAUNCH_STOP_OFFSET = 280
-const DISEMBARK_STOP_OFFSET = 1210
-const EXITING_STOP_OFFSET = 1375
+const PRELAUNCH_STOP_OFFSET = 743
+const DISEMBARK_STOP_OFFSET = 1945
+const EXITING_STOP_OFFSET = 2170
+const SIDE_SPRITE_XOFFSET = -23
+const TOP_SPRITE_XOFFSET = 0
 
-var launch_speed
-var accel_factor
 export(int) var max_speed
 export(int) var acceleration
 export(int) var prelaunch_speed
+
+var launch_speed
+var accel_factor
 var early_disembark = false
 var launching
 var disembarked
 var launch_status
+var side_train_res : Resource
+var top_train_res : Resource
 
 signal ball_disembarked(coords, early_disembark)
 signal ball_captured
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	side_train_res = preload("res://train-side.png")
+	top_train_res = preload("res://train-top.png")
+	$Path2D/PathFollow2D/Sprite.texture = side_train_res
+	
 	launch_status = PRE_LOADING
 	launch_speed = 0
 	accel_factor = 0
@@ -74,6 +83,10 @@ func _physics_process(delta):
 			if $Path2D/PathFollow2D.offset != 0:
 				$Path2D/PathFollow2D.offset = 0
 				launch_speed = 0
+				z_index = 0
+			if $Path2D/PathFollow2D/Sprite.texture != side_train_res:
+				$Path2D/PathFollow2D/Sprite.texture = side_train_res
+				$Path2D/PathFollow2D/Sprite.offset.x = SIDE_SPRITE_XOFFSET
 		LOADING:
 			$Path2D/PathFollow2D.offset = $Path2D/PathFollow2D.offset + prelaunch_speed * delta
 			if $Path2D/PathFollow2D.offset >= PRELAUNCH_STOP_OFFSET:
@@ -108,7 +121,7 @@ func _physics_process(delta):
 		
 		
 
-func _on_Area2D_body_entered(body):
+func _on_CaptureArea_body_entered(body):
 	if body.name == "Ball":
 		launch_status = LOADING
 		emit_signal("ball_captured")
@@ -118,3 +131,10 @@ func _on_Area2D_body_entered(body):
 func _on_ResetTimer_timeout():
 	print("timed out")
 	launch_status = EXITING
+
+
+func _on_SpriteChangeArea_area_entered(area):
+	if area.name == "CaptureArea":
+		$Path2D/PathFollow2D/Sprite.texture = top_train_res
+		$Path2D/PathFollow2D/Sprite.offset.x = TOP_SPRITE_XOFFSET
+		z_index -= 1

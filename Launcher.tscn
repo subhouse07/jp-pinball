@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Launcher.gd" type="Script" id=1]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 193.716, 335.868, 0, 0, 0, 0, 360.374, 335.714, 0, 0, 0, 0, 365.155, -212.455, 0, 0, 0, 0, 364.75, -932.75, 0, 0, 0, 0, 181.397, -930.908, 0, 0, 0, 0, -89.8257, -933.027, 0, 0, 0, 0, -96, 336, 0, 0, 0, 0, 193.716, 335.868 )
+"points": PoolVector2Array( 0, 0, 0, 0, 193.716, 335.868, 0, 0, 0, 0, 562, 335, 0, 0, 0, 0, 561, 505, 0, 0, 0, 0, 359, 504, 0, 0, 0, 0, 360.384, 310.312, 0, 0, 0, 0, 365.155, -212.455, 0, 0, 0, 0, 364.75, -932.75, 0, 0, 0, 0, 181.397, -930.908, 0, 0, 0, 0, -89.8257, -933.027, 0, 0, 0, 0, -96, 336, 0, 0, 0, 0, 193.716, 335.868 )
 }
 
 [sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=4]
 
 [node name="Launcher" type="Node2D"]
 script = ExtResource( 1 )
@@ -17,17 +19,19 @@ curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2( 193.716, 335.868 )
-rotation = -0.00092721
+rotation = -0.00236122
+rotate = false
 
 [node name="Sprite" type="Sprite" parent="Path2D/PathFollow2D"]
 rotation = 0.00092721
+offset = Vector2( -23, 0 )
 
-[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
+[node name="CaptureArea" type="Area2D" parent="Path2D/PathFollow2D"]
 position = Vector2( -193.405, -336.047 )
 rotation = 0.00092721
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CaptureArea"]
 position = Vector2( 193.731, 341.307 )
 shape = SubResource( 2 )
 
@@ -37,5 +41,15 @@ one_shot = true
 [node name="LaunchTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
-[connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="." method="_on_Area2D_body_entered"]
+
+[node name="SpriteChangeArea" type="Area2D" parent="."]
+position = Vector2( 562, 336 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteChangeArea"]
+shape = SubResource( 4 )
+[connection signal="body_entered" from="Path2D/PathFollow2D/CaptureArea" to="." method="_on_CaptureArea_body_entered"]
 [connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]
+[connection signal="area_entered" from="SpriteChangeArea" to="." method="_on_SpriteChangeArea_area_entered"]

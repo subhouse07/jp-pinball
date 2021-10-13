@@ -90,19 +90,16 @@ func _on_TrapDoor_door_timed_out(x, y):
 func _on_Launcher_ball_captured():
 	get_tree().call_group("ball_resets", "reset")
 	$Ball.mode = RigidBody2D.MODE_KINEMATIC
-#	$Ball/Camera2D.current = false
+	$Ball.hide()
 	ball_in_launcher = true
 
 func _on_Launcher_ball_disembarked(coords, early_disembark):
 	ball_in_launcher = false
+	$Ball.show()
 	$Ball.global_position = coords
 	$Ball.linear_velocity = Vector2(0,0)
 	$Ball.angular_velocity = 0
-#	$Ball.sleeping = false
-	
-#	$Ball.show()
 	$Ball.mode = RigidBody2D.MODE_CHARACTER
-#	$Ball/Camera2D.current = true
 	if early_disembark:
 		$Ball.apply_central_impulse(Vector2(-250, -250))
 	else:
