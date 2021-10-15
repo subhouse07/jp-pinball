@@ -1,13 +1,7 @@
 extends Node2D
 
+enum { PRE_LOADING, LOADING, LAUNCHING, DISEMBARKED, POST_DISEMBARK, EXITING }
 
-const PRE_LOADING = -1
-const LOADING = 0
-const PRE_LAUNCH = 1
-const LAUNCHING = 2
-const DISEMBARKED = 3
-const POST_DISEMBARK = 4
-const EXITING = 5
 const PRELAUNCH_STOP_OFFSET = 743
 const EARLY_DISEMBARK_ALLOW_OFFSET = 1050
 const DISEMBARK_STOP_OFFSET = 1945
@@ -21,12 +15,12 @@ export(int) var max_speed
 export(int) var acceleration
 export(int) var prelaunch_speed
 
+var launch_status
 var launch_speed
 var accel_factor
 var early_disembark = false
-var launching
-var disembarked
-var launch_status
+var launching = false
+var disembarked = false
 var side_train_res : Resource
 var top_train_res : Resource
 var train_sprite : Sprite
@@ -47,8 +41,6 @@ func _ready():
 	launch_status = PRE_LOADING
 	launch_speed = 0
 	accel_factor = 0
-	launching = false
-	disembarked = false
 
 
 func _process(delta):
