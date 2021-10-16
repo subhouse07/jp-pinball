@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://FileCabinets.gd" type="Script" id=1]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/desk-proto.png-def8da42503c0e6042710f967523f714.stex"
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 8.0
+
+[sub_resource type="StreamTexture" id=4]
+flags = 4
+load_path = "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+
+[node name="FileCabinets" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 5.96046e-08, 2.38419e-07 )
+rotation = 1.309
+scale = Vector2( 0.690844, 4 )
+texture = SubResource( 1 )
+
+[node name="Targets" type="Node2D" parent="."]
+
+[node name="Target" type="Node2D" parent="Targets"]
+position = Vector2( -42, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Targets/Target"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target/StaticBody2D"]
+shape = SubResource( 2 )
+
+[node name="TargetArea" type="Area2D" parent="Targets/Target"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target/TargetArea"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Targets/Target"]
+position = Vector2( 1, 4 )
+scale = Vector2( 0.2, 0.2 )
+texture = SubResource( 4 )
+
+[node name="Target2" type="Node2D" parent="Targets"]
+position = Vector2( -13, 9 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Targets/Target2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target2/StaticBody2D"]
+shape = SubResource( 2 )
+
+[node name="TargetArea" type="Area2D" parent="Targets/Target2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target2/TargetArea"]
+shape = SubResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="Targets/Target2"]
+position = Vector2( 1, 4 )
+scale = Vector2( 0.2, 0.2 )
+texture = SubResource( 4 )
+
+[node name="Target3" type="Node2D" parent="Targets"]
+position = Vector2( 13, 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Targets/Target3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target3/StaticBody2D"]
+shape = SubResource( 2 )
+
+[node name="TargetArea" type="Area2D" parent="Targets/Target3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target3/TargetArea"]
+shape = SubResource( 3 )
+
+[node name="Sprite3" type="Sprite" parent="Targets/Target3"]
+position = Vector2( 1, 4 )
+scale = Vector2( 0.2, 0.2 )
+texture = SubResource( 4 )
+
+[node name="Target4" type="Node2D" parent="Targets"]
+position = Vector2( 42, -6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Targets/Target4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target4/StaticBody2D"]
+shape = SubResource( 2 )
+
+[node name="TargetArea" type="Area2D" parent="Targets/Target4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target4/TargetArea"]
+shape = SubResource( 3 )
+
+[node name="Sprite4" type="Sprite" parent="Targets/Target4"]
+position = Vector2( 1, 4 )
+scale = Vector2( 0.2, 0.2 )
+texture = SubResource( 4 )
+[connection signal="body_entered" from="Targets/Target/TargetArea" to="." method="_on_TargetArea_body_entered" binds= [ 0 ]]
+[connection signal="body_entered" from="Targets/Target2/TargetArea" to="." method="_on_TargetArea_body_entered" binds= [ 1 ]]
+[connection signal="body_entered" from="Targets/Target3/TargetArea" to="." method="_on_TargetArea_body_entered" binds= [ 2 ]]
+[connection signal="body_entered" from="Targets/Target4/TargetArea" to="." method="_on_TargetArea_body_entered" binds= [ 3 ]]
