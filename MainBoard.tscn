@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=2]
+[gd_scene load_steps=137 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -442,6 +442,10 @@ friction = 0.0
 bounce = 1.4
 
 [sub_resource type="RectangleShape2D" id=103]
+extents = Vector2( 13, 11 )
+
+[sub_resource type="RectangleShape2D" id=105]
+extents = Vector2( 16, 13 )
 
 [node name="MainBoard" type="Node2D"]
 script = ExtResource( 4 )
@@ -859,6 +863,7 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 68 )
+frame = 1
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]
@@ -956,7 +961,7 @@ polygon = PoolVector2Array( -51.6096, -33.863, -38.9143, -27.8494, -8.401, 2.663
 [node name="StaticBody2D2" type="StaticBody2D" parent="OfficeWalls"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D2"]
-polygon = PoolVector2Array( 299.165, -182.182, 312.083, -187.082, 311, -152, 270, -128, 270, -108, 265, -106, 266, -117, 260.835, -124.496, 263, -129, 267.315, -150.777 )
+polygon = PoolVector2Array( 299.165, -182.182, 312, -183, 311, -152, 270, -128, 270, -108, 265, -106, 266, -117, 260.835, -124.496, 263, -129, 267.315, -150.777 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="OfficeWalls"]
 physics_material_override = SubResource( 81 )
@@ -1188,23 +1193,46 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SubTunnel/StaticBody2D"]
-polygon = PoolVector2Array( 9, -248, 20, -248, 19, 21, 9, 20, 8, -235, -25, -256 )
+polygon = PoolVector2Array( 9, -248, 20, -248, 19, 21, 12, 88, -11, 130, -33, 164, -91, 212, -131, 247, -220, 296, -277, 292, -232, 280, -190, 265, -164, 251, -138, 235, -104, 209, -65, 176, -49, 161, -37, 148, -27, 134, -15, 114, -7, 100, 0, 82, 6, 65, 10, 48, 12, 21, 12, -19, 12, -72, 8, -119, -6, -203, -23, -255, -26, -264, -31, -273, -35, -281, -39, -286, -45, -291, -54, -294, -63, -295, -111, -295, -111, -280, -117, -280, -117, -298, -39, -298 )
 
-[node name="SubEntrance" type="Node2D" parent="."]
+[node name="StaticBody2D2" type="StaticBody2D" parent="SubTunnel"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SubTunnel/StaticBody2D2"]
+position = Vector2( -34, -3 )
+polygon = PoolVector2Array( 16, -100, 20, -58, 19, 21, 12, 45, 0, 73, -15, 93, -42, 124, -79, 159, -129, 201, -181, 234, -223, 253, -258, 267, -281, 273, -287, 295, -285, 309, -281, 316, -267, 323, -284, 322, -302, 317, -294, 276, -88, 149, 9, 20, 12, -19, 12, -72, -2, -111, -19, -201, -85, -268, -42, -268, -35, -266, -31, -263, -25, -258, -20, -249, -14, -236, -3, -194, 6, -151 )
+
+[node name="TrapDoor" parent="SubTunnel" instance=ExtResource( 13 )]
+position = Vector2( -310, 310 )
+is_teleport = false
+my_time = 0.5
+launch_x = 150.0
+is_sublvl = true
+
+[node name="SubEntrances" type="Node2D" parent="."]
 position = Vector2( 335, -409 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="SubEntrance"]
+[node name="StaticBody2D" type="StaticBody2D" parent="SubEntrances"]
 physics_material_override = SubResource( 102 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SubEntrance/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SubEntrances/StaticBody2D"]
 position = Vector2( -334, 410 )
 polygon = PoolVector2Array( 339, -387, 335, -367, 343, -367 )
 
-[node name="SubEntrArea" type="Area2D" parent="SubEntrance"]
+[node name="SubEntrArea" type="Area2D" parent="SubEntrances"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SubEntrance/SubEntrArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubEntrances/SubEntrArea"]
 position = Vector2( -6, -14 )
 shape = SubResource( 103 )
+
+[node name="LowerSubExit" type="Area2D" parent="SubEntrances"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubEntrances/LowerSubExit"]
+position = Vector2( -246, 303 )
+shape = SubResource( 105 )
 [connection signal="body_entered" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_entered"]
 [connection signal="body_exited" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_exited"]
 [connection signal="frame_changed" from="YSort/CenterPiece/AnimatedSprite" to="YSort/CenterPiece" method="_on_AnimatedSprite_frame_changed"]
@@ -1238,4 +1266,7 @@ shape = SubResource( 103 )
 [connection signal="timeout" from="RightDoorBlocker/TrapDoorTimer" to="RightDoorBlocker" method="_on_TrapDoorTimer_timeout"]
 [connection signal="timeout" from="RightDoorBlocker/FrontDoorTimer" to="RightDoorBlocker" method="_on_FrontDoorTimer_timeout"]
 [connection signal="timeout" from="RightDoorBlocker/CloseFrontDoorTimer" to="RightDoorBlocker" method="_on_CloseFrontDoorTimer_timeout"]
-[connection signal="body_entered" from="SubEntrance/SubEntrArea" to="." method="_on_SubEntrArea_body_entered"]
+[connection signal="ball_trapped" from="SubTunnel/TrapDoor" to="." method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="SubTunnel/TrapDoor" to="." method="_on_TrapDoor_door_timed_out"]
+[connection signal="body_entered" from="SubEntrances/SubEntrArea" to="." method="_on_SubEntrArea_body_entered" binds= [ true ]]
+[connection signal="body_entered" from="SubEntrances/LowerSubExit" to="." method="_on_SubEntrArea_body_entered" binds= [ false ]]

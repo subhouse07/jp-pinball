@@ -208,11 +208,15 @@ func _on_ElevatorDoorTimer_timeout():
 	$ElevatorDoor2/CollisionPolygon2D.disabled = false
 
 
-func _on_SubEntrArea_body_entered(body):
+func _on_SubEntrArea_body_entered(body, entering_sublvl):
 	if body.name == "Ball" and !courier_captured:
-		_set_sublvl_collision(true)
+		print(entering_sublvl)
+		_set_sublvl_collision(entering_sublvl)
 		
 func _set_sublvl_collision(enabled : bool):
 	if enabled:
 		ball.collision_layer = SUBLVL_LAYER
 		ball.collision_mask = SUBLVL_MASK
+	else:
+		ball.collision_layer = MAINLVL_LAYER
+		ball.collision_mask = MAINLVL_MASK

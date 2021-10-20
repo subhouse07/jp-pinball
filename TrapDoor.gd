@@ -5,6 +5,7 @@ export(bool) var is_teleport
 export(float) var my_time
 export(float) var launch_x
 export(float) var launch_y
+export(bool) var is_sublvl
 
 var is_trapping = false
 var timer
@@ -15,6 +16,9 @@ signal door_timed_out(x, y)
 
 
 func _ready():
+	if is_sublvl:
+		$Area2D.collision_layer = 2
+		$Area2D.collision_mask = 2
 	_add_timer()
 	sprite = get_node_or_null("Sprite")
 	
