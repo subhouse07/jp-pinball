@@ -210,7 +210,6 @@ func _on_ElevatorDoorTimer_timeout():
 
 func _on_SubEntrArea_body_entered(body, entering_sublvl):
 	if body.name == "Ball" and !courier_captured:
-		print(entering_sublvl)
 		_set_sublvl_collision(entering_sublvl)
 		
 func _set_sublvl_collision(enabled : bool):

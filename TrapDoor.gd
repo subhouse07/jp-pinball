@@ -11,14 +11,22 @@ var is_trapping = false
 var timer
 var sprite
 
+var layer = 0
+var mask = 0
+
 signal ball_trapped
 signal door_timed_out(x, y)
 
 
 func _ready():
 	if is_sublvl:
-		$Area2D.collision_layer = 2
-		$Area2D.collision_mask = 2
+		layer = 2
+		mask = 2
+	else:
+		layer = 1
+		mask = 1
+	$Area2D.collision_layer = layer
+	$Area2D.collision_mask = mask
 	_add_timer()
 	sprite = get_node_or_null("Sprite")
 	
@@ -51,3 +59,11 @@ func _on_AnimatedSprite_animation_finished():
 func _on_Timer_timeout():
 	is_trapping = false
 	emit_signal("door_timed_out", launch_x, launch_y)
+	
+func set_enabled(enabled : bool):
+	if enabled:
+		$Area2D.collision_layer = layer
+		$Area2D.collision_mask = mask
+	else:
+		$Area2D.collision_layer = 0
+		$Area2D.collision_mask = 0
