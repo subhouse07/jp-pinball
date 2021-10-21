@@ -1,5 +1,10 @@
 extends Node2D
 
+const MAINLVL_MASK = 1
+const MAINLVL_LAYER = 1
+const SUBLVL_MASK = 2
+const SUBLVL_LAYER = 2
+
 var res_frontdoor_open
 var res_frontdoor_close
 
@@ -201,3 +206,16 @@ func _disable_door_collision():
 
 func _on_ElevatorDoorTimer_timeout():
 	$ElevatorDoor2/CollisionPolygon2D.disabled = false
+
+
+func _on_SubEntrArea_body_entered(body, entering_sublvl):
+	if body.name == "Ball" and !courier_captured:
+		_set_sublvl_collision(entering_sublvl)
+		
+func _set_sublvl_collision(enabled : bool):
+	if enabled:
+		ball.collision_layer = SUBLVL_LAYER
+		ball.collision_mask = SUBLVL_MASK
+	else:
+		ball.collision_layer = MAINLVL_LAYER
+		ball.collision_mask = MAINLVL_MASK
