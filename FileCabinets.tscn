@@ -3,7 +3,7 @@
 [ext_resource path="res://FileCabinets.gd" type="Script" id=1]
 
 [sub_resource type="StreamTexture" id=1]
-load_path = "res://.import/desk-proto.png-def8da42503c0e6042710f967523f714.stex"
+load_path = "res://.import/file-cab-row-base.png-37ba9d578f15ef335fa8b23c5967dc49.stex"
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 8.0
@@ -17,20 +17,18 @@ load_path = "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
 
 [node name="FileCabinets" type="Node2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 5.96046e-08, 2.38419e-07 )
-rotation = 1.309
-scale = Vector2( 0.690844, 4 )
 texture = SubResource( 1 )
 
 [node name="Targets" type="Node2D" parent="."]
 
 [node name="Target" type="Node2D" parent="Targets"]
-position = Vector2( -42, 16 )
+position = Vector2( -27, 30 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Targets/Target"]
 
@@ -48,7 +46,10 @@ scale = Vector2( 0.2, 0.2 )
 texture = SubResource( 4 )
 
 [node name="Target2" type="Node2D" parent="Targets"]
-position = Vector2( -13, 9 )
+position = Vector2( -5, 25 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Targets/Target2"]
 
@@ -66,7 +67,10 @@ scale = Vector2( 0.2, 0.2 )
 texture = SubResource( 4 )
 
 [node name="Target3" type="Node2D" parent="Targets"]
-position = Vector2( 13, 2 )
+position = Vector2( 14, 18 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Targets/Target3"]
 
@@ -84,7 +88,7 @@ scale = Vector2( 0.2, 0.2 )
 texture = SubResource( 4 )
 
 [node name="Target4" type="Node2D" parent="Targets"]
-position = Vector2( 42, -6 )
+position = Vector2( 33, 13 )
 __meta__ = {
 "_edit_group_": true
 }

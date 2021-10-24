@@ -219,7 +219,6 @@ func _on_SubEntrArea_body_entered(body, entering_sublvl):
 		
 func _set_sublvl_collision(enabled : bool):
 	if enabled:
-		print("enabled")
 		$Background.material.shader = sublvl_shader
 		$Background.material.set_shader_param("spriteDim", bg_dimen)
 		$Background.material.set_shader_param("yOffset", $Background.offset.y)
