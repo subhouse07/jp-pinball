@@ -5,6 +5,9 @@ const MAINLVL_LAYER = 1
 const SUBLVL_MASK = 2
 const SUBLVL_LAYER = 2
 
+onready var sublvl_shader = preload("res://Peephole.shader");
+var bg_dimen : Vector2
+
 var res_frontdoor_open
 var res_frontdoor_close
 
@@ -19,6 +22,7 @@ var tele_speed = 50
 
 var ball_in_launcher = false
 var ball_in_elevator = false
+var ball_in_sublvl = false
 var courier_captured = false
 var elevator_open = false
 
@@ -30,17 +34,18 @@ func _ready():
 	ball = $YSort/Ball
 	res_frontdoor_open = preload("res://table-front-door-open.png")
 	res_frontdoor_close = preload("res://table-front-door-closed.png")
+	bg_dimen = Vector2($Background.texture.get_width()*$Background.scale.x, \
+		$Background.texture.get_height()*$Background.scale.y)
 #	$CenterPiece/AnimationPlayer.play("New Anim")
 	
 	# more logic needed for this obviously
 #	ball.global_position = GameState.main_board_ball_pos
 	
 
-#func _process(delta):
-#	pass
-	
-		
-	
+func _process(delta):
+	if ball_in_sublvl:
+		$Background.material.set_shader_param("objPos", ball.global_position)
+
 #	if teleporting:
 #		if ball.global_position != tele_coords:
 #			ball.linear_velocity = ball.position.angle_to(tele_coords)
@@ -214,8 +219,15 @@ func _on_SubEntrArea_body_entered(body, entering_sublvl):
 		
 func _set_sublvl_collision(enabled : bool):
 	if enabled:
+		print("enabled")
+		$Background.material.shader = sublvl_shader
+		$Background.material.set_shader_param("spriteDim", bg_dimen)
+		$Background.material.set_shader_param("yOffset", $Background.offset.y)
+		ball_in_sublvl = true
 		ball.collision_layer = SUBLVL_LAYER
 		ball.collision_mask = SUBLVL_MASK
 	else:
+		ball_in_sublvl = false
+		$Background.material.shader = null
 		ball.collision_layer = MAINLVL_LAYER
 		ball.collision_mask = MAINLVL_MASK
