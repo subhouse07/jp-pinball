@@ -748,6 +748,10 @@ texture = SubResource( 36 )
 centered = false
 offset = Vector2( -24, -735 )
 
+[node name="TransitionTimer" type="Timer" parent="Elevator"]
+wait_time = 0.5
+one_shot = true
+
 [node name="LaunchLabel" type="Label" parent="."]
 margin_right = 40.0
 margin_bottom = 14.0
@@ -894,13 +898,12 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 67 )
-frame = 2
+frame = 4
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 71 )
-frame = 2
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]
@@ -1349,6 +1352,7 @@ shape = SubResource( 114 )
 [connection signal="ball_trapped" from="YSort/ComputerDoor" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="YSort/ComputerDoor" to="." method="_on_ComputerDoor_door_timed_out"]
 [connection signal="cubicle_reached" from="Elevator" to="." method="_on_Elevator_cubicle_reached"]
+[connection signal="timeout" from="Elevator/TransitionTimer" to="Elevator" method="_on_TransitionTimer_timeout"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_TeleportTimer_timeout"]
 [connection signal="ball_captured" from="Launcher" to="." method="_on_Launcher_ball_captured"]
 [connection signal="ball_disembarked" from="Launcher" to="." method="_on_Launcher_ball_disembarked"]
