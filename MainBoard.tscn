@@ -181,8 +181,7 @@ friction = 0.0
 bounce = 0.31
 
 [sub_resource type="StreamTexture" id=36]
-flags = 4
-load_path = "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+load_path = "res://.import/elevator-int-shift.png-8a5bd072145f833187eaa8b608085884.stex"
 
 [sub_resource type="PhysicsMaterial" id=37]
 bounce = 0.1
@@ -745,8 +744,9 @@ position = Vector2( 24, -24 )
 script = ExtResource( 17 )
 
 [node name="Sprite" type="Sprite" parent="Elevator"]
-scale = Vector2( 0.5, 0.5 )
 texture = SubResource( 36 )
+centered = false
+offset = Vector2( -24, -735 )
 
 [node name="LaunchLabel" type="Label" parent="."]
 margin_right = 40.0
@@ -900,6 +900,7 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 71 )
+frame = 1
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]

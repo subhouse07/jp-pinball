@@ -10,7 +10,7 @@ signal cubicle_reached
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	hide()
 	
 func _process(delta):
 	if transporting:
@@ -19,12 +19,14 @@ func _process(delta):
 			new_pos_y = CUBICLE_LIMIT_Y
 			transporting = false
 			emit_signal("cubicle_reached")
+			hide()
 			
 		
 		global_position.y = new_pos_y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func go_to_cubicle():
+	show()
 	transporting = true
 	
 func go_to_lobby():
