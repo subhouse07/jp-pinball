@@ -62,7 +62,7 @@ func _physics_process(delta):
 		ball.global_position = $CourierCoordinator.capture_coords
 		
 	if ball_in_elevator:
-		ball.global_position.y = $Elevator.global_position.y
+		ball.global_position.y = $Elevator/Sprite.global_position.y
 
 func _on_TrapDoor_ball_trapped():
 	ball.hide()
