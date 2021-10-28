@@ -1,63 +1,77 @@
 extends Node2D
 
-const SPRITE_INIT_Y = -12
-const SPRITE_LIMIT_Y = -395
-const SPRITE_OFFSET_INIT_Y = -190
-const SPRITE_OFFSET_LIMIT_Y = -216
-const CUBICLE_LIMIT_Y = -417
-const INIT_Y = -24
-const SPEED = 100.0
-const OFFSET_SPEED = 7.0
 enum { IDLE, PRETRANSPORT, TRANSPORTING, POSTTRANSPORT }
+
+const INIT_Y = -12
+const LIMIT_Y = -395
+const OFFSET_INIT_Y = -190
+const OFFSET_LIMIT_Y = -216
+const ELEV_SPEED = 100.0
+const OFFSET_SPEED = 7.0
+
 var state : int
 
 signal cubicle_reached
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	state = IDLE
-	$Sprite.modulate.a = 0
+	$ElevSprite.modulate.a = 0
 	$BgSprite.modulate.a = 0
-	
-	
+
+
 func _process(delta):
 	match state:
 		PRETRANSPORT:
-			$Sprite.modulate.a = ($TransitionTimer.wait_time - $TransitionTimer.time_left) / $TransitionTimer.wait_time
-			$BgSprite.modulate.a = ($TransitionTimer.wait_time - $TransitionTimer.time_left) / $TransitionTimer.wait_time
+			$ElevSprite.modulate.a = _percent_time_left()
+			$BgSprite.modulate.a = _percent_time_left()
 		TRANSPORTING:
-			var new_pos_y = $Sprite.position.y - SPEED * delta
-			if new_pos_y <= SPRITE_LIMIT_Y:
-				new_pos_y = SPRITE_LIMIT_Y
-				state = POSTTRANSPORT
-				$Sprite.stop()
-				$TransitionTimer.start()
-			var new_offset = $Sprite.offset.y - OFFSET_SPEED * delta
-			if new_offset > SPRITE_OFFSET_LIMIT_Y:
-				$Sprite.offset.y = new_offset
-			$Sprite.position.y = new_pos_y
+			_move_elevator_sprite(delta)
+			_adjust_offset(delta)
 		POSTTRANSPORT:
-			$Sprite.modulate.a = 1.0 - ($TransitionTimer.wait_time - $TransitionTimer.time_left) / $TransitionTimer.wait_time
-			$BgSprite.modulate.a = 1.0 - ($TransitionTimer.wait_time - $TransitionTimer.time_left) / $TransitionTimer.wait_time
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+			$ElevSprite.modulate.a = 1.0 - _percent_time_left()
+			$BgSprite.modulate.a = 1.0 - _percent_time_left()
+
+
 func go_to_cubicle():
-#	transporting = true
 	state = PRETRANSPORT
 	$TransitionTimer.start()
-	
+
+
 func go_to_lobby():
-	$Sprite.position.y = SPRITE_INIT_Y
-	$Sprite.offset.y = SPRITE_OFFSET_INIT_Y
+	$ElevSprite.position.y = INIT_Y
+	$ElevSprite.offset.y = OFFSET_INIT_Y
+
+
+func _move_elevator_sprite(delta):
+	var new_pos_y = $ElevSprite.position.y - ELEV_SPEED * delta
+	if new_pos_y <= LIMIT_Y:
+		new_pos_y = LIMIT_Y
+		$ElevSprite.stop()
+		state = POSTTRANSPORT
+		$TransitionTimer.start()
+	$ElevSprite.position.y = new_pos_y
+
+
+func _adjust_offset(delta):
+	var new_offset = $ElevSprite.offset.y - OFFSET_SPEED * delta
+	if new_offset > OFFSET_LIMIT_Y:
+		$ElevSprite.offset.y = new_offset
+
+
+func _percent_time_left():
+	var elapsed = $TransitionTimer.wait_time - $TransitionTimer.time_left
+	return elapsed / $TransitionTimer.wait_time
 
 
 func _on_TransitionTimer_timeout():
 	if state == PRETRANSPORT:
-		$Sprite.modulate.a = 1.0
+		$ElevSprite.modulate.a = 1.0
 		$BgSprite.modulate.a = 1.0
-		$Sprite.play("default")
+		$ElevSprite.play("default")
 		state = TRANSPORTING
 	else:
 		emit_signal("cubicle_reached")
-		$Sprite.modulate.a = 0.0
+		$ElevSprite.modulate.a = 0.0
 		$BgSprite.modulate.a = 0.0
 		state = IDLE

@@ -1,4 +1,4 @@
-[gd_scene load_steps=156 format=2]
+[gd_scene load_steps=147 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -16,7 +16,7 @@
 [ext_resource path="res://LobbyCoordinator.tscn" type="PackedScene" id=14]
 [ext_resource path="res://CourierCoordinator.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Window.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Elevator.gd" type="Script" id=17]
+[ext_resource path="res://Elevator.tscn" type="PackedScene" id=17]
 [ext_resource path="res://elev-door-sm-op-2.png" type="Texture" id=18]
 [ext_resource path="res://elev-door-sm-op-0.png" type="Texture" id=19]
 [ext_resource path="res://elev-door-sm-op-4.png" type="Texture" id=20]
@@ -33,7 +33,6 @@
 [ext_resource path="res://CubeWall.gd" type="Script" id=31]
 [ext_resource path="res://FileCabinets.tscn" type="PackedScene" id=32]
 [ext_resource path="res://BoardRoomVent.gd" type="Script" id=33]
-[ext_resource path="res://elevator-sheet-v2.png" type="Texture" id=34]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/side-rail.png-9fa92fee8cb3161206de5ddfba53ffee.stex"
@@ -187,41 +186,6 @@ bounce = 1.4
 
 [sub_resource type="StreamTexture" id=37]
 load_path = "res://.import/file-cab-bump.png-a1e9c1b7d010831f8d85381e00b6ef60.stex"
-
-[sub_resource type="StreamTexture" id=38]
-load_path = "res://.import/elev-shaft.png-71defb17e255c5125833ff415fe281e7.stex"
-
-[sub_resource type="AtlasTexture" id=39]
-atlas = ExtResource( 34 )
-region = Rect2( 0, 0, 67, 240 )
-
-[sub_resource type="AtlasTexture" id=40]
-atlas = ExtResource( 34 )
-region = Rect2( 67, 0, 67, 240 )
-
-[sub_resource type="AtlasTexture" id=41]
-atlas = ExtResource( 34 )
-region = Rect2( 134, 0, 67, 240 )
-
-[sub_resource type="AtlasTexture" id=42]
-atlas = ExtResource( 34 )
-region = Rect2( 201, 0, 67, 240 )
-
-[sub_resource type="AtlasTexture" id=43]
-atlas = ExtResource( 34 )
-region = Rect2( 268, 0, 67, 240 )
-
-[sub_resource type="AtlasTexture" id=44]
-atlas = ExtResource( 34 )
-region = Rect2( 335, 0, 67, 240 )
-
-[sub_resource type="SpriteFrames" id=45]
-animations = [ {
-"frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
-"loop": true,
-"name": "default",
-"speed": 10.0
-} ]
 
 [sub_resource type="PhysicsMaterial" id=46]
 bounce = 0.1
@@ -783,23 +747,7 @@ polygon = PoolVector2Array( 46, -289, 56, -272, 46, -253 )
 position = Vector2( 43, -208 )
 texture = SubResource( 37 )
 
-[node name="Elevator" type="Node2D" parent="."]
-position = Vector2( 24, -24 )
-script = ExtResource( 17 )
-
-[node name="BgSprite" type="Sprite" parent="Elevator"]
-position = Vector2( -2, -174 )
-texture = SubResource( 38 )
-
-[node name="TransitionTimer" type="Timer" parent="Elevator"]
-wait_time = 0.5
-one_shot = true
-
-[node name="Sprite" type="AnimatedSprite" parent="Elevator"]
-position = Vector2( 0, -12 )
-frames = SubResource( 45 )
-centered = false
-offset = Vector2( -48, -190 )
+[node name="Elevator" parent="." instance=ExtResource( 17 )]
 
 [node name="LaunchLabel" type="Label" parent="."]
 margin_right = 40.0
@@ -947,12 +895,12 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 76 )
+frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 80 )
-frame = 2
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]
@@ -1390,7 +1338,6 @@ shape = SubResource( 121 )
 [connection signal="ball_trapped" from="YSort/ComputerDoor" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="YSort/ComputerDoor" to="." method="_on_ComputerDoor_door_timed_out"]
 [connection signal="cubicle_reached" from="Elevator" to="." method="_on_Elevator_cubicle_reached"]
-[connection signal="timeout" from="Elevator/TransitionTimer" to="Elevator" method="_on_TransitionTimer_timeout"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_TeleportTimer_timeout"]
 [connection signal="ball_captured" from="Launcher" to="." method="_on_Launcher_ball_captured"]
 [connection signal="ball_disembarked" from="Launcher" to="." method="_on_Launcher_ball_disembarked"]
