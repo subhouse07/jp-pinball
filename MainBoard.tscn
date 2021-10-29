@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=2]
+[gd_scene load_steps=147 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://person-chair-03-test.png" type="Texture" id=12]
 [ext_resource path="res://TrapDoor.tscn" type="PackedScene" id=13]
 [ext_resource path="res://LobbyCoordinator.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Cone.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Window.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Elevator.tscn" type="PackedScene" id=17]
 [ext_resource path="res://elev-door-sm-op-2.png" type="Texture" id=18]
@@ -897,13 +896,11 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 68 )
-frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 72 )
-frame = 1
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]
@@ -1332,27 +1329,6 @@ shape = SubResource( 113 )
 
 [node name="CopierSection" parent="." instance=ExtResource( 34 )]
 position = Vector2( 272, -315 )
-
-[node name="Cone" parent="." instance=ExtResource( 15 )]
-position = Vector2( 192, -99 )
-
-[node name="Cone2" parent="." instance=ExtResource( 15 )]
-position = Vector2( 63, -195 )
-
-[node name="Cone3" parent="." instance=ExtResource( 15 )]
-position = Vector2( 324, -190 )
-
-[node name="Cone4" parent="." instance=ExtResource( 15 )]
-position = Vector2( 315, -401 )
-
-[node name="Cone5" parent="." instance=ExtResource( 15 )]
-position = Vector2( 334, -400 )
-
-[node name="Cone6" parent="." instance=ExtResource( 15 )]
-position = Vector2( 210, -383 )
-
-[node name="Cone7" parent="." instance=ExtResource( 15 )]
-position = Vector2( 193, -383 )
 [connection signal="body_entered" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_entered"]
 [connection signal="body_exited" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_exited"]
 [connection signal="frame_changed" from="YSort/CenterPiece/AnimatedSprite" to="YSort/CenterPiece" method="_on_AnimatedSprite_frame_changed"]
@@ -1376,10 +1352,10 @@ position = Vector2( 193, -383 )
 [connection signal="door_timed_out" from="TrapDoor2" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="Janitor/BathroomArea" to="Janitor" method="_on_BathroomArea_body_entered"]
 [connection signal="timeout" from="Janitor/MoveTimer" to="Janitor" method="_on_MoveTimer_timeout"]
-[connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="RightDoorBlocker" method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="RightDoorBlocker/TrapDoor" to="RightDoorBlocker" method="_on_TrapDoor_door_timed_out"]
+[connection signal="door_timed_out" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="RightDoorBlocker/RightDoorArea" to="RightDoorBlocker" method="_on_RightDoorArea_body_entered"]
 [connection signal="timeout" from="RightDoorBlocker/TrapDoorTimer" to="RightDoorBlocker" method="_on_TrapDoorTimer_timeout"]
 [connection signal="timeout" from="RightDoorBlocker/FrontDoorTimer" to="RightDoorBlocker" method="_on_FrontDoorTimer_timeout"]
