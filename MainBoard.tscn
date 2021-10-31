@@ -1,4 +1,4 @@
-[gd_scene load_steps=147 format=2]
+[gd_scene load_steps=154 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://person-chair-03-test.png" type="Texture" id=12]
 [ext_resource path="res://TrapDoor.tscn" type="PackedScene" id=13]
 [ext_resource path="res://LobbyCoordinator.tscn" type="PackedScene" id=14]
+[ext_resource path="res://CubeMates.gd" type="Script" id=15]
 [ext_resource path="res://Window.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Elevator.tscn" type="PackedScene" id=17]
 [ext_resource path="res://elev-door-sm-op-2.png" type="Texture" id=18]
@@ -48,6 +49,24 @@ shader = SubResource( 3 )
 
 [sub_resource type="StreamTexture" id=5]
 load_path = "res://.import/table09.png-65252216fa6820182b8dddaf03320c83.stex"
+
+[sub_resource type="PhysicsMaterial" id=116]
+bounce = 1.0
+
+[sub_resource type="StreamTexture" id=115]
+load_path = "res://.import/worker_cube_proto.png-3f7d73eaf6b5fd48f5713683b48f573b.stex"
+
+[sub_resource type="RectangleShape2D" id=117]
+extents = Vector2( 24.7488, 5 )
+
+[sub_resource type="PhysicsMaterial" id=118]
+bounce = 1.0
+
+[sub_resource type="StreamTexture" id=114]
+load_path = "res://.import/worker_cube_proto.png-3f7d73eaf6b5fd48f5713683b48f573b.stex"
+
+[sub_resource type="RectangleShape2D" id=119]
+extents = Vector2( 24.0416, 5 )
 
 [sub_resource type="StreamTexture" id=6]
 load_path = "res://.import/table-front-door-open.png-05326b9cb48874bbf4140b15624fffe0.stex"
@@ -151,15 +170,6 @@ load_path = "res://.import/desk-proto.png-def8da42503c0e6042710f967523f714.stex"
 [sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 17.234, 9.43341 )
 
-[sub_resource type="StreamTexture" id=30]
-load_path = "res://.import/cube-walls-base-0.png-437f1e90508b2706bf47a5a1ad76f6bb.stex"
-
-[sub_resource type="StreamTexture" id=31]
-load_path = "res://.import/cube-walls-0.png-25ab1af7b3791e3f3bf7a8c30a5061df.stex"
-
-[sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 178.759, 29.5947 )
-
 [sub_resource type="SpriteFrames" id=33]
 animations = [ {
 "frames": [ ExtResource( 29 ) ],
@@ -186,6 +196,15 @@ bounce = 1.4
 
 [sub_resource type="StreamTexture" id=37]
 load_path = "res://.import/file-cab-bump.png-a1e9c1b7d010831f8d85381e00b6ef60.stex"
+
+[sub_resource type="StreamTexture" id=30]
+load_path = "res://.import/cube-walls-base-0.png-437f1e90508b2706bf47a5a1ad76f6bb.stex"
+
+[sub_resource type="StreamTexture" id=31]
+load_path = "res://.import/cube-walls-0.png-25ab1af7b3791e3f3bf7a8c30a5061df.stex"
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 178.759, 29.5947 )
 
 [sub_resource type="PhysicsMaterial" id=38]
 bounce = 0.1
@@ -512,18 +531,6 @@ rotation_speed = 1100
 is_flipped = true
 use_polygon = true
 
-[node name="Flippers2" type="Node2D" parent="."]
-
-[node name="Flipper" parent="Flippers2" instance=ExtResource( 2 )]
-position = Vector2( 253, -115 )
-rotation = -0.305433
-rotation_speed = 1100
-
-[node name="Flipper2" parent="Flippers2" instance=ExtResource( 2 )]
-position = Vector2( 131, -115 )
-rotation_speed = 1100
-is_flipped = true
-
 [node name="Flippers3" type="Node2D" parent="."]
 
 [node name="Flipper" parent="Flippers3" instance=ExtResource( 2 )]
@@ -533,6 +540,68 @@ rotation_speed = 1100
 
 [node name="Flipper2" parent="Flippers3" instance=ExtResource( 2 )]
 position = Vector2( 126, -415 )
+rotation_speed = 1100
+is_flipped = true
+
+[node name="Cubicle" type="Node2D" parent="."]
+
+[node name="CopierSection" parent="Cubicle" instance=ExtResource( 34 )]
+position = Vector2( 272, -315 )
+
+[node name="CubeMates" type="Node2D" parent="Cubicle"]
+position = Vector2( 200, -159 )
+script = ExtResource( 15 )
+
+[node name="RightDesk" type="StaticBody2D" parent="Cubicle/CubeMates"]
+constant_linear_velocity = Vector2( -75, -75 )
+physics_material_override = SubResource( 116 )
+
+[node name="Sprite2" type="Sprite" parent="Cubicle/CubeMates/RightDesk"]
+texture = SubResource( 115 )
+offset = Vector2( 90, 0 )
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cubicle/CubeMates/RightDesk"]
+position = Vector2( -96, -2 )
+rotation = 0.785398
+shape = SubResource( 117 )
+
+[node name="LeftDesk" type="StaticBody2D" parent="Cubicle/CubeMates"]
+constant_linear_velocity = Vector2( 75, -75 )
+physics_material_override = SubResource( 118 )
+
+[node name="Sprite" type="Sprite" parent="Cubicle/CubeMates/LeftDesk"]
+texture = SubResource( 114 )
+offset = Vector2( -101, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cubicle/CubeMates/LeftDesk"]
+position = Vector2( 87, -3 )
+rotation = -0.785398
+shape = SubResource( 119 )
+
+[node name="TrapDoor" parent="Cubicle/CubeMates" instance=ExtResource( 13 )]
+position = Vector2( 80, -4 )
+is_teleport = false
+my_time = 2.0
+launch_x = -200.0
+launch_y = -200.0
+
+[node name="TrapDoor2" parent="Cubicle/CubeMates" instance=ExtResource( 13 )]
+position = Vector2( -96, -5 )
+is_teleport = false
+my_time = 2.0
+launch_x = 200.0
+launch_y = -200.0
+
+[node name="Flippers2" type="Node2D" parent="Cubicle"]
+
+[node name="Flipper" parent="Cubicle/Flippers2" instance=ExtResource( 2 )]
+position = Vector2( 253, -115 )
+rotation = -0.305433
+rotation_speed = 1100
+
+[node name="Flipper2" parent="Cubicle/Flippers2" instance=ExtResource( 2 )]
+position = Vector2( 131, -115 )
 rotation_speed = 1100
 is_flipped = true
 
@@ -677,22 +746,6 @@ rotation = -1.5708
 shape = SubResource( 29 )
 one_way_collision = true
 
-[node name="CubeWall" type="Node2D" parent="YSort"]
-position = Vector2( 193.487, -159.495 )
-script = ExtResource( 31 )
-
-[node name="Sprite2" type="Sprite" parent="YSort/CubeWall"]
-texture = SubResource( 30 )
-
-[node name="Sprite" type="Sprite" parent="YSort/CubeWall"]
-texture = SubResource( 31 )
-
-[node name="Area2D" type="Area2D" parent="YSort/CubeWall"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/CubeWall/Area2D"]
-position = Vector2( 0, 67.736 )
-shape = SubResource( 32 )
-
 [node name="TrapDoor3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 102.354, -110.682 )
 is_teleport = false
@@ -714,7 +767,7 @@ frames = SubResource( 34 )
 offset = Vector2( 1, -15 )
 
 [node name="Ball" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 233, -186 )
+position = Vector2( 182, -182 )
 mode = 2
 mass = 0.5
 physics_material_override = SubResource( 35 )
@@ -747,6 +800,22 @@ polygon = PoolVector2Array( 46, -289, 56, -272, 46, -253 )
 [node name="Sprite" type="Sprite" parent="YSort/StaticBody2D5"]
 position = Vector2( 43, -208 )
 texture = SubResource( 37 )
+
+[node name="CubeWall" type="Node2D" parent="YSort"]
+position = Vector2( 193.487, -159.495 )
+script = ExtResource( 31 )
+
+[node name="Sprite2" type="Sprite" parent="YSort/CubeWall"]
+texture = SubResource( 30 )
+
+[node name="Sprite" type="Sprite" parent="YSort/CubeWall"]
+texture = SubResource( 31 )
+
+[node name="Area2D" type="Area2D" parent="YSort/CubeWall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/CubeWall/Area2D"]
+position = Vector2( 0, 67.736 )
+shape = SubResource( 32 )
 
 [node name="Elevator" parent="." instance=ExtResource( 17 )]
 
@@ -896,6 +965,7 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 68 )
+frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -993,12 +1063,12 @@ shape = SubResource( 84 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D"]
 position = Vector2( 125.887, -153.664 )
-polygon = PoolVector2Array( -51.6096, -33.863, -38.9143, -27.8494, -8.401, 2.66386, -3.887, 24.6642, 0.112999, 27.664, -5.887, 38.6642, -5.887, 49.6642, -8.887, 49.6642, -8.887, 26.664, -51.887, 2.664 )
+polygon = PoolVector2Array( -49.887, -31.336, -37.887, -25.336, -8.401, 2.66386, -3.887, 24.6642, 0.112999, 27.664, -5.887, 38.6642, -5.887, 49.6642, -8.887, 49.6642, -8.887, 26.664, -51.887, 2.664 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="OfficeWalls"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D2"]
-polygon = PoolVector2Array( 299.165, -182.182, 312, -183, 311, -152, 270, -128, 270, -108, 265, -106, 266, -117, 260.835, -124.496, 263, -129, 267.315, -150.777 )
+polygon = PoolVector2Array( 304, -182, 312, -183, 311, -152, 270, -128, 270, -108, 265, -106, 266, -117, 260.835, -124.496, 263, -129, 268, -147 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="OfficeWalls"]
 physics_material_override = SubResource( 85 )
@@ -1045,12 +1115,6 @@ position = Vector2( 0, 8 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D11"]
 position = Vector2( 0, -2 )
 polygon = PoolVector2Array( 339, 117, 339, 98, 330, 103, 334, 106, 337, 111 )
-
-[node name="TrapDoor2" parent="." instance=ExtResource( 13 )]
-position = Vector2( 295.403, -157.949 )
-is_teleport = false
-my_time = 1.0
-launch_y = -300.0
 
 [node name="RailingLeft" type="Node2D" parent="."]
 
@@ -1326,18 +1390,22 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubEntrances/UpperSubExit"]
 position = Vector2( -105, -262 )
 shape = SubResource( 113 )
-
-[node name="CopierSection" parent="." instance=ExtResource( 34 )]
-position = Vector2( 272, -315 )
+[connection signal="desk_ball_released" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_door_timed_out"]
+[connection signal="desk_ball_trapped" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_ball_trapped"]
+[connection signal="task_activated" from="Cubicle/CubeMates" to="." method="_on_CubeMates_task_activated"]
+[connection signal="ball_trapped" from="Cubicle/CubeMates/TrapDoor" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="Cubicle/CubeMates/TrapDoor" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="Cubicle/CubeMates/TrapDoor2" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="Cubicle/CubeMates/TrapDoor2" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_entered"]
 [connection signal="body_exited" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_exited"]
 [connection signal="frame_changed" from="YSort/CenterPiece/AnimatedSprite" to="YSort/CenterPiece" method="_on_AnimatedSprite_frame_changed"]
-[connection signal="body_entered" from="YSort/CubeWall/Area2D" to="YSort/CubeWall" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="YSort/CubeWall/Area2D" to="YSort/CubeWall" method="_on_Area2D_body_exited"]
 [connection signal="ball_trapped" from="YSort/TrapDoor3" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="YSort/TrapDoor3" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="ball_trapped" from="YSort/ComputerDoor" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="YSort/ComputerDoor" to="." method="_on_ComputerDoor_door_timed_out"]
+[connection signal="body_entered" from="YSort/CubeWall/Area2D" to="YSort/CubeWall" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="YSort/CubeWall/Area2D" to="YSort/CubeWall" method="_on_Area2D_body_exited"]
 [connection signal="cubicle_reached" from="Elevator" to="." method="_on_Elevator_cubicle_reached"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_TeleportTimer_timeout"]
 [connection signal="ball_captured" from="Launcher" to="." method="_on_Launcher_ball_captured"]
@@ -1348,14 +1416,12 @@ position = Vector2( 272, -315 )
 [connection signal="timeout" from="ElevatorDoor2/Timer" to="." method="_on_ElevatorDoorTimer_timeout"]
 [connection signal="body_entered" from="YourOfficeArea2D" to="." method="_on_YourOfficeArea2D_body_entered"]
 [connection signal="body_exited" from="YourOfficeArea2D" to="." method="_on_YourOfficeArea2D_body_exited"]
-[connection signal="ball_trapped" from="TrapDoor2" to="." method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="TrapDoor2" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="Janitor/BathroomArea" to="Janitor" method="_on_BathroomArea_body_entered"]
 [connection signal="timeout" from="Janitor/MoveTimer" to="Janitor" method="_on_MoveTimer_timeout"]
-[connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="RightDoorBlocker" method="_on_TrapDoor_ball_trapped"]
 [connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="RightDoorBlocker/TrapDoor" to="RightDoorBlocker" method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="RightDoorBlocker" method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_door_timed_out"]
+[connection signal="door_timed_out" from="RightDoorBlocker/TrapDoor" to="RightDoorBlocker" method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="RightDoorBlocker/RightDoorArea" to="RightDoorBlocker" method="_on_RightDoorArea_body_entered"]
 [connection signal="timeout" from="RightDoorBlocker/TrapDoorTimer" to="RightDoorBlocker" method="_on_TrapDoorTimer_timeout"]
 [connection signal="timeout" from="RightDoorBlocker/FrontDoorTimer" to="RightDoorBlocker" method="_on_FrontDoorTimer_timeout"]

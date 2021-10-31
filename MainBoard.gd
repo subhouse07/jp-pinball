@@ -230,3 +230,8 @@ func _set_sublvl_collision(enabled : bool):
 		$Background.material.shader = null
 		ball.collision_layer = MAINLVL_LAYER
 		ball.collision_mask = MAINLVL_MASK
+
+
+func _on_CubeMates_task_activated(name):
+	get_node("Cubicle/%s" % name).activate_task()
+	
