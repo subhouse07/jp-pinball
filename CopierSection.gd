@@ -7,7 +7,7 @@ var active_lifts = 0
 
 func _ready():
 	lifts = $Lifts.get_children()
-	activate_lifts()
+#	activate_lifts()
 
 
 func _on_Area2D_body_entered(body):
@@ -16,7 +16,7 @@ func _on_Area2D_body_entered(body):
 
 
 func activate_task():
-	print("task activated")
+	activate_lifts()
 
 
 func activate_lifts():
