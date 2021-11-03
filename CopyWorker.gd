@@ -10,36 +10,39 @@ var at_copier = false
 var finished_copying = false
 
 signal worker_hit(ind)
+signal finished_copying(ind)
 
 func _ready():
 	set_active(false)
 
 
 func _process(delta):
-	if is_active:
+	if is_active and !at_copier:
 		var prev_pos = global_position
-		if !at_copier:
-			if finished_copying:
-				_move_to_home(delta)
-			else:
-				_move_to_copier(delta)
+		if finished_copying:
+			_move_to_home(delta)
+		else:
+			_move_to_copier(delta)
 		_calculate_move_angle(prev_pos)
 
 
 func _move_to_home(delta):
 	var new_offset = unit_offset - unit_speed * delta
 	if new_offset <= 0:
-		finished_copying = false
 		unit_offset = 0
+		set_active(false)
+		emit_signal("finished_copying")
 	else:
 		unit_offset = new_offset
 
 
 func _move_to_copier(delta):
 	var new_offset = unit_offset + unit_speed * delta
-	if new_offset > 1.0:
+	if new_offset >= 1.0:
 		unit_offset = 1.0
-		finished_copying = true
+		at_copier = true
+		$WorkTimer.start()
+		
 	else:
 		unit_offset = new_offset
 
@@ -88,11 +91,19 @@ func _set_collisions(enabled: bool):
 
 func _on_SpriteArea_body_entered(body):
 	if body.name == "Ball":
-		emit_signal("worker_hit", index)
+		if is_lift_worker:
+			emit_signal("worker_hit", index)
 		set_active(false)
 
 
 func set_active(active : bool):
+	finished_copying = false
+	at_copier = false
 	is_active = active
 	visible = active
 	_set_collisions(active)
+
+
+func _on_WorkTimer_timeout():
+	finished_copying = true
+	at_copier = false

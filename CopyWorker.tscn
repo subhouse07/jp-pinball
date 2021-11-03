@@ -22,4 +22,9 @@ playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteArea"]
 shape = SubResource( 1 )
+
+[node name="WorkTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
 [connection signal="body_entered" from="SpriteArea" to="." method="_on_SpriteArea_body_entered"]
+[connection signal="timeout" from="WorkTimer" to="." method="_on_WorkTimer_timeout"]
