@@ -7,7 +7,6 @@ var active_lifts = 0
 
 func _ready():
 	lifts = $Lifts.get_children()
-#	activate_lifts()
 
 
 func _on_Area2D_body_entered(body):
@@ -24,6 +23,7 @@ func activate_lifts():
 	var active_lift = randi() % lifts.size()
 	lifts[active_lift].activate()
 	active_lifts += 1
+	$LiftWorkers/YSort.get_child(active_lift).get_child(0).set_active(true)
 	$LiftResetTimer.start()
 
 
@@ -39,5 +39,24 @@ func _on_LiftResetTimer_timeout():
 			var check_index = (next_lift + i) % lifts.size()
 			if !lifts[check_index].activated:
 				lifts[check_index].activate()
+				$LiftWorkers/YSort.get_child(check_index).get_child(0).set_active(true)
 				active_lifts += 1
 				break
+
+
+func _on_CopyWorkArea_body_entered(body):
+	# Check if someone is already in the work area
+	# if so, tell the person who just entered to stop and wait
+	# add them to a queue
+	# when the current worker is finished, the next in line can proceed.
+	pass
+
+
+func _on_CopyWorkArea_area_entered(area):
+	pass
+
+
+func _on_CopyWorker_worker_hit(ind):
+	if lifts[ind].activated:
+		lifts[ind].deactivate()
+		active_lifts -= 1
