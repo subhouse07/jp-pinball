@@ -8,6 +8,7 @@ var move_angle = 0
 var is_active = false
 var at_copier = false
 var finished_copying = false
+var queuing = false setget queuing_set, queueing_get
 
 signal worker_hit(ind)
 signal finished_copying(ind)
@@ -17,7 +18,7 @@ func _ready():
 
 
 func _process(delta):
-	if is_active and !at_copier:
+	if is_active and !at_copier and !queuing:
 		var prev_pos = global_position
 		if finished_copying:
 			_move_to_home(delta)
@@ -31,7 +32,7 @@ func _move_to_home(delta):
 	if new_offset <= 0:
 		unit_offset = 0
 		set_active(false)
-		emit_signal("finished_copying")
+		emit_signal("finished_copying", index)
 	else:
 		unit_offset = new_offset
 
@@ -42,7 +43,6 @@ func _move_to_copier(delta):
 		unit_offset = 1.0
 		at_copier = true
 		$WorkTimer.start()
-		
 	else:
 		unit_offset = new_offset
 
@@ -107,3 +107,11 @@ func set_active(active : bool):
 func _on_WorkTimer_timeout():
 	finished_copying = true
 	at_copier = false
+
+
+func queuing_set(is_queuing : bool):
+	queuing = is_queuing
+
+
+func queueing_get():
+	return queuing

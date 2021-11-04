@@ -119,42 +119,40 @@ visible = false
 curve = SubResource( 6 )
 
 [node name="LiftResetTimer" type="Timer" parent="."]
-wait_time = 12.0
+wait_time = 8.0
 
 [node name="LiftWorkers" type="Node2D" parent="."]
 
-[node name="YSort" type="YSort" parent="LiftWorkers"]
-
-[node name="Path2D" type="Path2D" parent="LiftWorkers/YSort"]
+[node name="Path2D" type="Path2D" parent="LiftWorkers"]
 curve = SubResource( 7 )
 
-[node name="CopyWorker" parent="LiftWorkers/YSort/Path2D" instance=ExtResource( 3 )]
+[node name="CopyWorker" parent="LiftWorkers/Path2D" instance=ExtResource( 3 )]
 position = Vector2( -32, 87 )
 is_lift_worker = true
 unit_speed = 0.3
 
-[node name="Path2D2" type="Path2D" parent="LiftWorkers/YSort"]
+[node name="Path2D2" type="Path2D" parent="LiftWorkers"]
 curve = SubResource( 8 )
 
-[node name="CopyWorker" parent="LiftWorkers/YSort/Path2D2" instance=ExtResource( 3 )]
+[node name="CopyWorker" parent="LiftWorkers/Path2D2" instance=ExtResource( 3 )]
 position = Vector2( 6, 62 )
 is_lift_worker = true
 unit_speed = 0.4
 index = 1
 
-[node name="Path2D3" type="Path2D" parent="LiftWorkers/YSort"]
+[node name="Path2D3" type="Path2D" parent="LiftWorkers"]
 curve = SubResource( 9 )
 
-[node name="CopyWorker" parent="LiftWorkers/YSort/Path2D3" instance=ExtResource( 3 )]
+[node name="CopyWorker" parent="LiftWorkers/Path2D3" instance=ExtResource( 3 )]
 position = Vector2( -63, 39 )
 is_lift_worker = true
 unit_speed = 0.21
 index = 2
 
-[node name="Path2D4" type="Path2D" parent="LiftWorkers/YSort"]
+[node name="Path2D4" type="Path2D" parent="LiftWorkers"]
 curve = SubResource( 10 )
 
-[node name="CopyWorker" parent="LiftWorkers/YSort/Path2D4" instance=ExtResource( 3 )]
+[node name="CopyWorker" parent="LiftWorkers/Path2D4" instance=ExtResource( 3 )]
 position = Vector2( 7, 14 )
 is_lift_worker = true
 unit_speed = 0.65
@@ -175,9 +173,13 @@ shape = SubResource( 11 )
 [connection signal="timeout" from="Lifts/Lift4/AnimationTimer" to="Lifts/Lift4" method="_on_AnimationTimer_timeout"]
 [connection signal="body_entered" from="Copier/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="LiftResetTimer" to="." method="_on_LiftResetTimer_timeout"]
-[connection signal="worker_hit" from="LiftWorkers/YSort/Path2D/CopyWorker" to="." method="_on_CopyWorker_worker_hit"]
-[connection signal="worker_hit" from="LiftWorkers/YSort/Path2D2/CopyWorker" to="." method="_on_CopyWorker_worker_hit"]
-[connection signal="worker_hit" from="LiftWorkers/YSort/Path2D3/CopyWorker" to="." method="_on_CopyWorker_worker_hit"]
-[connection signal="worker_hit" from="LiftWorkers/YSort/Path2D4/CopyWorker" to="." method="_on_CopyWorker_worker_hit"]
+[connection signal="finished_copying" from="LiftWorkers/Path2D/CopyWorker" to="." method="_on_CopyWorker_finished_copying"]
+[connection signal="worker_hit" from="LiftWorkers/Path2D/CopyWorker" to="." method="_on_CopyWorker_worker_hit"]
+[connection signal="finished_copying" from="LiftWorkers/Path2D2/CopyWorker" to="." method="_on_CopyWorker_finished_copying"]
+[connection signal="worker_hit" from="LiftWorkers/Path2D2/CopyWorker" to="." method="_on_CopyWorker_worker_hit"]
+[connection signal="finished_copying" from="LiftWorkers/Path2D3/CopyWorker" to="." method="_on_CopyWorker_finished_copying"]
+[connection signal="worker_hit" from="LiftWorkers/Path2D3/CopyWorker" to="." method="_on_CopyWorker_worker_hit"]
+[connection signal="finished_copying" from="LiftWorkers/Path2D4/CopyWorker" to="." method="_on_CopyWorker_finished_copying"]
+[connection signal="worker_hit" from="LiftWorkers/Path2D4/CopyWorker" to="." method="_on_CopyWorker_worker_hit"]
 [connection signal="area_entered" from="CopyWorkArea" to="." method="_on_CopyWorkArea_area_entered"]
-[connection signal="body_entered" from="CopyWorkArea" to="." method="_on_CopyWorkArea_body_entered"]
+[connection signal="area_exited" from="CopyWorkArea" to="." method="_on_CopyWorkArea_area_exited"]
