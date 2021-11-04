@@ -65,7 +65,7 @@ func _queue(worker : Node):
 	worker_q.push_back(worker)
 
 
-func _on_CopyWorker_worker_hit(ind):
+func _on_CopyWorker_worker_hit(ind, at_copier):
 	if lifts[ind].activated:
 		lifts[ind].deactivate()
 		active_lifts -= 1
@@ -75,9 +75,10 @@ func _on_CopyWorkArea_area_exited(area):
 	if area.name == "SpriteArea":
 		if !worker_q.empty():
 			_dequeue()
+		else:
+			copier_in_use = false
 
 
 func _on_CopyWorker_finished_copying(ind):
-	print("deactivating %d" % ind)
 	lifts[ind].deactivate()
 	active_lifts -= 1

@@ -93,6 +93,8 @@ func _on_SpriteArea_body_entered(body):
 	if body.name == "Ball":
 		if is_lift_worker:
 			emit_signal("worker_hit", index)
+			if at_copier:
+				emit_signal("finished_copying", index)
 		set_active(false)
 
 
@@ -102,6 +104,8 @@ func set_active(active : bool):
 	is_active = active
 	visible = active
 	_set_collisions(active)
+	if !active:
+		offset = 0
 
 
 func _on_WorkTimer_timeout():
