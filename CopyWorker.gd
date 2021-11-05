@@ -91,10 +91,9 @@ func _set_collisions(enabled: bool):
 
 func _on_SpriteArea_body_entered(body):
 	if body.name == "Ball":
-		if is_lift_worker:
-			emit_signal("worker_hit", index)
-			if at_copier:
-				emit_signal("finished_copying", index)
+		emit_signal("worker_hit", index)
+		if at_copier:
+			emit_signal("finished_copying", index)
 		set_active(false)
 
 

@@ -1,19 +1,30 @@
 extends Node2D
 
+const TOPLVL_WORKER_INDEX = -1
+
 signal copier_hit
 
 var lifts : Array
+var tl_workers : Array
 var active_lifts = 0
+var active_tl_workers = 0
 var worker_q : Array
 var copier_in_use = false
+var task_active = false
 
 func _ready():
 	lifts = $Lifts.get_children()
+	tl_workers = $CopierWorkers.get_children()
+	_activate_toplvl_workers()
 
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Ball":
 		emit_signal("copier_hit")
+
+
+func _activate_toplvl_workers():
+	$TopLvlResetTimer.start()
 
 
 func activate_task():
@@ -65,8 +76,10 @@ func _queue(worker : Node):
 	worker_q.push_back(worker)
 
 
-func _on_CopyWorker_worker_hit(ind, at_copier):
-	if lifts[ind].activated:
+func _on_CopyWorker_worker_hit(ind):
+	if ind == TOPLVL_WORKER_INDEX:
+		active_tl_workers -= 1
+	elif lifts[ind].activated:
 		lifts[ind].deactivate()
 		active_lifts -= 1
 
@@ -80,5 +93,17 @@ func _on_CopyWorkArea_area_exited(area):
 
 
 func _on_CopyWorker_finished_copying(ind):
-	lifts[ind].deactivate()
-	active_lifts -= 1
+	if ind != TOPLVL_WORKER_INDEX:
+		lifts[ind].deactivate()
+		active_lifts -= 1
+	else:
+		active_tl_workers -= 1
+
+
+func _on_TopLvlResetTimer_timeout():
+	if active_tl_workers < tl_workers.size():
+		for i in tl_workers.size():
+			if !tl_workers[active_tl_workers-i].get_child(0).is_active:	
+				tl_workers[active_tl_workers-i].get_child(0).set_active(true)
+				break
+		active_tl_workers += 1
