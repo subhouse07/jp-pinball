@@ -11,6 +11,9 @@ func _ready():
 			_set_target_active($Targets.get_child(i), DISABLED)
 
 
+func activate_task():
+	pass
+
 
 func _on_TargetArea_body_entered(body, ind):
 	if body.name == "Ball":

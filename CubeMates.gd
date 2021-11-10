@@ -2,7 +2,7 @@ extends Node2D
 
 const tasks = {
 	"copier": "CopierSection",
-	"files": "",
+	"files": "FileCabinets",
 	"brainstorm": ""
 }
 
