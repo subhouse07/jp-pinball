@@ -7,7 +7,7 @@
 friction = 0.0
 bounce = 0.6
 
-[sub_resource type="CapsuleShape2D" id=44]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 8.0
 height = 16.0
 
@@ -77,35 +77,35 @@ region = Rect2( 91, 56, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 112, 13, 28 )
+region = Rect2( 0, 0, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 2 )
-region = Rect2( 13, 112, 13, 28 )
+region = Rect2( 13, 0, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 2 )
-region = Rect2( 26, 112, 13, 28 )
+region = Rect2( 26, 0, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 2 )
-region = Rect2( 39, 112, 13, 28 )
+region = Rect2( 39, 0, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 2 )
-region = Rect2( 52, 112, 13, 28 )
+region = Rect2( 52, 0, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 2 )
-region = Rect2( 65, 112, 13, 28 )
+region = Rect2( 65, 0, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 2 )
-region = Rect2( 78, 112, 13, 28 )
+region = Rect2( 78, 0, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=26]
 atlas = ExtResource( 2 )
-region = Rect2( 91, 112, 13, 28 )
+region = Rect2( 91, 0, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 2 )
@@ -141,35 +141,35 @@ region = Rect2( 91, 84, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 13, 28 )
+region = Rect2( 0, 112, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=36]
 atlas = ExtResource( 2 )
-region = Rect2( 13, 0, 13, 28 )
+region = Rect2( 13, 112, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=37]
 atlas = ExtResource( 2 )
-region = Rect2( 26, 0, 13, 28 )
+region = Rect2( 26, 112, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=38]
 atlas = ExtResource( 2 )
-region = Rect2( 39, 0, 13, 28 )
+region = Rect2( 39, 112, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 2 )
-region = Rect2( 52, 0, 13, 28 )
+region = Rect2( 52, 112, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=40]
 atlas = ExtResource( 2 )
-region = Rect2( 65, 0, 13, 28 )
+region = Rect2( 65, 112, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=41]
 atlas = ExtResource( 2 )
-region = Rect2( 78, 0, 13, 28 )
+region = Rect2( 78, 112, 13, 28 )
 
 [sub_resource type="AtlasTexture" id=42]
 atlas = ExtResource( 2 )
-region = Rect2( 91, 0, 13, 28 )
+region = Rect2( 91, 112, 13, 28 )
 
 [sub_resource type="SpriteFrames" id=43]
 animations = [ {
@@ -185,7 +185,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
 "loop": true,
-"name": "diag_back",
+"name": "fore",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
@@ -195,11 +195,11 @@ animations = [ {
 }, {
 "frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ) ],
 "loop": true,
-"name": "fore",
+"name": "diag_back",
 "speed": 8.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=44]
 radius = 12.0
 height = 16.0
 
@@ -213,7 +213,7 @@ script = ExtResource( 1 )
 physics_material_override = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 44 )
+shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 43 )
@@ -224,7 +224,7 @@ playing = true
 [node name="VisitorArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisitorArea"]
-shape = SubResource( 2 )
+shape = SubResource( 44 )
 
 [node name="CollisionTimer" type="Timer" parent="."]
 wait_time = 0.2
