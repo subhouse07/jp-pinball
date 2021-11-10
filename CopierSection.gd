@@ -10,7 +10,8 @@ var active_lifts = 0
 var active_tl_workers = 0
 var worker_q : Array
 var copier_in_use = false
-var task_active = false
+var task_active = false setget task_active_set, task_active_get
+
 
 func _ready():
 	lifts = $Lifts.get_children()
@@ -20,6 +21,7 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Ball":
+		print("hit")
 		emit_signal("copier_hit")
 
 
@@ -28,6 +30,7 @@ func _activate_toplvl_workers():
 
 
 func activate_task():
+	task_active = true
 	activate_lifts()
 
 
@@ -101,9 +104,22 @@ func _on_CopyWorker_finished_copying(ind):
 
 
 func _on_TopLvlResetTimer_timeout():
+	print("lift timeout")
 	if active_tl_workers < tl_workers.size():
 		for i in tl_workers.size():
-			if !tl_workers[active_tl_workers-i].get_child(0).is_active:	
+			if !tl_workers[active_tl_workers-i].get_child(0).is_active:
 				tl_workers[active_tl_workers-i].get_child(0).set_active(true)
 				break
 		active_tl_workers += 1
+
+func task_active_set(active : bool):
+	task_active = active
+
+
+func task_active_get():
+	return task_active
+
+
+func reset():
+	task_active = false
+	$LiftResetTimer.stop()

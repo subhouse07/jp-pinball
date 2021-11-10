@@ -7,6 +7,7 @@ var hp_boardroom_doors = 3
 var hp_centerpiece = 5
 var hp_janitor = 3
 var hp_boardroom_vent = 1
+var hp_copier = 3
 
 var main_board_ball_pos := Vector2(126, 144)
 
@@ -48,3 +49,14 @@ func hit_boardroom_doors():
 
 func reset_boardroom_doors():
 	hp_boardroom_doors = 3
+
+
+# - - - -
+# Copier
+# - - - -
+func hit_copier():
+	hp_copier -= 1
+
+
+func reset_copier():
+	hp_copier = 3

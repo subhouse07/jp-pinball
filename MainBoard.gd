@@ -235,3 +235,16 @@ func _set_sublvl_collision(enabled : bool):
 func _on_CubeMates_task_activated(name):
 	get_node("Cubicle/%s" % name).activate_task()
 	
+
+
+func _on_CopierSection_copier_hit():
+	if $Cubicle/CopierSection.task_active:
+		$"/root/GameState".hit_copier()
+		if $"/root/GameState".hp_copier <= 0:
+			print("Copier stage triggered")
+			$"/root/GameState".reset_copier()
+			$Cubicle/CubeMates.reset()
+			$Cubicle/CopierSection.reset()
+	else:
+		# do whatever, maybe nothing
+		pass

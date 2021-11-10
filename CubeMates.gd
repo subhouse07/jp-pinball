@@ -40,4 +40,6 @@ func _set_bumpers_enabled(enabled : bool):
 		$LeftDesk.collision_mask = 0
 		$RightDesk.collision_layer = 0
 		$RightDesk.collision_mask = 0
-	
+
+func reset():
+	_set_bumpers_enabled(false)
