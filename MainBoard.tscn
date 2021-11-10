@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=2]
+[gd_scene load_steps=154 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -34,7 +34,6 @@
 [ext_resource path="res://FileCabinets.tscn" type="PackedScene" id=32]
 [ext_resource path="res://BoardRoomVent.gd" type="Script" id=33]
 [ext_resource path="res://CopierSection.tscn" type="PackedScene" id=34]
-[ext_resource path="res://CubicleBlockingCones.tscn" type="PackedScene" id=35]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/side-rail.png-9fa92fee8cb3161206de5ddfba53ffee.stex"
@@ -1390,8 +1389,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubEntrances/UpperSubExit"]
 position = Vector2( -105, -262 )
 shape = SubResource( 119 )
-
-[node name="CubicleBlockingCones" parent="." instance=ExtResource( 35 )]
 [connection signal="copier_hit" from="Cubicle/CopierSection" to="." method="_on_CopierSection_copier_hit"]
 [connection signal="desk_ball_released" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="desk_ball_trapped" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_ball_trapped"]
