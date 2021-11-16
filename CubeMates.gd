@@ -17,7 +17,7 @@ func _ready():
 
 func _on_TrapDoor_ball_trapped():
 	emit_signal("desk_ball_trapped")
-	emit_signal("task_activated", tasks["copier"])
+	emit_signal("task_activated", tasks["files"])
 
 
 func _on_TrapDoor_door_timed_out(x, y):

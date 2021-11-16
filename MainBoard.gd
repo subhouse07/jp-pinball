@@ -233,6 +233,7 @@ func _set_sublvl_collision(enabled : bool):
 
 
 func _on_CubeMates_task_activated(name):
+	# probably will trigger some animation in the side from here?
 	get_node("Cubicle/%s" % name).activate_task()
 
 
@@ -241,8 +242,14 @@ func _on_CopierSection_copier_hit():
 		$"/root/GameState".hit_copier()
 		if $"/root/GameState".hp_copier <= 0:
 			$"/root/GameState".reset_copier()
-			$Cubicle/CubeMates.reset()
-			$Cubicle/CopierSection.reset()
+			$Cubicle.activate_special_stage($Cubicle.COPIER)
 	else:
 		# do whatever, maybe nothing
 		pass
+
+
+func _on_FileCabinets_file_target_hit():
+	$"/root/GameState".hit_file_cabinet()
+	if $"/root/GameState".hp_file_cab <= 0:
+		$"/root/GameState".reset_file_cab()
+		$Cubicle.activate_special_stage($Cubicle.FILES)

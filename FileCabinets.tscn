@@ -107,7 +107,53 @@ shape = SubResource( 3 )
 position = Vector2( 1, 4 )
 scale = Vector2( 0.2, 0.2 )
 texture = SubResource( 4 )
+
+[node name="Target5" type="Node2D" parent="Targets"]
+position = Vector2( 65, 210 )
+scale = Vector2( 1.5, 1.5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Targets/Target5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target5/StaticBody2D"]
+shape = SubResource( 2 )
+
+[node name="TargetArea" type="Area2D" parent="Targets/Target5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target5/TargetArea"]
+shape = SubResource( 3 )
+
+[node name="Sprite4" type="Sprite" parent="Targets/Target5"]
+position = Vector2( 1, 4 )
+scale = Vector2( 0.2, 0.2 )
+texture = SubResource( 4 )
+
+[node name="Target6" type="Node2D" parent="Targets"]
+position = Vector2( -208, 210 )
+scale = Vector2( 1.5, 1.5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Targets/Target6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target6/StaticBody2D"]
+shape = SubResource( 2 )
+
+[node name="TargetArea" type="Area2D" parent="Targets/Target6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targets/Target6/TargetArea"]
+shape = SubResource( 3 )
+
+[node name="Sprite4" type="Sprite" parent="Targets/Target6"]
+position = Vector2( 1, 4 )
+scale = Vector2( 0.2, 0.2 )
+texture = SubResource( 4 )
 [connection signal="body_entered" from="Targets/Target/TargetArea" to="." method="_on_TargetArea_body_entered" binds= [ 0 ]]
 [connection signal="body_entered" from="Targets/Target2/TargetArea" to="." method="_on_TargetArea_body_entered" binds= [ 1 ]]
 [connection signal="body_entered" from="Targets/Target3/TargetArea" to="." method="_on_TargetArea_body_entered" binds= [ 2 ]]
 [connection signal="body_entered" from="Targets/Target4/TargetArea" to="." method="_on_TargetArea_body_entered" binds= [ 3 ]]
+[connection signal="body_entered" from="Targets/Target5/TargetArea" to="." method="_on_TargetArea_body_entered" binds= [ 4 ]]
+[connection signal="body_entered" from="Targets/Target6/TargetArea" to="." method="_on_TargetArea_body_entered" binds= [ 5 ]]

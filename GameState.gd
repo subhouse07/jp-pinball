@@ -8,6 +8,7 @@ var hp_centerpiece = 5
 var hp_janitor = 3
 var hp_boardroom_vent = 1
 var hp_copier = 3
+var hp_file_cab = 6
 
 var main_board_ball_pos := Vector2(126, 144)
 
@@ -60,3 +61,14 @@ func hit_copier():
 
 func reset_copier():
 	hp_copier = 3
+
+
+# - - - - - - -
+# File Cabinet
+# - - - - - - -
+func hit_file_cabinet():
+	hp_file_cab -= 1
+
+
+func reset_file_cab():
+	hp_file_cab = 6
