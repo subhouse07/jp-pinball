@@ -6,6 +6,8 @@ const tasks = {
 	"brainstorm": ""
 }
 
+var task_ind = 0
+
 signal desk_ball_trapped
 signal desk_ball_released(x, y)
 signal task_activated(name)
@@ -17,7 +19,12 @@ func _ready():
 
 func _on_TrapDoor_ball_trapped():
 	emit_signal("desk_ball_trapped")
-	emit_signal("task_activated", tasks["files"])
+	if task_ind > 0:
+		emit_signal("task_activated", tasks["files"])
+		task_ind = 0
+	else:
+		emit_signal("task_activated", tasks["copier"])
+		task_ind += 1
 
 
 func _on_TrapDoor_door_timed_out(x, y):

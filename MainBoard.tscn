@@ -1,4 +1,4 @@
-[gd_scene load_steps=156 format=2]
+[gd_scene load_steps=155 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -35,7 +35,6 @@
 [ext_resource path="res://BoardRoomVent.gd" type="Script" id=33]
 [ext_resource path="res://CopierSection.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Cubicle.gd" type="Script" id=35]
-[ext_resource path="res://CubicleBlockingCones.tscn" type="PackedScene" id=36]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/side-rail.png-9fa92fee8cb3161206de5ddfba53ffee.stex"
@@ -970,12 +969,13 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 74 )
-frame = 4
+frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 78 )
+frame = 2
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]
@@ -1392,8 +1392,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubEntrances/UpperSubExit"]
 position = Vector2( -105, -262 )
 shape = SubResource( 119 )
-
-[node name="CubicleBlockingCones" parent="." instance=ExtResource( 36 )]
 [connection signal="copier_hit" from="Cubicle/CopierSection" to="." method="_on_CopierSection_copier_hit"]
 [connection signal="desk_ball_released" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="desk_ball_trapped" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_ball_trapped"]
