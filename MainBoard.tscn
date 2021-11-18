@@ -975,7 +975,6 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 78 )
-frame = 2
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]

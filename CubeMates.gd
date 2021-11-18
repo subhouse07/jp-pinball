@@ -20,10 +20,10 @@ func _ready():
 func _on_TrapDoor_ball_trapped():
 	emit_signal("desk_ball_trapped")
 	if task_ind > 0:
-		emit_signal("task_activated", tasks["files"])
+		emit_signal("task_activated", tasks["copier"])
 		task_ind = 0
 	else:
-		emit_signal("task_activated", tasks["copier"])
+		emit_signal("task_activated", tasks["files"])
 		task_ind += 1
 
 
