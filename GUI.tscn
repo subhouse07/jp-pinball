@@ -16,7 +16,9 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -53.0
 margin_bottom = 20.0
+focus_mode = 0
 toggle_mode = true
+enabled_focus_mode = 0
 text = "Toggle"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -32,9 +34,4 @@ columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Label" type="Label" parent="DevPanel"]
-margin_right = 89.0
-margin_bottom = 14.0
-text = "The dev panel"
 [connection signal="toggled" from="ToggleButton" to="." method="_on_ToggleButton_toggled"]
