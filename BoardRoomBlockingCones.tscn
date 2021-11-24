@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Cone.tscn" type="PackedScene" id=1]
+
+[node name="BoardRoomBlockingCones" type="Node2D"]
+
+[node name="Cone" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 192, -402 )
+
+[node name="Cone2" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 320, -471 )
+
+[node name="Cone3" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 332, -487 )
