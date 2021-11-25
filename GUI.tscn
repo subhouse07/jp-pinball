@@ -30,17 +30,34 @@ margin_bottom = 20.0
 focus_mode = 0
 toggle_mode = true
 enabled_focus_mode = 0
-text = "Toggle"
+text = "DevControl"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DevPanelGrid" type="GridContainer" parent="DevPanel"]
+[node name="PanelContainer" type="PanelContainer" parent="DevPanel"]
 visible = false
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -130.0
+margin_left = -144.0
 margin_top = 23.0
+margin_bottom = 94.0
+grow_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DevPanel/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 137.0
+margin_bottom = 327.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 320 )
+scroll_horizontal_enabled = false
+
+[node name="DevPanelGrid" type="GridContainer" parent="DevPanel/PanelContainer/ScrollContainer"]
+margin_right = 130.0
 margin_bottom = 80.0
 grow_horizontal = 0
 columns = 2
@@ -48,13 +65,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ConeLabel" type="Label" parent="DevPanel/DevPanelGrid"]
+[node name="ConeLabel" type="Label" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid"]
 margin_top = 33.0
 margin_right = 39.0
 margin_bottom = 47.0
 text = "Cones"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DevPanel/DevPanelGrid"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid"]
 margin_left = 43.0
 margin_right = 130.0
 margin_bottom = 80.0
@@ -62,14 +79,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LobbyCheckBox" type="CheckBox" parent="DevPanel/DevPanelGrid/VBoxContainer"]
+[node name="LobbyCheckBox" type="CheckBox" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer"]
 margin_right = 87.0
 margin_bottom = 24.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Lobby"
 
-[node name="CubeCheckBox" type="CheckBox" parent="DevPanel/DevPanelGrid/VBoxContainer"]
+[node name="CubeCheckBox" type="CheckBox" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer"]
 margin_top = 28.0
 margin_right = 87.0
 margin_bottom = 52.0
@@ -77,7 +94,7 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "Cube"
 
-[node name="BrdRoomCheckBox" type="CheckBox" parent="DevPanel/DevPanelGrid/VBoxContainer"]
+[node name="BrdRoomCheckBox" type="CheckBox" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer"]
 margin_top = 56.0
 margin_right = 87.0
 margin_bottom = 80.0
@@ -85,6 +102,6 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "BrdRoom"
 [connection signal="toggled" from="DevPanel/ToggleButton" to="DevPanel" method="_on_ToggleButton_toggled"]
-[connection signal="toggled" from="DevPanel/DevPanelGrid/VBoxContainer/LobbyCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 0 ]]
-[connection signal="toggled" from="DevPanel/DevPanelGrid/VBoxContainer/CubeCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 1 ]]
-[connection signal="toggled" from="DevPanel/DevPanelGrid/VBoxContainer/BrdRoomCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 2 ]]
+[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer/LobbyCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 0 ]]
+[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer/CubeCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 1 ]]
+[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer/BrdRoomCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 2 ]]

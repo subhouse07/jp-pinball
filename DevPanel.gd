@@ -3,16 +3,19 @@ extends Control
 enum { LOBBY_CONE, CUBE_CONE, BRDROOM_CONE }
 
 var panel_labels = []
+var panel_grid : Node
 
 func _ready():
+	panel_grid = $PanelContainer/ScrollContainer/DevPanelGrid
 	panel_labels = $"/root/GameState".hp_state.keys()
 	_populate_dev_panel()
 
 
 func update():
 	for label in panel_labels:
-		var spinbox = $DevPanelGrid.get_node("%sSpinBox" % label)
+		var spinbox = panel_grid.get_node("%sSpinBox" % label)
 		spinbox.value = $"/root/GameState".hp_state[label]
+
 
 func _populate_dev_panel():
 	for label in panel_labels:
@@ -30,11 +33,13 @@ func _add_state_entry(label):
 	
 	entry_spinbox.connect("value_changed", self, "_on_state_value_changed", [label])
 	
-	$DevPanelGrid.add_child(entry_label)
-	$DevPanelGrid.add_child(entry_spinbox)
-	
+	panel_grid.add_child(entry_label)
+	panel_grid.add_child(entry_spinbox)
+
+
 func _on_ToggleButton_toggled(button_pressed):
-	$DevPanelGrid.visible = button_pressed
+	$PanelContainer.visible = button_pressed
+
 
 func _on_state_value_changed(value: float, name: String):
 	$"/root/GameState".hp_state[name] = value
@@ -54,6 +59,7 @@ func _on_ConeCheckBox_toggled(button_pressed, cone_id):
 		BRDROOM_CONE:
 			_set_blocking_cones_enabled(button_pressed, "BoardRoomBlockingCones")
 			pass
+
 
 func _set_blocking_cones_enabled(enabled: bool, scene_name: String):
 	if enabled:
