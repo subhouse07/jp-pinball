@@ -969,12 +969,13 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 74 )
-frame = 2
+frame = 4
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 78 )
+frame = 2
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]

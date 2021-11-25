@@ -155,7 +155,7 @@ func _on_ComputerDoor_door_timed_out(x, y):
 #	GameState.call("hit_computer")
 #	if GameState.hp_computer == 0:
 #		GameState.main_board_ball_pos = ball.global_position
-#		GameState.reset_hp_computer()
+#		GameState.reset_computer()
 #		get_parent().call("load_scene", "SpecialTest")
 #	else:
 	_on_TrapDoor_door_timed_out(x, y)
@@ -240,7 +240,7 @@ func _on_CubeMates_task_activated(name):
 func _on_CopierSection_copier_hit():
 	if $Cubicle/CopierSection.task_active:
 		$"/root/GameState".hit_copier()
-		if $"/root/GameState".hp_copier <= 0:
+		if $"/root/GameState".hp_state["copier"] <= 0:
 			$"/root/GameState".reset_copier()
 			$Cubicle.activate_special_stage($Cubicle.COPIER)
 	else:
@@ -250,6 +250,6 @@ func _on_CopierSection_copier_hit():
 
 func _on_FileCabinets_file_target_hit():
 	$"/root/GameState".hit_file_cabinet()
-	if $"/root/GameState".hp_file_cab <= 0:
+	if $"/root/GameState".hp_state["file_cab"] <= 0:
 		$"/root/GameState".reset_file_cab()
 		$Cubicle.activate_special_stage($Cubicle.FILES)

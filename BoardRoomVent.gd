@@ -17,7 +17,7 @@ func reset():
 
 
 func _on_VentHitArea_body_entered(body):
-	if body.name == "Ball" and $"/root/GameState".hp_boardroom_vent > 0:
+	if body.name == "Ball" and $"/root/GameState".hp_state["boardroom_vent"] > 0:
 		$"/root/GameState".hit_boardroom_vent()
 		$HitTimer.start()
 
