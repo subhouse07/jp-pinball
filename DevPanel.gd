@@ -11,7 +11,7 @@ func _ready():
 
 func update():
 	for label in panel_labels:
-		var spinbox = $DevPanel.get_node("%sSpinBox" % label)
+		var spinbox = $DevPanelGrid.get_node("%sSpinBox" % label)
 		spinbox.value = $"/root/GameState".hp_state[label]
 
 func _populate_dev_panel():
@@ -30,11 +30,11 @@ func _add_state_entry(label):
 	
 	entry_spinbox.connect("value_changed", self, "_on_state_value_changed", [label])
 	
-	$DevPanel.add_child(entry_label)
-	$DevPanel.add_child(entry_spinbox)
+	$DevPanelGrid.add_child(entry_label)
+	$DevPanelGrid.add_child(entry_spinbox)
 	
 func _on_ToggleButton_toggled(button_pressed):
-	$DevPanel.visible = button_pressed
+	$DevPanelGrid.visible = button_pressed
 
 func _on_state_value_changed(value: float, name: String):
 	$"/root/GameState".hp_state[name] = value
@@ -59,6 +59,6 @@ func _set_blocking_cones_enabled(enabled: bool, scene_name: String):
 	if enabled:
 		var scene = load("res://" + scene_name + ".tscn")
 		var node = scene.instance()
-		get_node("../../MainBoard").add_child(node)
+		get_node("../../../MainBoard").add_child(node)
 	else:
-		get_node("../../MainBoard/%s" % scene_name).queue_free()
+		get_node("../../../MainBoard/%s" % scene_name).queue_free()
