@@ -50,15 +50,15 @@ __meta__ = {
 [node name="ScrollContainer" type="ScrollContainer" parent="DevPanel/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 137.0
+margin_right = 171.0
 margin_bottom = 327.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 320 )
 scroll_horizontal_enabled = false
 
 [node name="DevPanelGrid" type="GridContainer" parent="DevPanel/PanelContainer/ScrollContainer"]
-margin_right = 130.0
-margin_bottom = 80.0
+margin_right = 164.0
+margin_bottom = 168.0
 grow_horizontal = 0
 columns = 2
 __meta__ = {
@@ -71,37 +71,66 @@ margin_right = 39.0
 margin_bottom = 47.0
 text = "Cones"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid"]
+[node name="ConeVboxContainer" type="VBoxContainer" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid"]
 margin_left = 43.0
-margin_right = 130.0
+margin_right = 164.0
 margin_bottom = 80.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LobbyCheckBox" type="CheckBox" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer"]
-margin_right = 87.0
+[node name="LobbyCheckBox" type="CheckBox" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/ConeVboxContainer"]
+margin_right = 121.0
 margin_bottom = 24.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Lobby"
 
-[node name="CubeCheckBox" type="CheckBox" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer"]
+[node name="CubeCheckBox" type="CheckBox" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/ConeVboxContainer"]
 margin_top = 28.0
-margin_right = 87.0
+margin_right = 121.0
 margin_bottom = 52.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Cube"
 
-[node name="BrdRoomCheckBox" type="CheckBox" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer"]
+[node name="BrdRoomCheckBox" type="CheckBox" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/ConeVboxContainer"]
 margin_top = 56.0
-margin_right = 87.0
+margin_right = 121.0
 margin_bottom = 80.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "BrdRoom"
+
+[node name="TaskLabel" type="Label" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid"]
+margin_top = 119.0
+margin_right = 39.0
+margin_bottom = 133.0
+text = "Tasks"
+
+[node name="TaskVBoxContainer" type="VBoxContainer" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid"]
+margin_left = 43.0
+margin_top = 84.0
+margin_right = 164.0
+margin_bottom = 168.0
+
+[node name="CopierCheckButton" type="CheckButton" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/TaskVBoxContainer"]
+margin_right = 121.0
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Copier"
+
+[node name="FilesCheckButton" type="CheckButton" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/TaskVBoxContainer"]
+margin_top = 44.0
+margin_right = 121.0
+margin_bottom = 84.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Files"
 [connection signal="toggled" from="DevPanel/ToggleButton" to="DevPanel" method="_on_ToggleButton_toggled"]
-[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer/LobbyCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 0 ]]
-[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer/CubeCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 1 ]]
-[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/VBoxContainer/BrdRoomCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 2 ]]
+[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/ConeVboxContainer/LobbyCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 0 ]]
+[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/ConeVboxContainer/CubeCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 1 ]]
+[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/ConeVboxContainer/BrdRoomCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 2 ]]
+[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/TaskVBoxContainer/CopierCheckButton" to="DevPanel" method="_on_TaskCheckButton_toggled" binds= [ 0 ]]
+[connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/TaskVBoxContainer/FilesCheckButton" to="DevPanel" method="_on_TaskCheckButton_toggled" binds= [ 1 ]]

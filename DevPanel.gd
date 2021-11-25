@@ -1,9 +1,11 @@
 extends Control
 
 enum { LOBBY_CONE, CUBE_CONE, BRDROOM_CONE }
+enum { COPIER, FILES }
 
 var panel_labels = []
 var panel_grid : Node
+var cube_task_count = 0
 
 func _ready():
 	panel_grid = $PanelContainer/ScrollContainer/DevPanelGrid
@@ -62,9 +64,25 @@ func _on_ConeCheckBox_toggled(button_pressed, cone_id):
 
 
 func _set_blocking_cones_enabled(enabled: bool, scene_name: String):
+	var main_board = get_node("../../../MainBoard")
 	if enabled:
 		var scene = load("res://" + scene_name + ".tscn")
 		var node = scene.instance()
-		get_node("../../../MainBoard").add_child(node)
+		main_board.add_child(node)
 	else:
-		get_node("../../../MainBoard/%s" % scene_name).queue_free()
+		main_board.get_node(scene_name).queue_free()
+
+
+func _on_TaskCheckButton_toggled(button_pressed, task_id):
+	var task_node_names = [ "CopierSection", "FileCabinets" ]
+	var main_board = get_node("../../../MainBoard")
+	if button_pressed:
+		cube_task_count += 1
+		main_board.call("_on_CubeMates_task_activated", task_node_names[task_id])
+		main_board.get_node("Cubicle/CubeMates").call("_set_bumpers_enabled", true)
+	else:
+		cube_task_count -= 1
+		main_board.get_node("Cubicle/%s" % task_node_names[task_id]).reset()
+		if cube_task_count <= 0:
+			main_board.get_node("Cubicle/CubeMates").reset()
+

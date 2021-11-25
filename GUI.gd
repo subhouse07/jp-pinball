@@ -8,3 +8,7 @@ func _ready():
 func disable_dev_panel():
 	if $DevPanel:
 		$DevPanel.queue_free()
+
+func update():
+	if $DevPanel:
+		$DevPanel.update()
