@@ -10,6 +10,7 @@ var courier_count : int
 
 signal ball_captured
 signal ball_released
+signal special_triggered
 
 
 func _ready():
@@ -25,10 +26,15 @@ func _on_Courier_captured_ball(index):
 	var couriers = $CourierPaths.get_child(active_path).get_children()
 	for c in couriers:
 		c.disable_collision()
-	capture_index = index
-	ball_captured = true
-	capture_coords = couriers[index].global_position
-	emit_signal("ball_captured")
+	if active_path < 2:
+		capture_index = index
+		ball_captured = true
+		capture_coords = couriers[index].global_position
+		emit_signal("ball_captured")
+	else:
+		emit_signal("special_triggered")
+		active_path = 0
+		_reparent_couriers()
 
 
 func _on_Courier_hit(index):
@@ -42,7 +48,6 @@ func _on_Courier_hit(index):
 
 
 func _on_ReleaseArea_area_entered(area):
-	
 	if ball_captured and area.get_parent().index == capture_index:
 		ball_captured = false
 		var couriers = $CourierPaths.get_child(active_path).get_children()
@@ -53,14 +58,21 @@ func _on_ReleaseArea_area_entered(area):
 
 
 func _reparent_couriers():
-	var old_path = $CourierPaths.get_child(active_path-1)
+	var old_index
+	if active_path == 0:
+		old_index = 2
+	else:
+		old_index = active_path - 1
+		
+	var old_path = $CourierPaths.get_child(old_index)
 	var new_path = $CourierPaths.get_child(active_path)
 	var couriers = old_path.get_children()
 	
-	for child in couriers:
-		child.reset()
-		old_path.remove_child(child)
-		new_path.add_child(child)
+	for i in couriers.size():
+		old_path.remove_child(couriers[i])
+		new_path.add_child(couriers[i])
+		if active_path < 2 or i == 0:
+			couriers[i].reset()
 
 
 func _on_SlowdownArea_area_entered(area):
