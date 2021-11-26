@@ -171,7 +171,7 @@ func _on_CourierCoordinator_ball_released():
 	ball.linear_velocity = Vector2(0,0)
 	ball.angular_velocity = 0
 	ball.mode = RigidBody2D.MODE_CHARACTER
-	ball.apply_central_impulse(Vector2(100, 0))
+	ball.apply_central_impulse(Vector2(150, -50))
 
 
 func _on_ElevatorDoorArea_body_entered(body):

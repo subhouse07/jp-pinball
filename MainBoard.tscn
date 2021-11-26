@@ -975,12 +975,13 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 74 )
-frame = 3
+frame = 4
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 78 )
+frame = 1
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]
@@ -1406,6 +1407,8 @@ shape = SubResource( 119 )
 [connection signal="ball_trapped" from="Cubicle/CubeMates/TrapDoor2" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="Cubicle/CubeMates/TrapDoor2" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
 [connection signal="file_target_hit" from="Cubicle/FileCabinets" to="." method="_on_FileCabinets_file_target_hit"]
+[connection signal="ball_captured" from="CourierCoordinator" to="." method="_on_CourierCoordinator_ball_captured"]
+[connection signal="ball_released" from="CourierCoordinator" to="." method="_on_CourierCoordinator_ball_released"]
 [connection signal="body_entered" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_entered"]
 [connection signal="body_exited" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_exited"]
 [connection signal="frame_changed" from="YSort/CenterPiece/AnimatedSprite" to="YSort/CenterPiece" method="_on_AnimatedSprite_frame_changed"]

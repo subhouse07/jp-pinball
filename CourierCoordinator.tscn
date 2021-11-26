@@ -68,6 +68,26 @@ curve = SubResource( 1 )
 position = Vector2( 64, -216 )
 shape = SubResource( 2 )
 
+[node name="ReleaseArea2" type="Area2D" parent="."]
+position = Vector2( 0, -80 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseArea2"]
+position = Vector2( 64, -216 )
+shape = SubResource( 2 )
+
+[node name="ReleaseArea3" type="Area2D" parent="."]
+position = Vector2( 0, -192 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseArea3"]
+position = Vector2( 64, -216 )
+shape = SubResource( 2 )
+
 [node name="SlowdownArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="SlowdownArea"]
@@ -85,5 +105,7 @@ position = Vector2( 136, -416 )
 [connection signal="captured_ball" from="CourierPaths/Path2D/Courier6" to="." method="_on_Courier_captured_ball"]
 [connection signal="hit" from="CourierPaths/Path2D/Courier6" to="." method="_on_Courier_hit"]
 [connection signal="area_entered" from="ReleaseArea" to="." method="_on_ReleaseArea_area_entered"]
+[connection signal="area_entered" from="ReleaseArea2" to="." method="_on_ReleaseArea_area_entered"]
+[connection signal="area_entered" from="ReleaseArea3" to="." method="_on_ReleaseArea_area_entered"]
 [connection signal="area_entered" from="SlowdownArea" to="." method="_on_SlowdownArea_area_entered"]
 [connection signal="area_exited" from="SlowdownArea" to="." method="_on_SlowdownArea_area_exited"]

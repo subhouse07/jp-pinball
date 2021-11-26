@@ -3,15 +3,15 @@ extends Node2D
 const SLOWDOWN_FACTOR = 7.0
 
 var ball_captured = false
-var capture_index
+var capture_index : int
 var capture_coords := Vector2()
 var active_path = 0
-var courier_count
+var courier_count : int
 
 signal ball_captured
 signal ball_released
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	courier_count = $CourierPaths/Path2D.get_child_count()
 
@@ -39,10 +39,6 @@ func _on_Courier_hit(index):
 		_reparent_couriers()
 	elif courier_count == 1:
 		$CourierPaths.get_child(active_path).get_child(0).set_as_final()
-#	else:
-#		var couriers = $CourierPaths.get_child(active_path).get_children()
-#		if couriers.size() > index + 1 and !couriers[index+1].disabled:
-#			couriers[index+1].set_as_lead()
 
 
 func _on_ReleaseArea_area_entered(area):
@@ -54,7 +50,8 @@ func _on_ReleaseArea_area_entered(area):
 			if !c.disabled and !c.is_lead:
 				c.enable_collision()
 		emit_signal("ball_released")
-		
+
+
 func _reparent_couriers():
 	var old_path = $CourierPaths.get_child(active_path-1)
 	var new_path = $CourierPaths.get_child(active_path)
@@ -64,7 +61,6 @@ func _reparent_couriers():
 		child.reset()
 		old_path.remove_child(child)
 		new_path.add_child(child)
-	
 
 
 func _on_SlowdownArea_area_entered(area):
@@ -75,7 +71,7 @@ func _on_SlowdownArea_area_entered(area):
 		if !node.disabled:
 			node.in_slow_zone = true
 			node.disable_collision()
-		
+
 
 func _on_SlowdownArea_area_exited(area):
 	if area.name == "CourierArea":
