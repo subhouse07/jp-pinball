@@ -1,5 +1,6 @@
 extends Node2D
 
+const SLOWDOWN_FACTOR = 7.0
 
 var ball_captured = false
 var capture_index
@@ -70,7 +71,7 @@ func _on_SlowdownArea_area_entered(area):
 	if area.name == "CourierArea":
 		var node = area.get_parent()
 		node.hide()
-		node.unit_speed /= 3.0
+		node.unit_speed /= SLOWDOWN_FACTOR
 		if !node.disabled:
 			node.in_slow_zone = true
 			node.disable_collision()
@@ -80,7 +81,7 @@ func _on_SlowdownArea_area_exited(area):
 	if area.name == "CourierArea":
 		var node = area.get_parent()
 		node.show()
-		node.unit_speed *= 3.0
+		node.unit_speed *= SLOWDOWN_FACTOR
 		if !node.disabled:
 			node.in_slow_zone = false
 			node.enable_collision()

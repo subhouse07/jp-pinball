@@ -11,7 +11,7 @@ export var is_lead = false
 var in_slow_zone = false
 var disabled = false
 var final_courier = false
-var unit_speed = 0.15
+var unit_speed = 0.13
 
 signal hit(index)
 signal captured_ball(index)

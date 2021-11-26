@@ -1,23 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Courier.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CourierCoordinator.gd" type="Script" id=2]
 
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 328, -448, 0, 0, 0, 0, 328, -397, 0, 0, 0, 0, 64, -232, 0, 0, 0, 0, 64, -74, 0, 0, 0, 0, 328, -72, 0, 0, 0, 0, 328, -207, 0, 0, 0, 0, 156, -207, 0, 0, 0, 0, 64, -298, 0, 0, 0, 0, 64, -448, 0, 0, 0, 0, 328, -448 )
+}
+
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 328, -448, 0, 0, 0, 0, 328, -72, 0, 0, 0, 0, 64, -72, 0, 0, 0, 0, 64, -448, 0, 0, 0, 0, 336, -448 )
+"points": PoolVector2Array( 0, 0, 0, 0, 328, -448, 0, 0, 0, 0, 328, -393, 0, 0, 0, 0, 144, -264, 0, 5.46583, 0, -5.46583, 128, -264, -5.88627, 46.6698, 5.88627, -46.6698, 96, -304, -1.68179, -23.1247, 1.68179, 23.1247, 168, -312, 2.94314, -4.62493, -2.94314, 4.62493, 160, -272, -8.82941, 55.4992, 8.82941, -55.4992, 96, -304, -1.68179, -23.9655, 1.68179, 23.9655, 168, -312, 0, 0, 0, 0, 160, -272, 0, 0, 0, 0, 104, -248, 0, 0, 0, 0, 64, -222, 0, 0, 0, 0, 64, -74, 0, 0, 0, 0, 328, -72, 0, 0, 0, 0, 328, -207, 0, 0, 0, 0, 272, -216, 0, 0, 0, 0, 232, -216, -3.00339, -28.0316, 3.00339, 28.0316, 192, -176, -15.3507, 0, 15.3507, 0, 232, -144, 0.667419, 15.3507, -0.667419, -15.3507, 272, -176, 24.6945, 0.33371, -24.6945, -0.33371, 232, -216, -1.33484, -18.354, 1.33484, 18.354, 192, -176, -32.7036, -2.66968, 32.7036, 2.66968, 232, -144, -0.66742, 7.00791, 0.66742, -7.00791, 272, -176, 26.3631, 0.66742, -26.3631, -0.66742, 240, -216, 0, 0, 0, 0, 200, -208, 0, 0, 0, 0, 156, -207, 0, 0, 0, 0, 64, -298, 0, 0, 0, 0, 64, -448, 0, 0, 0, 0, 328, -448 )
 }
 
-[sub_resource type="Curve2D" id=2]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 328, -448, 0, 0, 0, 0, 328, -304, 0, 0, 0, 0, 64, -208, 0, 0, 0, 0, 64, -72, 0, 0, 0, 0, 328, -72, 0, 0, 0, 0, 328, -208, 0, 0, 0, 0, 64, -304, 0, 0, 0, 0, 64, -448, 0, 0, 0, 0, 328, -448 )
-}
-
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 152, 48 )
 
 [node name="CourierCoordinator" type="Node2D"]
 script = ExtResource( 2 )
@@ -25,35 +22,35 @@ script = ExtResource( 2 )
 [node name="CourierPaths" type="Node2D" parent="."]
 
 [node name="Path2D" type="Path2D" parent="CourierPaths"]
-curve = SubResource( 1 )
+curve = SubResource( 4 )
 
 [node name="Courier" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
-position = Vector2( 328, -213.125 )
-rotation = 1.57079
+position = Vector2( 171.327, -299.079 )
+rotation = 2.58299
 offset = 235.061
 is_lead = true
 
 [node name="Courier2" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
-position = Vector2( 328, -260.065 )
-rotation = 1.5708
+position = Vector2( 211.382, -324.114 )
+rotation = 2.58299
 offset = 188.049
 index = 1
 
 [node name="Courier3" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
-position = Vector2( 328, -307.034 )
-rotation = 1.57079
+position = Vector2( 251.276, -349.047 )
+rotation = 2.583
 offset = 141.037
 index = 2
 
 [node name="Courier4" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
-position = Vector2( 328, -354.003 )
-rotation = 1.57081
+position = Vector2( 291.168, -373.98 )
+rotation = 2.58299
 offset = 94.0246
 index = 3
 
 [node name="Courier5" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
-position = Vector2( 328, -401.054 )
-rotation = 1.57079
+position = Vector2( 328.18, -400.908 )
+rotation = 1.75407
 offset = 47.0123
 index = 4
 
@@ -63,19 +60,18 @@ rotation = 1.5708
 index = 5
 
 [node name="Path2D2" type="Path2D" parent="CourierPaths"]
-curve = SubResource( 2 )
+curve = SubResource( 1 )
 
 [node name="ReleaseArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseArea"]
 position = Vector2( 64, -216 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="SlowdownArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SlowdownArea"]
-position = Vector2( 144, -416 )
-shape = SubResource( 4 )
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="SlowdownArea"]
+position = Vector2( 136, -416 )
 [connection signal="captured_ball" from="CourierPaths/Path2D/Courier" to="." method="_on_Courier_captured_ball"]
 [connection signal="hit" from="CourierPaths/Path2D/Courier" to="." method="_on_Courier_hit"]
 [connection signal="captured_ball" from="CourierPaths/Path2D/Courier2" to="." method="_on_Courier_captured_ball"]
