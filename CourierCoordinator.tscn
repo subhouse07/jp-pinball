@@ -3,22 +3,22 @@
 [ext_resource path="res://Courier.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CourierCoordinator.gd" type="Script" id=2]
 
-[sub_resource type="Curve2D" id=4]
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 328, -448, 0, 0, 0, 0, 328, -397, 0, 0, 0, 0, 64, -232, 0, 0, 0, 0, 64, -74, 0, 0, 0, 0, 328, -72, 0, 0, 0, 0, 328, -207, 0, 0, 0, 0, 156, -207, 0, 0, 0, 0, 64, -298, 0, 0, 0, 0, 64, -448, 0, 0, 0, 0, 328, -448 )
 }
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Curve2D" id=2]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 328, -448, 0, 0, 0, 0, 328, -393, 0, 0, 0, 0, 144, -264, 0, 5.46583, 0, -5.46583, 128, -264, -5.88627, 46.6698, 5.88627, -46.6698, 96, -304, -1.68179, -23.1247, 1.68179, 23.1247, 168, -312, 2.94314, -4.62493, -2.94314, 4.62493, 160, -272, -8.82941, 55.4992, 8.82941, -55.4992, 96, -304, -1.68179, -23.9655, 1.68179, 23.9655, 168, -312, 0, 0, 0, 0, 160, -272, 0, 0, 0, 0, 104, -248, 0, 0, 0, 0, 64, -222, 0, 0, 0, 0, 64, -74, 0, 0, 0, 0, 328, -72, 0, 0, 0, 0, 328, -207, 0, 0, 0, 0, 272, -216, 0, 0, 0, 0, 232, -216, -3.00339, -28.0316, 3.00339, 28.0316, 192, -176, -15.3507, 0, 15.3507, 0, 232, -144, 0.667419, 15.3507, -0.667419, -15.3507, 272, -176, 24.6945, 0.33371, -24.6945, -0.33371, 232, -216, -1.33484, -18.354, 1.33484, 18.354, 192, -176, -32.7036, -2.66968, 32.7036, 2.66968, 232, -144, -0.66742, 7.00791, 0.66742, -7.00791, 272, -176, 26.3631, 0.66742, -26.3631, -0.66742, 240, -216, 0, 0, 0, 0, 200, -208, 0, 0, 0, 0, 156, -207, 0, 0, 0, 0, 64, -298, 0, 0, 0, 0, 64, -448, 0, 0, 0, 0, 328, -448 )
 }
 
-[sub_resource type="Curve2D" id=5]
+[sub_resource type="Curve2D" id=3]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 328, -448, 0, 0, 0, 0, 328, -393, 0, 0, 0, 0, 104, -248, 0, 0, 0, 0, 64, -222, 0, 0, 0, 0, 64, -74, 0, 0, 0, 0, 328, -72, 0, 0, 0, 0, 328, -207, 0, 0, 0, 0, 156, -207, 0, 0, 0, 0, 64, -298, 0, 0, 0, 0, 64, -448, 0, 0, 0, 0, 328, -448 )
 }
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 16, 16 )
 
 [node name="CourierCoordinator" type="Node2D"]
@@ -27,7 +27,7 @@ script = ExtResource( 2 )
 [node name="CourierPaths" type="Node2D" parent="."]
 
 [node name="Path2D" type="Path2D" parent="CourierPaths"]
-curve = SubResource( 4 )
+curve = SubResource( 1 )
 
 [node name="Courier" parent="CourierPaths/Path2D" instance=ExtResource( 1 )]
 position = Vector2( 171.327, -299.079 )
@@ -65,16 +65,16 @@ rotation = 1.5708
 index = 5
 
 [node name="Path2D2" type="Path2D" parent="CourierPaths"]
-curve = SubResource( 1 )
+curve = SubResource( 2 )
 
 [node name="Path2D3" type="Path2D" parent="CourierPaths"]
-curve = SubResource( 5 )
+curve = SubResource( 3 )
 
 [node name="ReleaseArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseArea"]
 position = Vector2( 64, -216 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="ReleaseArea2" type="Area2D" parent="."]
 position = Vector2( 0, -80 )
@@ -84,7 +84,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseArea2"]
 position = Vector2( 64, -216 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="ReleaseArea3" type="Area2D" parent="."]
 position = Vector2( 0, -192 )
@@ -94,7 +94,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseArea3"]
 position = Vector2( 64, -216 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="SlowdownArea" type="Area2D" parent="."]
 

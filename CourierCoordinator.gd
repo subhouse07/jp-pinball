@@ -33,16 +33,14 @@ func _on_Courier_captured_ball(index):
 		emit_signal("ball_captured")
 	else:
 		emit_signal("special_triggered")
-		active_path = 0
-		_reparent_couriers()
+		go_to_next_path()
 
 
 func _on_Courier_hit(index):
 	courier_count -= 1
 	if courier_count <= 0:
 		courier_count = $CourierPaths.get_child(active_path).get_child_count()
-		active_path += 1
-		_reparent_couriers()
+		go_to_next_path()
 	elif courier_count == 1:
 		$CourierPaths.get_child(active_path).get_child(0).set_as_final()
 
@@ -93,3 +91,16 @@ func _on_SlowdownArea_area_exited(area):
 		if !node.disabled:
 			node.in_slow_zone = false
 			node.enable_collision()
+
+
+func go_to_next_path():
+	if active_path < 2:
+		active_path += 1
+	else:
+		active_path = 0
+	_reparent_couriers()
+
+
+func reset():
+	active_path = 0
+	_reparent_couriers()
