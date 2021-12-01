@@ -11,14 +11,17 @@ export var is_lead = false
 var in_slow_zone = false
 var disabled = false
 var unit_speed = 0.13
+var init_unit_offset : float
+var final = false
 
 signal hit(index)
 signal captured_ball(index)
 
 func _ready():
 	if is_lead:
-		disabled = true
+#		disabled = true
 		disable_collision()
+	init_unit_offset = unit_offset
 
 
 func _physics_process(delta):
@@ -30,30 +33,35 @@ func _physics_process(delta):
 
 
 func _on_Area2D_body_entered(body):
-	if body.name == "Ball" and !in_slow_zone:
-		if is_lead and disabled:
+	if body.name == "Ball" and !in_slow_zone and !disabled:
+		if is_lead and !final:
 			emit_signal("captured_ball", index)
-		elif !disabled: # Collide and disable collision
+		elif !is_lead or final: # Collide and disable collision
 			disabled = true
-			$Sprite.hide()
+			$Sprite.modulate.g = 0
+			$Sprite.modulate.b = 0
 			$CollisionTimer.start()
 
 
 func reset():
-	$Sprite.show()
+	unit_offset = init_unit_offset
+	$Sprite.modulate.g = 255
+	$Sprite.modulate.b = 255
+	disabled = false
 	if is_lead:
-		disabled = true
+		final = false
 		disable_collision()
 	else:
 		enable_collision()
 
 
 func set_as_final():
+	final = true
 	enable_collision()
 
 
 func enable_collision():
-	disabled = false
+#	disabled = false
 	$StaticBody2D.collision_layer = COLLISION_LAYER_ENABLE
 	$StaticBody2D.collision_mask = COLLISION_LAYER_ENABLE
 

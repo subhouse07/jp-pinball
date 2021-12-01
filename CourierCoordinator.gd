@@ -23,7 +23,6 @@ func _physics_process(delta):
 	if ball_captured:
 		capture_coords = paths.get_child(active_path).get_child(capture_index).global_position
 
-
 func _on_Courier_captured_ball(index):
 	var couriers = paths.get_child(active_path).get_children()
 	for c in couriers:
@@ -34,14 +33,16 @@ func _on_Courier_captured_ball(index):
 		capture_coords = couriers[index].global_position
 		emit_signal("ball_captured")
 	else:
-		emit_signal("special_triggered")
+#		emit_signal("special_triggered")
 		go_to_next_path()
 
 
 func _on_Courier_hit(index):
 	courier_count -= 1
-	if courier_count <= 0:
+	if courier_count <= 0 or active_path == 2:
 		courier_count = paths.get_child(active_path).get_child_count()
+		if active_path == 2:
+			emit_signal("special_triggered")
 		go_to_next_path()
 	elif courier_count == 1:
 		paths.get_child(active_path).get_child(0).set_as_final()
@@ -71,8 +72,10 @@ func _reparent_couriers():
 	for i in couriers.size():
 		old_path.remove_child(couriers[i])
 		new_path.add_child(couriers[i])
-		if active_path < 2 or i == 0:
+		if active_path < 2 or couriers[i].is_lead:
 			couriers[i].reset()
+			if active_path == 2:
+				couriers[i].set_as_final()
 
 
 func _on_SlowdownArea_area_entered(area):
