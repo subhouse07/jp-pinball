@@ -86,3 +86,8 @@ func _on_TaskCheckButton_toggled(button_pressed, task_id):
 		if cube_task_count <= 0:
 			main_board.get_node("Cubicle/CubeMates").reset()
 
+
+
+func _on_CourPathButton_pressed():
+	var courier_coordinator = get_node("../../../MainBoard/CourierCoordinator")
+	courier_coordinator.go_to_next_path()

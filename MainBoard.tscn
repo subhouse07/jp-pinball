@@ -612,21 +612,6 @@ position = Vector2( 265, -414 )
 
 [node name="CourierCoordinator" parent="." instance=ExtResource( 36 )]
 
-[node name="Courier" parent="CourierCoordinator/CourierPaths/Path2D" index="0"]
-position = Vector2( 171.327, -299.079 )
-
-[node name="Courier2" parent="CourierCoordinator/CourierPaths/Path2D" index="1"]
-position = Vector2( 211.382, -324.114 )
-
-[node name="Courier3" parent="CourierCoordinator/CourierPaths/Path2D" index="2"]
-position = Vector2( 251.276, -349.047 )
-
-[node name="Courier4" parent="CourierCoordinator/CourierPaths/Path2D" index="3"]
-position = Vector2( 291.168, -373.98 )
-
-[node name="Courier5" parent="CourierCoordinator/CourierPaths/Path2D" index="4"]
-position = Vector2( 328.18, -400.908 )
-
 [node name="CollisionShape2D" parent="CourierCoordinator/SlowdownArea" index="0"]
 polygon = PoolVector2Array( 175, -36, 175, -18, 167, 4, -51, -3, -88, -3, -88, -51, 175, -51 )
 
@@ -990,13 +975,13 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 74 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 78 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]
