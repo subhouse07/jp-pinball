@@ -1,6 +1,7 @@
 extends Node2D
 
 const SLOWDOWN_FACTOR = 7.0
+const FINAL_PATH_INDEX = 2
 
 var ball_captured = false
 var capture_index : int
@@ -23,23 +24,20 @@ func _physics_process(delta):
 	if ball_captured:
 		capture_coords = paths.get_child(active_path).get_child(capture_index).global_position
 
+
 func _on_Courier_captured_ball(index):
 	var couriers = paths.get_child(active_path).get_children()
 	for c in couriers:
 		c.disable_collision()
-	if active_path < 2:
-		capture_index = index
-		ball_captured = true
-		capture_coords = couriers[index].global_position
-		emit_signal("ball_captured")
-	else:
-#		emit_signal("special_triggered")
-		go_to_next_path()
+	capture_index = index
+	ball_captured = true
+	capture_coords = couriers[index].global_position
+	emit_signal("ball_captured")
 
 
-func _on_Courier_hit(index):
+func _on_Courier_hit():
 	courier_count -= 1
-	if courier_count <= 0 or active_path == 2:
+	if courier_count <= 0 or active_path == FINAL_PATH_INDEX:
 		courier_count = paths.get_child(active_path).get_child_count()
 		if active_path == 2:
 			emit_signal("special_triggered")
@@ -49,7 +47,7 @@ func _on_Courier_hit(index):
 
 
 func _on_ReleaseArea_area_entered(area):
-	if ball_captured and area.get_parent().index == capture_index:
+	if ball_captured and area.get_parent().name == "Courier":
 		ball_captured = false
 		var couriers = paths.get_child(active_path).get_children()
 		for c in couriers:
@@ -61,7 +59,7 @@ func _on_ReleaseArea_area_entered(area):
 func _reparent_couriers():
 	var old_index
 	if active_path == 0:
-		old_index = 2
+		old_index = FINAL_PATH_INDEX
 	else:
 		old_index = active_path - 1
 		
@@ -72,7 +70,7 @@ func _reparent_couriers():
 	for i in couriers.size():
 		old_path.remove_child(couriers[i])
 		new_path.add_child(couriers[i])
-		if active_path < 2 or couriers[i].is_lead:
+		if active_path < FINAL_PATH_INDEX or couriers[i].is_lead:
 			couriers[i].reset()
 			if active_path == 2:
 				couriers[i].set_as_final()
@@ -99,7 +97,7 @@ func _on_SlowdownArea_area_exited(area):
 
 
 func go_to_next_path():
-	if active_path < 2:
+	if active_path < FINAL_PATH_INDEX:
 		active_path += 1
 	else:
 		active_path = 0

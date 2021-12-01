@@ -10,16 +10,15 @@ export var is_lead = false
 
 var in_slow_zone = false
 var disabled = false
-var unit_speed = 0.13
 var init_unit_offset : float
 var final = false
+var unit_speed = 0.13
 
-signal hit(index)
+signal hit
 signal captured_ball(index)
 
 func _ready():
 	if is_lead:
-#		disabled = true
 		disable_collision()
 	init_unit_offset = unit_offset
 
@@ -38,15 +37,13 @@ func _on_Area2D_body_entered(body):
 			emit_signal("captured_ball", index)
 		elif !is_lead or final: # Collide and disable collision
 			disabled = true
-			$Sprite.modulate.g = 0
-			$Sprite.modulate.b = 0
+			$Sprite.hide()
 			$CollisionTimer.start()
 
 
 func reset():
 	unit_offset = init_unit_offset
-	$Sprite.modulate.g = 255
-	$Sprite.modulate.b = 255
+	$Sprite.show()
 	disabled = false
 	if is_lead:
 		final = false
@@ -61,7 +58,6 @@ func set_as_final():
 
 
 func enable_collision():
-#	disabled = false
 	$StaticBody2D.collision_layer = COLLISION_LAYER_ENABLE
 	$StaticBody2D.collision_mask = COLLISION_LAYER_ENABLE
 
@@ -73,4 +69,4 @@ func disable_collision():
 
 func _on_CollisionTimer_timeout():
 	disable_collision()
-	emit_signal("hit", index)
+	emit_signal("hit")
