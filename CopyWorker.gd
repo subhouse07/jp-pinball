@@ -24,7 +24,7 @@ func _process(delta):
 			_move_to_home(delta)
 		else:
 			_move_to_copier(delta)
-		_calculate_move_angle(prev_pos)
+		$WalkerRemoteTransform.calculate_move_angle(prev_pos)
 
 
 func _move_to_home(delta):
