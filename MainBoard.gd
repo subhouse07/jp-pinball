@@ -171,7 +171,7 @@ func _on_CourierCoordinator_ball_released():
 	ball.linear_velocity = Vector2(0,0)
 	ball.angular_velocity = 0
 	ball.mode = RigidBody2D.MODE_CHARACTER
-	ball.apply_central_impulse(Vector2(100, 0))
+	ball.apply_central_impulse(Vector2(150, -50))
 
 
 func _on_ElevatorDoorArea_body_entered(body):
@@ -253,3 +253,8 @@ func _on_FileCabinets_file_target_hit():
 	if $"/root/GameState".hp_state["file_cab"] <= 0:
 		$"/root/GameState".reset_file_cab()
 		$Cubicle.activate_special_stage($Cubicle.FILES)
+
+
+func _on_CourierCoordinator_special_triggered():
+	print("Congrats, you triggered the courier stage")
+	

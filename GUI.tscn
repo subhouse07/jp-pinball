@@ -58,7 +58,7 @@ scroll_horizontal_enabled = false
 
 [node name="DevPanelGrid" type="GridContainer" parent="DevPanel/PanelContainer/ScrollContainer"]
 margin_right = 164.0
-margin_bottom = 168.0
+margin_bottom = 192.0
 grow_horizontal = 0
 columns = 2
 __meta__ = {
@@ -128,9 +128,23 @@ margin_bottom = 84.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Files"
+
+[node name="CourierLabel" type="Label" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid"]
+margin_top = 175.0
+margin_right = 39.0
+margin_bottom = 189.0
+text = "Cour."
+
+[node name="CourPathButton" type="Button" parent="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid"]
+margin_left = 43.0
+margin_top = 172.0
+margin_right = 164.0
+margin_bottom = 192.0
+text = "NextPath"
 [connection signal="toggled" from="DevPanel/ToggleButton" to="DevPanel" method="_on_ToggleButton_toggled"]
 [connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/ConeVboxContainer/LobbyCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 0 ]]
 [connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/ConeVboxContainer/CubeCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 1 ]]
 [connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/ConeVboxContainer/BrdRoomCheckBox" to="DevPanel" method="_on_ConeCheckBox_toggled" binds= [ 2 ]]
 [connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/TaskVBoxContainer/CopierCheckButton" to="DevPanel" method="_on_TaskCheckButton_toggled" binds= [ 0 ]]
 [connection signal="toggled" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/TaskVBoxContainer/FilesCheckButton" to="DevPanel" method="_on_TaskCheckButton_toggled" binds= [ 1 ]]
+[connection signal="pressed" from="DevPanel/PanelContainer/ScrollContainer/DevPanelGrid/CourPathButton" to="DevPanel" method="_on_CourPathButton_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=2]
+[gd_scene load_steps=156 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://BoardRoomVent.gd" type="Script" id=33]
 [ext_resource path="res://CopierSection.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Cubicle.gd" type="Script" id=35]
+[ext_resource path="res://CourierCoordinator.tscn" type="PackedScene" id=36]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/side-rail.png-9fa92fee8cb3161206de5ddfba53ffee.stex"
@@ -609,6 +610,11 @@ is_flipped = true
 [node name="FileCabinets" parent="Cubicle" instance=ExtResource( 32 )]
 position = Vector2( 265, -414 )
 
+[node name="CourierCoordinator" parent="." instance=ExtResource( 36 )]
+
+[node name="CollisionShape2D" parent="CourierCoordinator/SlowdownArea" index="0"]
+polygon = PoolVector2Array( 175, -36, 175, -18, 167, 4, -51, -3, -88, -3, -88, -51, 175, -51 )
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="FrontDoorArea" type="Area2D" parent="YSort"]
@@ -771,7 +777,7 @@ frames = SubResource( 37 )
 offset = Vector2( 1, -15 )
 
 [node name="Ball" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 182, -182 )
+position = Vector2( 234, -288 )
 mode = 2
 mass = 0.5
 physics_material_override = SubResource( 38 )
@@ -1401,6 +1407,9 @@ shape = SubResource( 119 )
 [connection signal="ball_trapped" from="Cubicle/CubeMates/TrapDoor2" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="Cubicle/CubeMates/TrapDoor2" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
 [connection signal="file_target_hit" from="Cubicle/FileCabinets" to="." method="_on_FileCabinets_file_target_hit"]
+[connection signal="ball_captured" from="CourierCoordinator" to="." method="_on_CourierCoordinator_ball_captured"]
+[connection signal="ball_released" from="CourierCoordinator" to="." method="_on_CourierCoordinator_ball_released"]
+[connection signal="special_triggered" from="CourierCoordinator" to="." method="_on_CourierCoordinator_special_triggered"]
 [connection signal="body_entered" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_entered"]
 [connection signal="body_exited" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_exited"]
 [connection signal="frame_changed" from="YSort/CenterPiece/AnimatedSprite" to="YSort/CenterPiece" method="_on_AnimatedSprite_frame_changed"]
@@ -1439,3 +1448,5 @@ shape = SubResource( 119 )
 [connection signal="body_entered" from="SubEntrances/SubEntrArea" to="." method="_on_SubEntrArea_body_entered" binds= [ true ]]
 [connection signal="body_exited" from="SubEntrances/LowerSubExit" to="." method="_on_SubEntrArea_body_entered" binds= [ false ]]
 [connection signal="body_exited" from="SubEntrances/UpperSubExit" to="." method="_on_SubEntrArea_body_entered" binds= [ false ]]
+
+[editable path="CourierCoordinator"]
