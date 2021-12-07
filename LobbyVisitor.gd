@@ -10,7 +10,6 @@ var visiting = false
 var waiting = false
 var worker_hit = false
 var resetting = false
-var move_angle = 0
 export var index: int
 
 signal visitor_hit(index)

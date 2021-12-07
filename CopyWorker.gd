@@ -4,7 +4,6 @@ export var is_lift_worker : bool
 export var unit_speed : float
 export var index : int
 
-var move_angle = 0
 var is_active = false
 var at_copier = false
 var finished_copying = false
@@ -68,7 +67,6 @@ func set_active(active : bool):
 	finished_copying = false
 	at_copier = false
 	is_active = active
-#	visible = active
 	$WalkerRemoteTransform.set_sprite_visible(active)
 	_set_collisions(active)
 	if !active:

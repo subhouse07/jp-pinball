@@ -10,7 +10,6 @@ var with_visitor = false
 var waiting_for_visitor = false
 var at_desk = true
 var resetting = false
-var move_angle = 0
 export var index: int
 export var unit_speed: float
 
