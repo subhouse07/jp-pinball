@@ -32,6 +32,9 @@ func calculate_move_angle(prev_pos):
 	move_angle = new_angle
 
 
+func set_sprite_visible(visible : bool):
+	remote_node.visible = visible
+
 func _set_animation(name, is_flipped):
 	if remote_node.animation != name:
 		remote_node.animation = name
