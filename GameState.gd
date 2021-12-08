@@ -8,6 +8,33 @@ const COPIER_MAX = 3
 const FILE_CAB_MAX = 6
 const JANITOR_MAX = 3
 
+var special_state = {
+	"cube": {
+		"complete": false,
+		"stages": {
+			"copier": false,
+			"file_cab": false,
+			"my_work": false
+		},
+	},
+	"boardroom": {
+		"complete": false,
+		"stages": {
+			"dungeon": false,
+			"boss": false
+		}
+	},
+	"lobby": {
+		"complete": false,
+		"stages": {
+			"sewer": false,
+			"centerpiece": false,
+			"networking": false,
+			"lunch": false,
+			"traffic": false
+		}
+	}
+}
 
 var hp_state = {
 	"boardroom_doors": BOARDROOM_DOORS_MAX,
@@ -25,6 +52,19 @@ var gui : Control
 
 func _ready():
 	gui = get_parent().get_node("main/GUILayer/GUI")
+
+
+func complete_special_stage(area: String, name: String):
+	special_state[area]["stages"][name] = true
+	var area_complete = true
+	for stage in special_state[area]["stages"].keys():
+		if !special_state[area]["stages"][stage]:
+			area_complete = false
+			break
+	
+	if area_complete:
+		special_state[area]["complete"] = true
+
 
 func hit_computer():
 	hp_state["computer"] -= 1

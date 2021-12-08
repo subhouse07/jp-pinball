@@ -29,18 +29,16 @@ var elevator_open = false
 var ball : RigidBody2D
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	ball = $YSort/Ball
 	res_frontdoor_open = preload("res://table-front-door-open.png")
 	res_frontdoor_close = preload("res://table-front-door-closed.png")
 	bg_dimen = Vector2($Background.texture.get_width()*$Background.scale.x, \
 		$Background.texture.get_height()*$Background.scale.y)
-#	$CenterPiece/AnimationPlayer.play("New Anim")
 	
 	# more logic needed for this obviously
 #	ball.global_position = GameState.main_board_ball_pos
-	
+
 
 func _process(delta):
 	if ball_in_sublvl:
@@ -49,7 +47,7 @@ func _process(delta):
 #	if teleporting:
 #		if ball.global_position != tele_coords:
 #			ball.linear_velocity = ball.position.angle_to(tele_coords)
-		
+
 
 func _physics_process(delta):
 	if ball_in_launcher:
@@ -64,6 +62,7 @@ func _physics_process(delta):
 	if ball_in_elevator:
 		ball.global_position.y = $Elevator/ElevSprite.global_position.y
 
+
 func _on_TrapDoor_ball_trapped():
 	ball.hide()
 	ball.mode = RigidBody2D.MODE_KINEMATIC
@@ -75,7 +74,6 @@ func _on_TrapDoor_ball_trapped():
 #		teleporting = true
 ##		tele_coords = Vector2(100, -400)
 #		$TeleportTimer.start()
-	
 
 
 func _on_TrapDoor_door_timed_out(x, y):
@@ -100,11 +98,13 @@ func _on_TrapDoor_door_timed_out(x, y):
 #	tele_coords = coords
 #	$TeleportTimer.start()
 
+
 func _on_Launcher_ball_captured():
 	get_tree().call_group("ball_resets", "reset")
 	ball.mode = RigidBody2D.MODE_KINEMATIC
 	ball.hide()
 	ball_in_launcher = true
+
 
 func _on_Launcher_ball_disembarked(coords, early_disembark):
 	ball_in_launcher = false
@@ -117,18 +117,6 @@ func _on_Launcher_ball_disembarked(coords, early_disembark):
 		ball.apply_central_impulse(Vector2(-250, -250))
 	else:
 		ball.apply_central_impulse(Vector2(-150, 0))
-	
-
-
-func _on_SlowDownArea_body_entered(body):
-	if body.name == "Ball":
-		print("ball entered")
-		
-
-func _on_SlowDownArea_body_exited(body):
-	if body.name == "Ball":
-		print("ball exited")
-
 
 
 # replace with animations
@@ -151,6 +139,7 @@ func _on_YourOfficeArea2D_body_exited(body):
 	if body.name == "Ball":
 		$AnimatedSprite2.play("idle_1", true)
 
+
 func _on_ComputerDoor_door_timed_out(x, y):
 #	GameState.call("hit_computer")
 #	if GameState.hp_computer == 0:
@@ -159,11 +148,13 @@ func _on_ComputerDoor_door_timed_out(x, y):
 #		get_parent().call("load_scene", "SpecialTest")
 #	else:
 	_on_TrapDoor_door_timed_out(x, y)
-	
+
+
 func _on_CourierCoordinator_ball_captured():
 	ball.global_position
 	ball.mode = RigidBody2D.MODE_KINEMATIC
 	courier_captured = true
+
 
 func _on_CourierCoordinator_ball_released():
 	courier_captured = false
@@ -203,7 +194,8 @@ func _on_Elevator_cubicle_reached():
 	ball.angular_velocity = 0
 	ball.mode = RigidBody2D.MODE_CHARACTER
 	ball.apply_central_impulse(Vector2(150, 30))
-	
+
+
 func _disable_door_collision():
 	$ElevatorDoor2/CollisionPolygon2D.disabled = true
 	$ElevatorDoor2/Timer.start()
@@ -216,7 +208,8 @@ func _on_ElevatorDoorTimer_timeout():
 func _on_SubEntrArea_body_entered(body, entering_sublvl):
 	if body.name == "Ball" and !courier_captured:
 		_set_sublvl_collision(entering_sublvl)
-		
+
+
 func _set_sublvl_collision(enabled : bool):
 	if enabled:
 		$Background.material.shader = sublvl_shader
@@ -257,4 +250,3 @@ func _on_FileCabinets_file_target_hit():
 
 func _on_CourierCoordinator_special_triggered():
 	print("Congrats, you triggered the courier stage")
-	
