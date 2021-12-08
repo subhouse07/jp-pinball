@@ -103,7 +103,7 @@ func _on_CopyWorker_finished_copying(ind):
 
 
 func _on_TopLvlResetTimer_timeout():
-	if active_tl_workers < tl_workers.size() and active_tl_workers > 0:
+	if active_tl_workers < tl_workers.size():
 		for i in tl_workers.size():
 			if !tl_workers[active_tl_workers-i].get_child(0).is_active:
 				tl_workers[active_tl_workers-i].get_child(0).set_active(true)
