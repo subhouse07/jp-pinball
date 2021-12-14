@@ -28,6 +28,7 @@ var elevator_open = false
 
 var ball : RigidBody2D
 
+signal special_triggered(special_name)
 
 func _ready():
 	ball = $YSort/Ball
@@ -250,3 +251,8 @@ func _on_FileCabinets_file_target_hit():
 
 func _on_CourierCoordinator_special_triggered():
 	print("Congrats, you triggered the courier stage")
+
+
+func _trigger_special_stage(name: String):
+	emit_signal("special_triggered", name)
+
