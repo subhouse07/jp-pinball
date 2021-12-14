@@ -12,6 +12,7 @@ func _on_special_triggered(special_name: String):
 		main_board.queue_free()
 		var scene = load("res://SpecialStage.tscn")
 		var special_stage = scene.instance()
+		special_stage.stage_scene_name = special_name
 		special_stage.connect("special_complete", self, "_on_special_complete")
 		add_child(special_stage)
 

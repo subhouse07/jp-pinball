@@ -255,4 +255,3 @@ func _on_CourierCoordinator_special_triggered():
 
 func _trigger_special_stage(name: String):
 	emit_signal("special_triggered", name)
-
