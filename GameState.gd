@@ -7,6 +7,16 @@ const COMPUTER_MAX = 3
 const COPIER_MAX = 3
 const FILE_CAB_MAX = 6
 const JANITOR_MAX = 3
+const SP_NAME_COPIER = "SpecialTest"
+const SP_NAME_FILES = "SpecialTest"
+const SP_NAME_WORK = "SpecialTest"
+const SP_NAME_DUNGEON = "SpecialTest"
+const SP_NAME_BOSS = "SpecialTest"
+const SP_NAME_SEWER = "SpecialTest"
+const SP_NAME_CENTER = "SpecialTest"
+const SP_NAME_NETWORK = "SpecialTest"
+const SP_NAME_LUNCH = "SpecialTest"
+const SP_NAME_TRAFFIC = "SpecialTest"
 
 var special_state = {
 	"cube": {

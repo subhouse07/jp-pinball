@@ -255,3 +255,7 @@ func _on_CourierCoordinator_special_triggered():
 
 func _trigger_special_stage(name: String):
 	emit_signal("special_triggered", name)
+
+
+func _on_Cubicle_special_entered(special_name):
+	_trigger_special_stage(special_name)
