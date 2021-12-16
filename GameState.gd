@@ -56,6 +56,9 @@ var hp_state = {
 	"janitor": JANITOR_MAX
 }
 
+var cube_task_ind = 0 setget cube_task_ind_set, cube_task_ind_get
+var cube_task_active = false setget cube_task_active_set, cube_task_active_get
+
 var main_board_ball_pos := Vector2(126, 144)
 
 var gui : Control
@@ -147,3 +150,22 @@ func hit_file_cabinet():
 func reset_file_cab():
 	hp_state["file_cab"] = FILE_CAB_MAX
 	gui.update()
+
+
+# - - - - -
+# Cubicle
+# - - - - -
+func cube_task_ind_set(index: int):
+	cube_task_ind = index
+
+
+func cube_task_ind_get():
+	return cube_task_ind
+
+
+func cube_task_active_set(active: bool):
+	cube_task_active = active
+
+
+func cube_task_active_get():
+	return cube_task_active
