@@ -853,7 +853,7 @@ frames = SubResource( 41 )
 offset = Vector2( 1, -15 )
 
 [node name="Ball" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 161, -359 )
+position = Vector2( 145, -221 )
 mode = 2
 mass = 0.5
 physics_material_override = SubResource( 42 )
@@ -1051,13 +1051,13 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 78 )
-frame = 5
+frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 82 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]
@@ -1233,19 +1233,19 @@ remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite2")
 remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite3")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="1"]
-frame = 4
+frame = 2
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite1")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="1"]
-frame = 4
+frame = 2
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite2")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="1"]
-frame = 4
+frame = 2
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite3")
@@ -1506,49 +1506,51 @@ shape = SubResource( 123 )
 
 [node name="TopWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
+frame = 7
 
 [node name="TopWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
+frame = 7
 
 [node name="LiftWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 240, -228 )
-frame = 0
+frame = 6
 
 [node name="LiftWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 278, -253 )
-frame = 7
+frame = 5
 
 [node name="LiftWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 209, -276 )
-frame = 7
+frame = 5
 
 [node name="LiftWorkerSprite4" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 279, -301 )
-frame = 7
+frame = 5
 
 [node name="LobbyWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 80 )
-frame = 6
+frame = 4
 
 [node name="LobbyWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 24 )
-frame = 6
+frame = 4
 
 [node name="LobbyWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, -40 )
-frame = 5
+frame = 3
 
 [node name="LobbyVisitorSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 5
+frame = 3
 
 [node name="LobbyVisitorSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 4
+frame = 2
 
 [node name="LobbyVisitorSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 4
+frame = 2
 [connection signal="special_entered" from="Cubicle" to="." method="_on_Cubicle_special_entered"]
 [connection signal="copier_hit" from="Cubicle/CopierSection" to="." method="_on_CopierSection_copier_hit"]
 [connection signal="desk_ball_released" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_door_timed_out"]
@@ -1562,7 +1564,7 @@ frame = 4
 [connection signal="body_entered" from="Cubicle/SpecialEntrance/SpecialEntranceArea" to="Cubicle" method="_on_SpecialEntranceArea_body_entered"]
 [connection signal="ball_captured" from="CourierCoordinator" to="." method="_on_CourierCoordinator_ball_captured"]
 [connection signal="ball_released" from="CourierCoordinator" to="." method="_on_CourierCoordinator_ball_released"]
-[connection signal="special_triggered" from="CourierCoordinator" to="." method="_on_CourierCoordinator_special_triggered"]
+[connection signal="special_entered" from="CourierCoordinator" to="." method="_on_CourierCoordinator_special_entered"]
 [connection signal="body_entered" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_entered"]
 [connection signal="body_exited" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_exited"]
 [connection signal="frame_changed" from="YSort/CenterPiece/AnimatedSprite" to="YSort/CenterPiece" method="_on_AnimatedSprite_frame_changed"]

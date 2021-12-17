@@ -8,6 +8,7 @@ const COPIER_MAX = 3
 const FILE_CAB_MAX = 6
 const JANITOR_MAX = 3
 const SP_NAME_COPIER = "SpecialTest"
+const SP_NAME_COURIER = "SpecialTest"
 const SP_NAME_FILES = "SpecialTest"
 const SP_NAME_WORK = "SpecialTest"
 const SP_NAME_DUNGEON = "SpecialTest"

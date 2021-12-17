@@ -12,7 +12,7 @@ var paths : Node
 
 signal ball_captured
 signal ball_released
-signal special_triggered
+signal special_entered
 
 
 func _ready():
@@ -40,8 +40,9 @@ func _on_Courier_hit():
 	if courier_count <= 0 or active_path == FINAL_PATH_INDEX:
 		courier_count = paths.get_child(active_path).get_child_count()
 		if active_path == 2:
-			emit_signal("special_triggered")
-		go_to_next_path()
+			emit_signal("special_entered")
+		else:
+			go_to_next_path()
 	elif courier_count == 1:
 		paths.get_child(active_path).get_child(0).set_as_final()
 

@@ -249,9 +249,9 @@ func _on_FileCabinets_file_target_hit():
 		$Cubicle.activate_special_stage($Cubicle.FILES)
 
 
-func _on_CourierCoordinator_special_triggered():
-	print("Congrats, you triggered the courier stage")
-
+func _on_CourierCoordinator_special_entered():
+	var name = $"/root/GameState".SP_NAME_COURIER
+	_trigger_special_stage(name)
 
 func _trigger_special_stage(name: String):
 	emit_signal("special_triggered", name)
