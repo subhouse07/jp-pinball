@@ -28,6 +28,7 @@ var elevator_open = false
 
 var ball : RigidBody2D
 
+signal special_triggered(special_name)
 
 func _ready():
 	ball = $YSort/Ball
@@ -248,5 +249,13 @@ func _on_FileCabinets_file_target_hit():
 		$Cubicle.activate_special_stage($Cubicle.FILES)
 
 
-func _on_CourierCoordinator_special_triggered():
-	print("Congrats, you triggered the courier stage")
+func _on_CourierCoordinator_special_entered():
+	var name = $"/root/GameState".SP_NAME_COURIER
+	_trigger_special_stage(name)
+
+func _trigger_special_stage(name: String):
+	emit_signal("special_triggered", name)
+
+
+func _on_Cubicle_special_entered(special_name):
+	_trigger_special_stage(special_name)

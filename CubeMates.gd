@@ -6,25 +6,25 @@ const tasks = {
 	"brainstorm": ""
 }
 
-var task_ind = 0
-
 signal desk_ball_trapped
 signal desk_ball_released(x, y)
 signal task_activated(name)
 
 
 func _ready():
-	_set_bumpers_enabled(false)
+	_set_bumpers_enabled($"/root/GameState".cube_task_active)
 
 
 func _on_TrapDoor_ball_trapped():
 	emit_signal("desk_ball_trapped")
-	if task_ind > 0:
+	if $"/root/GameState".cube_task_ind > 0:
 		emit_signal("task_activated", tasks["copier"])
-		task_ind = 0
+		$"/root/GameState".cube_task_ind = 0
+		$"/root/GameState".cube_task_active = true
 	else:
 		emit_signal("task_activated", tasks["files"])
-		task_ind += 1
+		$"/root/GameState".cube_task_ind += 1
+		$"/root/GameState".cube_task_active = true
 
 
 func _on_TrapDoor_door_timed_out(x, y):
@@ -49,4 +49,5 @@ func _set_bumpers_enabled(enabled : bool):
 		$RightDesk.collision_mask = 0
 
 func reset():
+	$"/root/GameState".cube_task_active = false
 	_set_bumpers_enabled(false)

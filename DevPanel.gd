@@ -3,6 +3,8 @@ extends Control
 enum { LOBBY_CONE, CUBE_CONE, BRDROOM_CONE }
 enum { COPIER, FILES }
 
+const MAIN_BOARD_PATH = "../../../GameScene/MainBoard"
+
 var panel_labels = []
 var panel_grid : Node
 var cube_task_count = 0
@@ -64,7 +66,7 @@ func _on_ConeCheckBox_toggled(button_pressed, cone_id):
 
 
 func _set_blocking_cones_enabled(enabled: bool, scene_name: String):
-	var main_board = get_node("../../../MainBoard")
+	var main_board = get_node(MAIN_BOARD_PATH)
 	if enabled:
 		var scene = load("res://" + scene_name + ".tscn")
 		var node = scene.instance()
@@ -75,7 +77,7 @@ func _set_blocking_cones_enabled(enabled: bool, scene_name: String):
 
 func _on_TaskCheckButton_toggled(button_pressed, task_id):
 	var task_node_names = [ "CopierSection", "FileCabinets" ]
-	var main_board = get_node("../../../MainBoard")
+	var main_board = get_node(MAIN_BOARD_PATH)
 	if button_pressed:
 		cube_task_count += 1
 		main_board.call("_on_CubeMates_task_activated", task_node_names[task_id])
@@ -89,5 +91,5 @@ func _on_TaskCheckButton_toggled(button_pressed, task_id):
 
 
 func _on_CourPathButton_pressed():
-	var courier_coordinator = get_node("../../../MainBoard/CourierCoordinator")
+	var courier_coordinator = get_node("%s/CourierCoordinator" % MAIN_BOARD_PATH)
 	courier_coordinator.go_to_next_path()

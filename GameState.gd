@@ -7,6 +7,17 @@ const COMPUTER_MAX = 3
 const COPIER_MAX = 3
 const FILE_CAB_MAX = 6
 const JANITOR_MAX = 3
+const SP_NAME_COPIER = "SpecialTest"
+const SP_NAME_COURIER = "SpecialTest"
+const SP_NAME_FILES = "SpecialTest"
+const SP_NAME_WORK = "SpecialTest"
+const SP_NAME_DUNGEON = "SpecialTest"
+const SP_NAME_BOSS = "SpecialTest"
+const SP_NAME_SEWER = "SpecialTest"
+const SP_NAME_CENTER = "SpecialTest"
+const SP_NAME_NETWORK = "SpecialTest"
+const SP_NAME_LUNCH = "SpecialTest"
+const SP_NAME_TRAFFIC = "SpecialTest"
 
 var special_state = {
 	"cube": {
@@ -45,6 +56,9 @@ var hp_state = {
 	"file_cab": FILE_CAB_MAX,
 	"janitor": JANITOR_MAX
 }
+
+var cube_task_ind = 0 setget cube_task_ind_set, cube_task_ind_get
+var cube_task_active = false setget cube_task_active_set, cube_task_active_get
 
 var main_board_ball_pos := Vector2(126, 144)
 
@@ -137,3 +151,22 @@ func hit_file_cabinet():
 func reset_file_cab():
 	hp_state["file_cab"] = FILE_CAB_MAX
 	gui.update()
+
+
+# - - - - -
+# Cubicle
+# - - - - -
+func cube_task_ind_set(index: int):
+	cube_task_ind = index
+
+
+func cube_task_ind_get():
+	return cube_task_ind
+
+
+func cube_task_active_set(active: bool):
+	cube_task_active = active
+
+
+func cube_task_active_get():
+	return cube_task_active
