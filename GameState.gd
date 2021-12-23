@@ -7,6 +7,7 @@ const COMPUTER_MAX = 3
 const COPIER_MAX = 3
 const FILE_CAB_MAX = 6
 const JANITOR_MAX = 3
+const SP_NAME_BRAIN = "Brainstorm"
 const SP_NAME_COPIER = "SpecialTest"
 const SP_NAME_COURIER = "SpecialTest"
 const SP_NAME_FILES = "SpecialTest"
@@ -23,9 +24,10 @@ var special_state = {
 	"cube": {
 		"complete": false,
 		"stages": {
+			"brain": false,
 			"copier": false,
 			"file_cab": false,
-			"my_work": false
+			"my_work": true
 		},
 	},
 	"boardroom": {
@@ -156,6 +158,10 @@ func reset_file_cab():
 # - - - - -
 # Cubicle
 # - - - - -
+func brainstorm_ready():
+	var stages = special_state["cube"]["stages"]
+	return stages["my_work"] and stages["file_cab"] and stages["copier"]
+
 func cube_task_ind_set(index: int):
 	cube_task_ind = index
 

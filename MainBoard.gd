@@ -131,16 +131,6 @@ func _on_FrontDoorArea_body_exited(body):
 		$YSort/FrontDoorArea/Door.texture = res_frontdoor_close
 
 
-func _on_YourOfficeArea2D_body_entered(body):
-	if body.name == "Ball":
-		$AnimatedSprite2.play("idle_1")
-
-
-func _on_YourOfficeArea2D_body_exited(body):
-	if body.name == "Ball":
-		$AnimatedSprite2.play("idle_1", true)
-
-
 func _on_ComputerDoor_door_timed_out(x, y):
 #	GameState.call("hit_computer")
 #	if GameState.hp_computer == 0:
@@ -251,6 +241,7 @@ func _on_FileCabinets_file_target_hit():
 
 func _on_CourierCoordinator_special_entered():
 	var name = $"/root/GameState".SP_NAME_COURIER
+	
 	_trigger_special_stage(name)
 
 func _trigger_special_stage(name: String):
@@ -258,4 +249,5 @@ func _trigger_special_stage(name: String):
 
 
 func _on_Cubicle_special_entered(special_name):
+	$"/root/GameState".cube_task_active = false
 	_trigger_special_stage(special_name)

@@ -1,6 +1,6 @@
 extends Node2D
 
-enum { COPIER, FILES, BRAINSTORM }
+enum { COPIER, FILES, BRAIN }
 
 var special_trigger : int
 
@@ -11,7 +11,7 @@ func _ready():
 
 
 func activate_special_stage(task : int):
-	$CubeMates.reset()
+#	$CubeMates.reset()
 	match task:
 		COPIER:
 			$CopierSection.reset()
@@ -23,6 +23,10 @@ func activate_special_stage(task : int):
 			_set_entrance_enabled(true)
 			special_trigger = FILES
 			# set animation
+		BRAIN:
+			$Brainstorm.reset()
+			special_trigger = BRAIN
+			_set_entrance_enabled(true)
 
 
 func _on_SpecialEntranceArea_body_entered(body):
@@ -33,12 +37,13 @@ func _on_SpecialEntranceArea_body_entered(body):
 				emit_signal("special_entered", $"/root/GameState".SP_NAME_COPIER)
 			FILES:
 				emit_signal("special_entered", $"/root/GameState".SP_NAME_FILES)
-			BRAINSTORM:
-				emit_signal("special_entered", $"/root/GameState".SP_NAME_BRAINSTORM)
+			BRAIN:
+				emit_signal("special_entered", $"/root/GameState".SP_NAME_BRAIN)
 
 
 func _set_entrance_enabled(enabled: bool):
-	$SpecialEntrance.visible = enabled
+	if special_trigger < BRAIN:
+		$SpecialEntrance.visible = enabled
 	if enabled:
 		$SpecialEntrance/SpecialEntranceArea.collision_layer = 1
 		$SpecialEntrance/SpecialEntranceArea.collision_mask = 1

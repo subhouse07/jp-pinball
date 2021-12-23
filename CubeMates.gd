@@ -3,7 +3,7 @@ extends Node2D
 const tasks = {
 	"copier": "CopierSection",
 	"files": "FileCabinets",
-	"brainstorm": ""
+	"brain": "Brainstorm"
 }
 
 signal desk_ball_trapped
@@ -17,7 +17,11 @@ func _ready():
 
 func _on_TrapDoor_ball_trapped():
 	emit_signal("desk_ball_trapped")
-	if $"/root/GameState".cube_task_ind > 0:
+	if $"/root/GameState".brainstorm_ready():
+		emit_signal("task_activated", tasks["brain"])
+		$"/root/GameState".cube_task_ind = 2
+		$"/root/GameState".cube_task_active = true
+	elif $"/root/GameState".cube_task_ind > 0:
 		emit_signal("task_activated", tasks["copier"])
 		$"/root/GameState".cube_task_ind = 0
 		$"/root/GameState".cube_task_active = true
