@@ -1,14 +1,19 @@
 extends Node2D
 
+var special_scene_name = ""
+var special_area = ""
+
 func _ready():
 	load_main_board()
 
-func _on_special_triggered(special_name: String):
+func _on_special_triggered(area_name: String, special_name: String):
 	# do a scene transition?
 	# instance the appropriate scene
 	# connect it to "_on_special_complete(success)"
 	var main_board = get_node_or_null("MainBoard")
 	if main_board:
+		special_scene_name = special_name
+		special_area = area_name
 		main_board.queue_free()
 		var scene = load("res://SpecialStage.tscn")
 		var special_stage = scene.instance()
@@ -27,6 +32,7 @@ func _on_special_complete(success: bool):
 	
 	var special_stage = get_node_or_null("SpecialStage")
 	if special_stage:
+		$"/root/GameState".complete_special_stage(special_area, special_scene_name)
 		special_stage.queue_free()
 		load_main_board()
 

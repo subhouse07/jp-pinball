@@ -241,13 +241,15 @@ func _on_FileCabinets_file_target_hit():
 
 func _on_CourierCoordinator_special_entered():
 	var name = $"/root/GameState".SP_NAME_COURIER
-	
-	_trigger_special_stage(name)
+	var area = $"/root/GameState".AREA_CUBE
+	_trigger_special_stage(area, name)
 
-func _trigger_special_stage(name: String):
-	emit_signal("special_triggered", name)
+
+func _trigger_special_stage(area: String, name: String):
+	emit_signal("special_triggered", area, name)
 
 
 func _on_Cubicle_special_entered(special_name):
 	$"/root/GameState".cube_task_active = false
-	_trigger_special_stage(special_name)
+	var area = $"/root/GameState".AREA_CUBE
+	_trigger_special_stage(area, special_name)

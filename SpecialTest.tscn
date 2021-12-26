@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TrapDoor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SpecialTest.gd" type="Script" id=4]
+
+[sub_resource type="PhysicsMaterial" id=2]
+friction = 0.0
+bounce = 0.1
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 68, 10 )
@@ -22,12 +26,16 @@ rotation = -0.261799
 rotation_speed = 1200
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 279, 348, 273, 349, 324, 338, 331, 336, 326, 317, 464, 278, 465, 18, 17, 14, 16, 294, 166, 320, 167, 334, 206, 347, 198, 359, -1, 307, 0, -1, 478, 1, 479, 361, 300, 363 )
 
 [node name="Ball" parent="." instance=ExtResource( 3 )]
 position = Vector2( 196, 143 )
+mode = 2
+mass = 0.5
+gravity_scale = 5.7
 
 [node name="TrapDoor" parent="." instance=ExtResource( 2 )]
 position = Vector2( 354, 88 )
