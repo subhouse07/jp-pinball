@@ -32,7 +32,8 @@ func _on_special_complete(success: bool):
 	
 	var special_stage = get_node_or_null("SpecialStage")
 	if special_stage:
-		$"/root/GameState".complete_special_stage(special_area, special_scene_name)
+		if success:
+			$"/root/GameState".complete_special_stage(special_area, special_scene_name)
 		special_stage.queue_free()
 		load_main_board()
 
