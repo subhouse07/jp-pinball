@@ -1,9 +1,14 @@
 extends Node2D
 
+
+
 const HP_MAX = 6
 var hp = HP_MAX
+var entr_pos := Vector2(200, -343)
 
-signal hit
+onready var entrance_shader = preload("res://PH_entrance.shader")
+
+signal hit(finished)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,9 +46,14 @@ func _set_collisions_enabled(enabled: bool):
 func _on_BrainArea_body_entered(body):
 	if body.name == "Ball":
 		hp -= 1
-		emit_signal("hit")
-		if hp == 0:
-			# here we need to transition this node to the special entrance phase
-			# for now just reset()
-			print("Brainstorm entrance triggered")
-			reset()
+		emit_signal("hit", hp == 0)
+
+func transition_to_special():
+	_set_collisions_enabled(false)
+	$Tween.interpolate_property(self, "position", position, entr_pos, 2, \
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
+	
+
+func _on_Tween_tween_completed(object, key):
+	$BrainSprite.material.shader = entrance_shader
