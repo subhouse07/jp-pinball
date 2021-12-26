@@ -29,16 +29,16 @@ func _set_collisions_enabled(enabled: bool):
 	if enabled:
 		$StaticBody2D.collision_layer = 1
 		$StaticBody2D.collision_mask = 1
-		$Area2D.collision_layer = 1
-		$Area2D.collision_mask = 1
+		$BrainArea.collision_layer = 1
+		$BrainArea.collision_mask = 1
 	else:
 		$StaticBody2D.collision_layer = 0
 		$StaticBody2D.collision_mask = 0
-		$Area2D.collision_layer = 0
-		$Area2D.collision_mask = 0
+		$BrainArea.collision_layer = 0
+		$BrainArea.collision_mask = 0
 
 
-func _on_Area2D_body_entered(body):
+func _on_BrainArea_body_entered(body):
 	if body.name == "Ball":
 		hp -= 1
 		emit_signal("hit")
