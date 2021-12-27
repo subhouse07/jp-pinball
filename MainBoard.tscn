@@ -1,4 +1,4 @@
-[gd_scene load_steps=184 format=2]
+[gd_scene load_steps=186 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -493,6 +493,10 @@ bounce = 0.9
 friction = 0.0
 bounce = 0.1
 
+[sub_resource type="PhysicsMaterial" id=142]
+bounce = 0.3
+absorbent = true
+
 [sub_resource type="PhysicsMaterial" id=110]
 friction = 0.0
 bounce = 0.1
@@ -605,6 +609,9 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=140]
 extents = Vector2( 4, 10 )
+
+[sub_resource type="RectangleShape2D" id=141]
+extents = Vector2( 27, 16 )
 
 [node name="MainBoard" type="Node2D"]
 script = ExtResource( 4 )
@@ -981,7 +988,7 @@ frames = SubResource( 50 )
 offset = Vector2( 1, -15 )
 
 [node name="Ball" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 60, 240 )
+position = Vector2( 326, 164 )
 mode = 2
 mass = 0.5
 physics_material_override = SubResource( 51 )
@@ -1184,7 +1191,6 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 91 )
-frame = 1
 playing = true
 
 [node name="CarSpawn" parent="." instance=ExtResource( 6 )]
@@ -1337,6 +1343,7 @@ polygon = PoolVector2Array( 83, -3, 83, 3, -85, 3, -85, -57, -81, -57, -82, -3 )
 [node name="RailingRight" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="RailingRight"]
+physics_material_override = SubResource( 142 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="RailingRight/StaticBody2D"]
 position = Vector2( 280, 319 )
@@ -1692,6 +1699,16 @@ frames = SubResource( 139 )
 shape = SubResource( 140 )
 
 [node name="Tween" type="Tween" parent="BallReturn"]
+
+[node name="RightRetrievalArea" type="Area2D" parent="BallReturn"]
+position = Vector2( 310, -10 )
+gravity = 300.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallReturn/RightRetrievalArea"]
+shape = SubResource( 141 )
+
+[node name="AnimTimer" type="Timer" parent="BallReturn"]
+one_shot = true
 [connection signal="special_entered" from="Cubicle" to="." method="_on_Cubicle_special_entered"]
 [connection signal="copier_hit" from="Cubicle/CopierSection" to="." method="_on_CopierSection_copier_hit"]
 [connection signal="desk_ball_released" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_door_timed_out"]
@@ -1747,10 +1764,13 @@ shape = SubResource( 140 )
 [connection signal="body_exited" from="SubEntrances/UpperSubExit" to="." method="_on_SubEntrArea_body_entered" binds= [ false ]]
 [connection signal="ball_released" from="BallReturn" to="." method="_on_BallReturn_ball_released"]
 [connection signal="ball_retrieved" from="BallReturn" to="." method="_on_BallReturn_ball_retrieved"]
+[connection signal="right_return_entered" from="BallReturn" to="." method="_on_BallReturn_right_return_entered"]
 [connection signal="body_entered" from="BallReturn/RetriavalArea" to="BallReturn" method="_on_RetriavalArea_body_entered"]
 [connection signal="body_entered" from="BallReturn/CrowdArea" to="BallReturn" method="_on_CrowdArea_body_entered"]
 [connection signal="animation_finished" from="BallReturn/CrowdArea/Sprite" to="BallReturn" method="_on_Sprite_animation_finished"]
 [connection signal="tween_completed" from="BallReturn/Tween" to="BallReturn" method="_on_Tween_tween_completed"]
+[connection signal="body_entered" from="BallReturn/RightRetrievalArea" to="BallReturn" method="_on_RightRetrievalArea_body_entered"]
+[connection signal="timeout" from="BallReturn/AnimTimer" to="." method="_on_AnimTimer_timeout"]
 
 [editable path="Cubicle/CopierSection"]
 
