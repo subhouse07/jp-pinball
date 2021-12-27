@@ -24,7 +24,7 @@ func activate_special_stage(task : int):
 			special_trigger = FILES
 			# set animation
 		BRAIN:
-			$Brainstorm.reset()
+			$Brainstorm.transition_to_special()
 			special_trigger = BRAIN
 			_set_entrance_enabled(true)
 

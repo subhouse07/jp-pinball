@@ -7,27 +7,30 @@ const COMPUTER_MAX = 3
 const COPIER_MAX = 3
 const FILE_CAB_MAX = 6
 const JANITOR_MAX = 3
-const SP_NAME_BRAIN = "Brainstorm"
-const SP_NAME_COPIER = "SpecialTest"
-const SP_NAME_COURIER = "SpecialTest"
-const SP_NAME_FILES = "SpecialTest"
-const SP_NAME_WORK = "SpecialTest"
-const SP_NAME_DUNGEON = "SpecialTest"
-const SP_NAME_BOSS = "SpecialTest"
-const SP_NAME_SEWER = "SpecialTest"
-const SP_NAME_CENTER = "SpecialTest"
-const SP_NAME_NETWORK = "SpecialTest"
-const SP_NAME_LUNCH = "SpecialTest"
-const SP_NAME_TRAFFIC = "SpecialTest"
+const AREA_CUBE = "cube"
+const AREA_BOARDROOM = "boardroom"
+const AREA_LOBBY = "lobby"
+const SP_NAME_BRAIN = "SpecialBrain"
+const SP_NAME_COPIER = "SpecialCopier"
+const SP_NAME_COURIER = "SpecialCourier"
+const SP_NAME_FILES = "SpecialFiles"
+const SP_NAME_WORK = "SpecialWork"
+const SP_NAME_DUNGEON = "SpecialDungeon"
+const SP_NAME_BOSS = "SpecialBoss"
+const SP_NAME_SEWER = "SpecialSewer"
+const SP_NAME_CENTER = "SpecialCenter"
+const SP_NAME_NETWORK = "SpecialNetwork"
+const SP_NAME_LUNCH = "SpecialLunch"
+const SP_NAME_TRAFFIC = "SpecialTraffic"
 
 var special_state = {
 	"cube": {
 		"complete": false,
 		"stages": {
-			"brain": false,
-			"copier": false,
-			"file_cab": false,
-			"my_work": true
+			SP_NAME_BRAIN: false,
+			SP_NAME_COPIER: false,
+			SP_NAME_FILES: false,
+			SP_NAME_WORK: true
 		},
 	},
 	"boardroom": {
@@ -160,7 +163,7 @@ func reset_file_cab():
 # - - - - -
 func brainstorm_ready():
 	var stages = special_state["cube"]["stages"]
-	return stages["my_work"] and stages["file_cab"] and stages["copier"]
+	return stages[SP_NAME_WORK] and stages[SP_NAME_FILES] and stages[SP_NAME_COPIER]
 
 func cube_task_ind_set(index: int):
 	cube_task_ind = index

@@ -5,7 +5,7 @@ const MAINLVL_LAYER = 1
 const SUBLVL_MASK = 2
 const SUBLVL_LAYER = 2
 
-onready var sublvl_shader = preload("res://Peephole.shader");
+onready var sublvl_shader = preload("res://Peephole.shader")
 var bg_dimen : Vector2
 
 var res_frontdoor_open
@@ -241,13 +241,20 @@ func _on_FileCabinets_file_target_hit():
 
 func _on_CourierCoordinator_special_entered():
 	var name = $"/root/GameState".SP_NAME_COURIER
-	
-	_trigger_special_stage(name)
+	var area = $"/root/GameState".AREA_CUBE
+	_trigger_special_stage(area, name)
 
-func _trigger_special_stage(name: String):
-	emit_signal("special_triggered", name)
+
+func _trigger_special_stage(area: String, name: String):
+	emit_signal("special_triggered", area, name)
 
 
 func _on_Cubicle_special_entered(special_name):
 	$"/root/GameState".cube_task_active = false
-	_trigger_special_stage(special_name)
+	var area = $"/root/GameState".AREA_CUBE
+	_trigger_special_stage(area, special_name)
+
+
+func _on_Brainstorm_hit(finished: bool):
+	if finished:
+		$Cubicle.activate_special_stage($Cubicle.BRAIN)
