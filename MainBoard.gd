@@ -23,6 +23,8 @@ var tele_speed = 50
 var ball_in_launcher = false
 var ball_in_elevator = false
 var ball_in_sublvl = false
+var ball_in_crowd_return = false
+var ball_in_right_return = false
 var courier_captured = false
 var elevator_open = false
 
@@ -62,6 +64,12 @@ func _physics_process(delta):
 		
 	if ball_in_elevator:
 		ball.global_position.y = $Elevator/ElevSprite.global_position.y
+		
+	if ball_in_crowd_return:
+		ball.global_position = $BallReturn.crowd_pos
+		
+	if ball_in_right_return:
+		ball.global_position = $BallReturn.man_pos
 
 
 func _on_TrapDoor_ball_trapped():
@@ -258,3 +266,33 @@ func _on_Cubicle_special_entered(special_name):
 func _on_Brainstorm_hit(finished: bool):
 	if finished:
 		$Cubicle.activate_special_stage($Cubicle.BRAIN)
+
+
+func _on_BallReturn_ball_retrieved():
+	ball.global_position
+	ball.mode = RigidBody2D.MODE_KINEMATIC
+	ball_in_crowd_return = true
+
+
+func _on_BallReturn_ball_released():
+	ball_in_crowd_return = false
+	ball_in_right_return = false
+	ball.linear_velocity = Vector2(0,0)
+	ball.angular_velocity = 0
+	ball.mode = RigidBody2D.MODE_CHARACTER
+
+
+func _on_BallReturn_right_return_entered():
+	ball.linear_velocity = Vector2(0, ball.linear_velocity.y)
+	$BallReturn/AnimTimer.start()
+	# change ball sprite to tripping man sprite here
+	# play animation
+
+
+# placeholder for Ball sprite tripping animation
+# When sprites are available, animation finished callback will happen in Ball
+func _on_AnimTimer_timeout():
+	ball.global_position
+	ball.mode = RigidBody2D.MODE_KINEMATIC
+	ball_in_right_return = true
+	$BallReturn.move_man(ball.global_position)
