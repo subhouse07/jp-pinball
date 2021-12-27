@@ -14,7 +14,7 @@ var init_rotation
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_flipped:
-		max_rotation = -22
+		max_rotation = -23
 		init_rotation = 17.5
 		if use_polygon:
 			$LeftArea/CollisionShape2D.disabled = true
@@ -22,7 +22,7 @@ func _ready():
 		$RightArea.queue_free()
 		$RightSprite.queue_free()
 	else:
-		max_rotation = 22
+		max_rotation = 23
 		init_rotation = -17.5
 		if use_polygon:
 			$RightArea/CollisionShape2D.disabled = true
