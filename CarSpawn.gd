@@ -42,11 +42,12 @@ func _process(delta):
 			
 
 func _select_car():
-	var rand_select = randi() % 100
-	if rand_select < 2:
-		return 4
-	else:
-		return rand_select % 4
+#	var rand_select = randi() % 100
+#	if rand_select < 2:
+#		return 4
+#	else:
+#		return rand_select % 4
+	return 2
 
 func _populate_car_nodes():
 	for i in MAX_CAR_NODES:
@@ -54,7 +55,10 @@ func _populate_car_nodes():
 		var car_node = car_scene.instance()
 		var car_type = _select_car()
 		car_node.car_type = car_type
+		car_node.index = i
 		car_node.get_node("Sprite").texture = sprite_resources[car_type]
+		car_node.connect("hit", self, "_on_Car_hit")
+		car_node.connect("reset", self, "_on_Car_reset")
 		car_nodes.append(car_node)
 		moving.append(false)
 			
@@ -86,7 +90,7 @@ func _end_car_movement(index):
 	car_node.car_type = car_type
 	car_node.get_node("Sprite").texture = sprite_resources[car_type]
 	car_node.call("adjust_collision_shape")
-	car_node.call("adjust_sprite_hue")
+#	car_node.call("adjust_sprite_hue")
 	
 func _on_Timer_timeout():
 	$Timer.wait_time = rand_range(1.0, 3.0)
@@ -95,3 +99,11 @@ func _on_Timer_timeout():
 			moving[i] = true
 			return
 	$Timer.start()
+
+func _on_Car_hit(index: int):
+	print("hit")
+	moving[index] = false
+
+func _on_Car_reset(index: int):
+	print("reset")
+	_end_car_movement(index)
