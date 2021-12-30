@@ -3,8 +3,6 @@ extends Node2D
 var rotating = false
 var open = false
 var rotate_speed = 100.0
-var bottom = false
-var top = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,7 +25,6 @@ func _physics_process(delta):
 				rotation_degrees = -45.0
 				rotating = false
 				open = true
-				print("Starting timer")
 				$Timer.start()
 			else:
 				rotation_degrees = new_rotation
@@ -35,23 +32,8 @@ func _physics_process(delta):
 
 func _on_Timer_timeout():
 	rotating = true
-	
-func reset():
-	top = false
-	bottom = false
 
-func _on_TopArea_body_entered(body):
+
+func _on_Area2D_body_exited(body):
 	if body.name == "Ball":
-		top = true
-		if bottom:
-			print("setting rotating")
-			rotating = true
-			top = false
-			bottom = false
-
-
-func _on_BottomArea_body_entered(body):
-	if body.name == "Ball":
-		bottom = true
-		if top:
-			top = false
+		rotating = true

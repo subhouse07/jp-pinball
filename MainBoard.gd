@@ -277,8 +277,6 @@ func _on_BallReturn_ball_retrieved():
 func _on_BallReturn_ball_released():
 	ball_in_crowd_return = false
 	ball_in_right_return = false
-	ball.linear_velocity = Vector2(0,0)
-	ball.angular_velocity = 0
 	ball.mode = RigidBody2D.MODE_CHARACTER
 
 

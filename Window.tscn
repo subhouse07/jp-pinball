@@ -7,13 +7,13 @@ friction = 0.0
 bounce = 0.1
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 20, 2 )
+extents = Vector2( 23, 2 )
 
 [sub_resource type="StreamTexture" id=3]
 load_path = "res://.import/desk-proto.png-def8da42503c0e6042710f967523f714.stex"
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 10, 4 )
+extents = Vector2( 10, 15 )
 
 [node name="Window" type="Node2D"]
 script = ExtResource( 1 )
@@ -23,30 +23,25 @@ collision_layer = 4
 physics_material_override = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 0, -19 )
-rotation = 1.5708
+position = Vector2( 0, -22 )
+rotation = -1.5708
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -19 )
-scale = Vector2( 0.142857, 1.1875 )
+position = Vector2( 0, -22 )
+scale = Vector2( 0.142857, 1.375 )
 texture = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 6.0
 one_shot = true
 
-[node name="TopArea" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopArea"]
-position = Vector2( -12, -35 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -12, -22 )
 shape = SubResource( 4 )
-
-[node name="BottomArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomArea"]
-position = Vector2( -12, -3 )
-shape = SubResource( 4 )
+one_way_collision = true
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="body_entered" from="TopArea" to="." method="_on_TopArea_body_entered"]
-[connection signal="body_entered" from="BottomArea" to="." method="_on_BottomArea_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_TopArea_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
