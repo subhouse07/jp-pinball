@@ -1,5 +1,7 @@
 extends Node
 
+enum { VAN, MINI, SPORT, HATCH, TRUCK }
+
 const BOARDROOM_DOORS_MAX = 3
 const BOARDROOM_VENT_MAX = 1
 const CENTERPIECE_MAX = 5

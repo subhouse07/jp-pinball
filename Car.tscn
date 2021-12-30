@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Car.gd" type="Script" id=1]
-[ext_resource path="res://red-exp-sheet-1.png" type="Texture" id=2]
+[ext_resource path="res://explode-sheet.png" type="Texture" id=2]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -59,27 +59,31 @@ bounce = 1.0
 radius = 14.0
 height = 55.0
 
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 35, 35 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 35, 0, 35, 35 )
+
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 2 )
 region = Rect2( 70, 0, 35, 35 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 2 )
-region = Rect2( 175, 0, 35, 35 )
+region = Rect2( 105, 0, 35, 35 )
 
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 2 )
-region = Rect2( 245, 0, 35, 35 )
-
-[sub_resource type="SpriteFrames" id=11]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 14 ), SubResource( 16 ), SubResource( 18 ) ],
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
 "name": "explode",
 "speed": 15.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=11]
 
 [node name="Car" type="Node2D"]
 rotation = 1.5708
@@ -99,13 +103,13 @@ shape = SubResource( 5 )
 
 [node name="ExplodeSprite" type="AnimatedSprite" parent="."]
 visible = false
-frames = SubResource( 11 )
+frames = SubResource( 10 )
 animation = "explode"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 12 )
+shape = SubResource( 11 )
 
 [node name="ResetTimer" type="Timer" parent="."]
 one_shot = true

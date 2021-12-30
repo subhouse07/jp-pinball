@@ -31,13 +31,18 @@ func adjust_sprite_hue():
 func adjust_collision_shape():
 	var collision_shape = $StaticBody2D/CollisionShape2D
 	var area_shape = $Area2D/CollisionShape2D
+	_set_collisions_enabled(true)
 	match car_type:
 		VAN:
 			collision_shape.shape.radius = VAN_COLLISION[0]
 			collision_shape.shape.height = VAN_COLLISION[1]
+			area_shape.shape.radius = VAN_COLLISION[0]
+			area_shape.shape.height = VAN_COLLISION[1]
 		MINI:
 			collision_shape.shape.radius = MINI_COLLISION[0]
 			collision_shape.shape.height = MINI_COLLISION[1]
+			area_shape.shape.radius = MINI_COLLISION[0]
+			area_shape.shape.height = MINI_COLLISION[1]
 		SPORT:
 			collision_shape.shape.radius = SPORT_COLLISION[0]
 			collision_shape.shape.height = SPORT_COLLISION[1]
@@ -46,9 +51,13 @@ func adjust_collision_shape():
 		TRUCK:
 			collision_shape.shape.radius = TRUCK_COLLISION[0]
 			collision_shape.shape.height = TRUCK_COLLISION[1]
+			$Area2D.collision_layer = 0
+			$Area2D.collision_mask = 0
 		HATCH:
 			collision_shape.shape.radius = HATCH_COLLISION[0]
 			collision_shape.shape.height = HATCH_COLLISION[1]
+			area_shape.shape.radius = HATCH_COLLISION[0]
+			area_shape.shape.height = HATCH_COLLISION[1]
 
 
 func _set_collisions_enabled(enabled: bool):

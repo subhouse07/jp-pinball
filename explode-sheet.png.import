@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/red-exp-sheet-1.png-a972f0fe258f7d0eecd612b08643db86.stex"
+path="res://.import/explode-sheet.png-3da55c7fe119b0317f1994187304d8ed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://red-exp-sheet-1.png"
-dest_files=[ "res://.import/red-exp-sheet-1.png-a972f0fe258f7d0eecd612b08643db86.stex" ]
+source_file="res://explode-sheet.png"
+dest_files=[ "res://.import/explode-sheet.png-3da55c7fe119b0317f1994187304d8ed.stex" ]
 
 [params]
 
