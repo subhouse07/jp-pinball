@@ -301,13 +301,13 @@ bounce = 0.1
 bounce = 0.1
 
 [sub_resource type="RectangleShape2D" id=61]
-extents = Vector2( 13.0977, 313.692 )
+extents = Vector2( 13.0977, 327 )
 
 [sub_resource type="PhysicsMaterial" id=62]
 bounce = 0.1
 
 [sub_resource type="RectangleShape2D" id=63]
-extents = Vector2( 10, 23 )
+extents = Vector2( 10, 19 )
 
 [sub_resource type="PhysicsMaterial" id=64]
 friction = 0.0
@@ -335,13 +335,13 @@ friction = 0.0
 bounce = 0.1
 
 [sub_resource type="RectangleShape2D" id=71]
-extents = Vector2( 4, 59 )
+extents = Vector2( 5, 59 )
 
 [sub_resource type="RectangleShape2D" id=72]
-extents = Vector2( 4, 145 )
+extents = Vector2( 5.76403, 143.764 )
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 4, 40 )
+extents = Vector2( 5, 40 )
 
 [sub_resource type="PhysicsMaterial" id=74]
 friction = 0.0
@@ -672,6 +672,7 @@ visible = false
 position = Vector2( 192, -252 )
 frames = SubResource( 6 )
 animation = "idle_0"
+frame = 3
 playing = true
 
 [node name="CopierSection" parent="Cubicle" instance=ExtResource( 34 )]
@@ -1041,6 +1042,7 @@ position = Vector2( 0, 67.736 )
 shape = SubResource( 56 )
 
 [node name="Elevator" parent="." instance=ExtResource( 17 )]
+visible = false
 
 [node name="LaunchLabel" type="Label" parent="."]
 margin_right = 40.0
@@ -1078,7 +1080,7 @@ polygon = PoolVector2Array( 44.1384, -718.929, 2.52969, -716.976, -3.20105, -660
 physics_material_override = SubResource( 60 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaunchRail/StaticBody2D4"]
-position = Vector2( -6.62543, -345.625 )
+position = Vector2( -8, -329 )
 shape = SubResource( 61 )
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="LaunchRail"]
@@ -1173,7 +1175,7 @@ shape = SubResource( 69 )
 physics_material_override = SubResource( 70 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
-position = Vector2( 42, -156 )
+position = Vector2( 39, -156 )
 shape = SubResource( 71 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
@@ -1187,7 +1189,7 @@ shape = SubResource( 72 )
 physics_material_override = SubResource( 70 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D8"]
-position = Vector2( 43.4138, -646.436 )
+position = Vector2( 41, -642 )
 shape = SubResource( 73 )
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="Walls"]
@@ -1236,13 +1238,13 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 87 )
-frame = 5
+frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 91 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="ElevatorDoor" type="StaticBody2D" parent="."]
@@ -1410,11 +1412,20 @@ remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite2")
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/WorkerPaths/WorkerPath3/LobbyWorker" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite3")
 
+[node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="1"]
+frame = 1
+
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite1")
 
+[node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="1"]
+frame = 1
+
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite2")
+
+[node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="1"]
+frame = 1
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite3")
@@ -1675,51 +1686,49 @@ shape = SubResource( 132 )
 
 [node name="TopWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
-frame = 0
+frame = 6
 
 [node name="TopWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
-frame = 0
+frame = 6
 
 [node name="LiftWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 240, -228 )
-frame = 7
+frame = 5
 
 [node name="LiftWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 278, -253 )
-frame = 6
+frame = 4
 
 [node name="LiftWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 209, -276 )
-frame = 6
+frame = 4
 
 [node name="LiftWorkerSprite4" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 279, -301 )
-frame = 6
+frame = 4
 
 [node name="LobbyWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 80 )
-frame = 5
+frame = 3
 
 [node name="LobbyWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 24 )
-frame = 5
+frame = 3
 
 [node name="LobbyWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, -40 )
-frame = 4
+frame = 2
 
 [node name="LobbyVisitorSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 4
+frame = 2
 
 [node name="LobbyVisitorSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 3
 
 [node name="LobbyVisitorSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 3
 
 [node name="BallReturn" type="Node2D" parent="."]
 position = Vector2( 0, 310 )
