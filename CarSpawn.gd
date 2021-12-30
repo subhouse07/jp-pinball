@@ -4,7 +4,7 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-const MAX_CAR_NODES = 8
+const MAX_CAR_NODES = 10
 var count = 0
 var speed = 100
 var sprite_resources = []
@@ -43,7 +43,7 @@ func _process(delta):
 
 func _select_car():
 	var rand_select = randi() % 100
-	if rand_select < 2:
+	if rand_select < 5:
 		return 4
 	else:
 		return rand_select % 4
@@ -54,7 +54,10 @@ func _populate_car_nodes():
 		var car_node = car_scene.instance()
 		var car_type = _select_car()
 		car_node.car_type = car_type
+		car_node.index = i
 		car_node.get_node("Sprite").texture = sprite_resources[car_type]
+		car_node.connect("hit", self, "_on_Car_hit")
+		car_node.connect("reset", self, "_on_Car_reset")
 		car_nodes.append(car_node)
 		moving.append(false)
 			
@@ -67,8 +70,8 @@ func _populate_path_follows():
 		
 	
 		path_follow.add_child(car_nodes[i])
-		var rand_select = randi() % 2
-		if rand_select == 0:
+		var path_select = i % 2
+		if path_select == 0:
 			$Path2D.add_child(path_follow)
 			node_paths.append(path_follow)
 		else:
@@ -89,9 +92,15 @@ func _end_car_movement(index):
 	car_node.call("adjust_sprite_hue")
 	
 func _on_Timer_timeout():
-	$Timer.wait_time = rand_range(1.0, 3.0)
+	$Timer.wait_time = rand_range(1.0, 2.0)
 	for i in MAX_CAR_NODES:
 		if !moving[i]:
 			moving[i] = true
 			return
 	$Timer.start()
+
+func _on_Car_hit(index: int):
+	moving[index] = false
+
+func _on_Car_reset(index: int):
+	_end_car_movement(index)
