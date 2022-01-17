@@ -1,4 +1,4 @@
-[gd_scene load_steps=187 format=2]
+[gd_scene load_steps=194 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://brain2.png" type="Texture" id=42]
 [ext_resource path="res://PH_entrance.shader" type="Shader" id=43]
 [ext_resource path="res://BallReturn.gd" type="Script" id=44]
+[ext_resource path="res://OfficeAdmin.gd" type="Script" id=45]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/side-rail.png-9fa92fee8cb3161206de5ddfba53ffee.stex"
@@ -59,6 +60,34 @@ shader = SubResource( 3 )
 
 [sub_resource type="StreamTexture" id=5]
 load_path = "res://.import/table09.png-65252216fa6820182b8dddaf03320c83.stex"
+
+[sub_resource type="PhysicsMaterial" id=46]
+friction = 0.0
+bounce = 0.4
+
+[sub_resource type="StreamTexture" id=47]
+load_path = "res://.import/desk-proto.png-def8da42503c0e6042710f967523f714.stex"
+
+[sub_resource type="RectangleShape2D" id=48]
+extents = Vector2( 17.234, 9.43341 )
+
+[sub_resource type="RectangleShape2D" id=143]
+extents = Vector2( 10, 17 )
+
+[sub_resource type="StreamTexture" id=144]
+load_path = "res://.import/planter-proto.png-730112b8f4039bbcca6f9cc12308f380.stex"
+
+[sub_resource type="RectangleShape2D" id=145]
+extents = Vector2( 10, 17 )
+
+[sub_resource type="RectangleShape2D" id=146]
+extents = Vector2( 10, 16 )
+
+[sub_resource type="StreamTexture" id=147]
+load_path = "res://.import/chair-test.png-76b07162f4f0e5ba03dd37876e274f42.stex"
+
+[sub_resource type="CircleShape2D" id=148]
+radius = 12.0
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
@@ -242,16 +271,6 @@ height = 36.0
 
 [sub_resource type="StreamTexture" id=45]
 load_path = "res://.import/wait-sign.png-e1262ab625c0cb2611c7841cf7ce49a9.stex"
-
-[sub_resource type="PhysicsMaterial" id=46]
-friction = 0.0
-bounce = 0.4
-
-[sub_resource type="StreamTexture" id=47]
-load_path = "res://.import/desk-proto.png-def8da42503c0e6042710f967523f714.stex"
-
-[sub_resource type="RectangleShape2D" id=48]
-extents = Vector2( 17.234, 9.43341 )
 
 [sub_resource type="SpriteFrames" id=49]
 animations = [ {
@@ -668,6 +687,105 @@ is_flipped = true
 [node name="Lobby" type="Node2D" parent="."]
 script = ExtResource( 38 )
 
+[node name="OfficeAdmin" type="Node2D" parent="Lobby"]
+script = ExtResource( 45 )
+
+[node name="Desks" type="Node2D" parent="Lobby/OfficeAdmin"]
+
+[node name="Desk0" type="StaticBody2D" parent="Lobby/OfficeAdmin/Desks"]
+position = Vector2( 321, 79 )
+rotation = -0.523599
+constant_linear_velocity = Vector2( -50, 0 )
+physics_material_override = SubResource( 46 )
+
+[node name="Sprite" type="Sprite" parent="Lobby/OfficeAdmin/Desks/Desk0"]
+texture = SubResource( 47 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lobby/OfficeAdmin/Desks/Desk0"]
+visible = false
+rotation = -1.5708
+shape = SubResource( 48 )
+one_way_collision = true
+
+[node name="DeskArea2D" type="Area2D" parent="Lobby/OfficeAdmin/Desks/Desk0"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lobby/OfficeAdmin/Desks/Desk0/DeskArea2D"]
+shape = SubResource( 143 )
+
+[node name="LitSprite" type="Sprite" parent="Lobby/OfficeAdmin/Desks/Desk0"]
+visible = false
+position = Vector2( -0.366028, -1.36603 )
+scale = Vector2( 0.2, 0.2 )
+texture = SubResource( 144 )
+
+[node name="Desk1" type="StaticBody2D" parent="Lobby/OfficeAdmin/Desks"]
+position = Vector2( 321, 22 )
+constant_linear_velocity = Vector2( -50, 0 )
+physics_material_override = SubResource( 46 )
+
+[node name="Sprite" type="Sprite" parent="Lobby/OfficeAdmin/Desks/Desk1"]
+texture = SubResource( 47 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lobby/OfficeAdmin/Desks/Desk1"]
+rotation = -1.5708
+shape = SubResource( 48 )
+one_way_collision = true
+
+[node name="DeskArea2D" type="Area2D" parent="Lobby/OfficeAdmin/Desks/Desk1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lobby/OfficeAdmin/Desks/Desk1/DeskArea2D"]
+shape = SubResource( 145 )
+
+[node name="LitSprite" type="Sprite" parent="Lobby/OfficeAdmin/Desks/Desk1"]
+visible = false
+position = Vector2( -1, 1 )
+rotation = -0.523599
+scale = Vector2( 0.2, 0.2 )
+texture = SubResource( 144 )
+
+[node name="Desk2" type="StaticBody2D" parent="Lobby/OfficeAdmin/Desks"]
+position = Vector2( 321, -37 )
+rotation = 0.523599
+constant_linear_velocity = Vector2( -50, 0 )
+physics_material_override = SubResource( 46 )
+
+[node name="Sprite" type="Sprite" parent="Lobby/OfficeAdmin/Desks/Desk2"]
+texture = SubResource( 47 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lobby/OfficeAdmin/Desks/Desk2"]
+rotation = -1.5708
+shape = SubResource( 48 )
+one_way_collision = true
+
+[node name="DeskArea2D" type="Area2D" parent="Lobby/OfficeAdmin/Desks/Desk2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lobby/OfficeAdmin/Desks/Desk2/DeskArea2D"]
+shape = SubResource( 146 )
+
+[node name="LitSprite" type="Sprite" parent="Lobby/OfficeAdmin/Desks/Desk2"]
+visible = false
+position = Vector2( -1.23206, 1.86609 )
+rotation = -1.0472
+scale = Vector2( 0.2, 0.2 )
+texture = SubResource( 144 )
+
+[node name="OASprite" type="Sprite" parent="Lobby/OfficeAdmin"]
+visible = false
+position = Vector2( 189, -35 )
+scale = Vector2( 0.25, 0.25 )
+texture = SubResource( 147 )
+flip_h = true
+
+[node name="OAArea2D" type="Area2D" parent="Lobby/OfficeAdmin"]
+position = Vector2( 187, -28 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lobby/OfficeAdmin/OAArea2D"]
+shape = SubResource( 148 )
+
 [node name="Cubicle" type="Node2D" parent="."]
 script = ExtResource( 35 )
 
@@ -675,7 +793,6 @@ script = ExtResource( 35 )
 position = Vector2( 192, -280 )
 frames = SubResource( 6 )
 animation = "idle_0"
-frame = 2
 playing = true
 
 [node name="CopierSection" parent="Cubicle" instance=ExtResource( 34 )]
@@ -933,45 +1050,6 @@ shape = SubResource( 44 )
 
 [node name="Sprite2" type="Sprite" parent="YSort/WaitSign"]
 texture = SubResource( 45 )
-
-[node name="Desk1" type="StaticBody2D" parent="YSort"]
-position = Vector2( 321, 79 )
-constant_linear_velocity = Vector2( -50, 0 )
-physics_material_override = SubResource( 46 )
-
-[node name="Sprite" type="Sprite" parent="YSort/Desk1"]
-texture = SubResource( 47 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Desk1"]
-rotation = -1.5708
-shape = SubResource( 48 )
-one_way_collision = true
-
-[node name="Desk2" type="StaticBody2D" parent="YSort"]
-position = Vector2( 321, -37 )
-constant_linear_velocity = Vector2( -50, 0 )
-physics_material_override = SubResource( 46 )
-
-[node name="Sprite" type="Sprite" parent="YSort/Desk2"]
-texture = SubResource( 47 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Desk2"]
-rotation = -1.5708
-shape = SubResource( 48 )
-one_way_collision = true
-
-[node name="Desk3" type="StaticBody2D" parent="YSort"]
-position = Vector2( 321, 22 )
-constant_linear_velocity = Vector2( -50, 0 )
-physics_material_override = SubResource( 46 )
-
-[node name="Sprite" type="Sprite" parent="YSort/Desk3"]
-texture = SubResource( 47 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Desk3"]
-rotation = -1.5708
-shape = SubResource( 48 )
-one_way_collision = true
 
 [node name="TrapDoor3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 102.354, -110.682 )
@@ -1247,6 +1325,7 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 91 )
+frame = 2
 playing = true
 
 [node name="ElevatorDoor" type="StaticBody2D" parent="."]
@@ -1414,11 +1493,20 @@ remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite2")
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/WorkerPaths/WorkerPath3/LobbyWorker" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite3")
 
+[node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="1"]
+frame = 7
+
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite1")
 
+[node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="1"]
+frame = 7
+
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite2")
+
+[node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="1"]
+frame = 7
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite3")
@@ -1679,51 +1767,49 @@ shape = SubResource( 132 )
 
 [node name="TopWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
-frame = 0
+frame = 4
 
 [node name="TopWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
-frame = 0
+frame = 4
 
 [node name="LiftWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 240, -228 )
-frame = 7
+frame = 3
 
 [node name="LiftWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 278, -253 )
-frame = 6
+frame = 2
 
 [node name="LiftWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 209, -276 )
-frame = 6
+frame = 2
 
 [node name="LiftWorkerSprite4" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 279, -301 )
-frame = 6
+frame = 2
 
 [node name="LobbyWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 80 )
-frame = 5
 
 [node name="LobbyWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 24 )
-frame = 5
 
 [node name="LobbyWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, -40 )
-frame = 4
+frame = 0
 
 [node name="LobbyVisitorSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 4
+frame = 0
 
 [node name="LobbyVisitorSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 3
+frame = 7
 
 [node name="LobbyVisitorSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 3
+frame = 7
 
 [node name="BallReturn" type="Node2D" parent="."]
 position = Vector2( 0, 310 )
@@ -1756,6 +1842,11 @@ shape = SubResource( 142 )
 
 [node name="AnimTimer" type="Timer" parent="BallReturn"]
 one_shot = true
+[connection signal="ball_entered" from="Lobby/OfficeAdmin" to="Lobby" method="_on_OfficeAdmin_ball_entered"]
+[connection signal="body_entered" from="Lobby/OfficeAdmin/Desks/Desk0/DeskArea2D" to="Lobby/OfficeAdmin" method="_on_DeskArea2D_body_entered" binds= [ 0 ]]
+[connection signal="body_entered" from="Lobby/OfficeAdmin/Desks/Desk1/DeskArea2D" to="Lobby/OfficeAdmin" method="_on_DeskArea2D_body_entered" binds= [ 1 ]]
+[connection signal="body_entered" from="Lobby/OfficeAdmin/Desks/Desk2/DeskArea2D" to="Lobby/OfficeAdmin" method="_on_DeskArea2D_body_entered" binds= [ 2 ]]
+[connection signal="body_entered" from="Lobby/OfficeAdmin/OAArea2D" to="Lobby/OfficeAdmin" method="_on_OAArea2D_body_entered"]
 [connection signal="special_entered" from="Cubicle" to="." method="_on_Cubicle_special_entered"]
 [connection signal="copier_hit" from="Cubicle/CopierSection" to="." method="_on_CopierSection_copier_hit"]
 [connection signal="desk_ball_released" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_door_timed_out"]
