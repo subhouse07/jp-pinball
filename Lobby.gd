@@ -21,9 +21,6 @@ func activate_special_stage(task: int):
 		CENTER:
 			pass
 
-
-func _on_OfficeAdmin_ball_entered():
-	print("OA encountered. Resetting OA")
-	$OfficeAdmin.set_office_admin_enabled(false)
-	print("No tasks available now, so resetting desk state")
-	$OfficeAdmin.reset_desks()
+func activate_task():
+	# Placeholder until task stuff is in place
+	pass
