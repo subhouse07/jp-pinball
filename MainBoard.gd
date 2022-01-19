@@ -224,11 +224,6 @@ func _set_sublvl_collision(enabled : bool):
 		ball.collision_mask = MAINLVL_MASK
 
 
-func _on_CubeMates_task_activated(name):
-	# probably will trigger some animation in the side from here?
-	get_node("Cubicle/%s" % name).activate_task()
-
-
 func _on_CopierSection_copier_hit():
 	if $Cubicle/CopierSection.task_active:
 		$"/root/GameState".hit_copier()
@@ -294,3 +289,17 @@ func _on_AnimTimer_timeout():
 	ball.mode = RigidBody2D.MODE_KINEMATIC
 	ball_in_right_return = true
 	$BallReturn.move_man(ball.global_position)
+
+
+func _on_task_activated(area, name):
+	var boardroom = $"/root/GameState".AREA_BOARDROOM
+	var cube = $"/root/GameState".AREA_CUBE
+	var lobby = $"/root/GameState".AREA_LOBBY
+	
+	match area:
+		boardroom:
+			pass
+		cube:
+			get_node("Cubicle/%s" % name).activate_task()
+		lobby:
+			get_node("Lobby").activate_task()

@@ -8,7 +8,7 @@ const tasks = {
 
 signal desk_ball_trapped
 signal desk_ball_released(x, y)
-signal task_activated(name)
+signal task_activated(area, name)
 
 
 func _ready():
@@ -17,16 +17,17 @@ func _ready():
 
 func _on_TrapDoor_ball_trapped():
 	emit_signal("desk_ball_trapped")
+	var area = $"/root/GameState".AREA_CUBE
 	if $"/root/GameState".brainstorm_ready():
-		emit_signal("task_activated", tasks["brain"])
+		emit_signal("task_activated", area, tasks["brain"])
 		$"/root/GameState".cube_task_ind = 2
 		$"/root/GameState".cube_task_active = true
 	elif $"/root/GameState".cube_task_ind > 0:
-		emit_signal("task_activated", tasks["copier"])
+		emit_signal("task_activated", area, tasks["copier"])
 		$"/root/GameState".cube_task_ind = 0
 		$"/root/GameState".cube_task_active = true
 	else:
-		emit_signal("task_activated", tasks["files"])
+		emit_signal("task_activated", area, tasks["files"])
 		$"/root/GameState".cube_task_ind += 1
 		$"/root/GameState".cube_task_active = true
 
