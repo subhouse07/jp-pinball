@@ -26,6 +26,9 @@ const SP_NAME_LUNCH = "SpecialLunch"
 const SP_NAME_TRAFFIC = "SpecialTraffic"
 
 var score_total : int
+var points = {
+	"Car": 10
+}
 
 var special_state = {
 	"cube": {
@@ -66,6 +69,10 @@ var hp_state = {
 	"janitor": JANITOR_MAX
 }
 
+var mult_state = {
+	"Car": 1
+}
+
 var cube_task_ind = 0 setget cube_task_ind_set, cube_task_ind_get
 var cube_task_active = false setget cube_task_active_set, cube_task_active_get
 
@@ -76,6 +83,15 @@ var gui : Control
 func _ready():
 	gui = get_parent().get_node("main/GUILayer/GUI")
 
+func score(name : String):
+	var mult = mult_state[name]
+	score_total += points[name] * mult
+
+func increase_mult(name : String, incr: int):
+	mult_state[name] += incr
+
+func reset_mult(name : String):
+	mult_state[name] = 1
 
 func complete_special_stage(area: String, name: String):
 	special_state[area]["stages"][name] = true
