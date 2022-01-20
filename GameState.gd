@@ -25,6 +25,8 @@ const SP_NAME_NETWORK = "SpecialNetwork"
 const SP_NAME_LUNCH = "SpecialLunch"
 const SP_NAME_TRAFFIC = "SpecialTraffic"
 
+var score_total : int
+
 var special_state = {
 	"cube": {
 		"complete": false,
