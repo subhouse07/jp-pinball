@@ -84,14 +84,19 @@ func _ready():
 	gui = get_parent().get_node("main/GUILayer/GUI")
 
 func score(name : String):
+	_check_task_status(name)
 	var mult = mult_state[name]
 	score_total += points[name] * mult
+	print(score_total)
 
 func increase_mult(name : String, incr: int):
 	mult_state[name] += incr
 
 func reset_mult(name : String):
 	mult_state[name] = 1
+
+func _check_task_status(name: String):
+	pass
 
 func complete_special_stage(area: String, name: String):
 	special_state[area]["stages"][name] = true

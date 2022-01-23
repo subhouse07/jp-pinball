@@ -104,3 +104,8 @@ func _on_Car_hit(index: int):
 
 func _on_Car_reset(index: int):
 	_end_car_movement(index)
+
+
+func _on_Area2D_body_exited(body):
+	if body.name == "Ball":
+		GameState.reset_mult("Car")
