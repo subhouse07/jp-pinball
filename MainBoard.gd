@@ -308,3 +308,8 @@ func _on_task_activated(area, name):
 			get_node("Cubicle/%s" % name).activate_task()
 		lobby:
 			get_node("Lobby").activate_task()
+
+
+func _on_LobbyBumper_body_entered(body):
+	if body.name == "Ball":
+		GameState.score("LobbyBumper")

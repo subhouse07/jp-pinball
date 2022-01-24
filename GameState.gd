@@ -51,7 +51,9 @@ var points = {
 	"BoardRoomVent": 250,
 	"SublvlEnter": 150,
 	"ElevatorOpen": 100,
-	"Elevator": 150
+	"Elevator": 150,
+	"LobbyBumper": 25,
+	"CubicleBumper": 50
 }
 
 var special_state = {

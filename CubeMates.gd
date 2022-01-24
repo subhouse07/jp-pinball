@@ -57,3 +57,8 @@ func _set_bumpers_enabled(enabled : bool):
 func reset():
 	$"/root/GameState".cube_task_active = false
 	_set_bumpers_enabled(false)
+
+
+func _on_DeskBumper_body_entered(body):
+	if body.name == "Ball":
+		GameState.score("CubicleBumper")
