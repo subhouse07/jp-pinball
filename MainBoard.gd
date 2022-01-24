@@ -110,6 +110,7 @@ func _on_TrapDoor_door_timed_out(x, y):
 
 func _on_Launcher_ball_captured():
 	get_tree().call_group("ball_resets", "reset")
+	GameState.reset_mult("Elevator")
 	ball.mode = RigidBody2D.MODE_KINEMATIC
 	ball.hide()
 	ball_in_launcher = true
@@ -167,7 +168,8 @@ func _on_CourierCoordinator_ball_released():
 func _on_ElevatorDoorArea_body_entered(body):
 	if body.name == "Ball":
 		if elevator_open:
-			
+			GameState.increase_mult("Elevator", 2)
+			GameState.score("Elevator")
 			ball.hide()
 			ball.global_position
 			ball.mode = RigidBody2D.MODE_KINEMATIC
@@ -178,6 +180,7 @@ func _on_ElevatorDoorArea_body_entered(body):
 			$Elevator.go_to_cubicle()
 			$ElevatorDoor/AnimatedSprite.play("close")
 		else:
+			GameState.score("ElevatorOpen")
 			elevator_open = true
 			$Elevator.go_to_lobby()
 			$ElevatorDoor/AnimatedSprite.play("open")
@@ -206,6 +209,7 @@ func _on_ElevatorDoorTimer_timeout():
 
 func _on_SubEntrArea_body_entered(body, entering_sublvl):
 	if body.name == "Ball" and !courier_captured:
+		GameState.score("SublvlEnter")
 		_set_sublvl_collision(entering_sublvl)
 
 
@@ -226,6 +230,7 @@ func _set_sublvl_collision(enabled : bool):
 
 func _on_CopierSection_copier_hit():
 	if $Cubicle/CopierSection.task_active:
+		GameState.score("CopierActive")
 		$"/root/GameState".hit_copier()
 		if $"/root/GameState".hp_state["copier"] <= 0:
 			$"/root/GameState".reset_copier()

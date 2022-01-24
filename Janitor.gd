@@ -11,9 +11,11 @@ func _ready():
 
 func _on_BathroomArea_body_entered(body):
 	if $HitTimer.is_stopped() and body.name == "Ball":
+		GameState.score(self.name)
 		$"/root/GameState".hit_janitor()
 		$HitTimer.start()
 		if $"/root/GameState".hp_state["janitor"] <= 0:
+			GameState.score("JanitorMove")
 			$MoveTimer.start()
 
 

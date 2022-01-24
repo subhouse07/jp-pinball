@@ -27,7 +27,31 @@ const SP_NAME_TRAFFIC = "SpecialTraffic"
 
 var score_total : int
 var points = {
-	"Car": 10
+	"Car": 10,
+	"OfficeAdmin": 50,
+	"LobbyDesk": 10,
+	"AllLobbyDesks": 100,
+	"CopyWorker": 25,
+	"Copier": 25,
+	"CopierActive": 100,
+	"Lift": 50,
+	"CubeMates": 50,
+	"FileCabinets": 100,
+	"SpecialEntrance": 500,
+	"Brainstorm": 100,
+	"CourierCapture": 150,
+	"Courier": 100,
+	"CourierRelease": 100,
+	"LobbyWorker": 25,
+	"LobbyVisitor": 25,
+	"Janitor": 25,
+	"JanitorMove": 100,
+	"BoardRoomDoors": 50,
+	"BoardRoomOpen": 250,
+	"BoardRoomVent": 250,
+	"SublvlEnter": 150,
+	"ElevatorOpen": 100,
+	"Elevator": 150
 }
 
 var special_state = {
@@ -70,7 +94,8 @@ var hp_state = {
 }
 
 var mult_state = {
-	"Car": 1
+	"Car": { "current": 1, "max": 99 },
+	"Elevator": { "current": 1, "max": 18 }
 }
 
 var cube_task_ind = 0 setget cube_task_ind_set, cube_task_ind_get
@@ -85,15 +110,24 @@ func _ready():
 
 func score(name : String):
 	_check_task_status(name)
-	var mult = mult_state[name]
+	var mult = _check_multiplier(name)
 	score_total += points[name] * mult
 	print(score_total)
 
 func increase_mult(name : String, incr: int):
-	mult_state[name] += incr
+	mult_state[name]["current"] += incr
+	if mult_state[name]["current"] > mult_state[name]["max"]:
+		mult_state[name]["current"] = mult_state[name]["max"]
+	
 
 func reset_mult(name : String):
-	mult_state[name] = 1
+	mult_state[name]["current"] = 1
+
+func _check_multiplier(name):
+	var mult = 1
+	if mult_state.keys().has(name):
+		mult = mult_state[name]["current"]
+	return mult
 
 func _check_task_status(name: String):
 	pass

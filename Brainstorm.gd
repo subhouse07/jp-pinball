@@ -45,6 +45,7 @@ func _set_collisions_enabled(enabled: bool):
 
 func _on_BrainArea_body_entered(body):
 	if body.name == "Ball":
+		GameState.score(self.name)
 		hp -= 1
 		emit_signal("hit", hp == 0)
 

@@ -30,6 +30,7 @@ func _set_collisions(val : int):
 
 func _on_LiftArea_body_entered(body):
 	if body.name == "Ball" and !transitioning:
+		GameState.score(self.name)
 		emit_signal("lift_hit")
 		# play animation
 		$AnimationTimer.start()

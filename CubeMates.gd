@@ -16,6 +16,7 @@ func _ready():
 
 
 func _on_TrapDoor_ball_trapped():
+	GameState.score(self.name)
 	emit_signal("desk_ball_trapped")
 	var area = $"/root/GameState".AREA_CUBE
 	if $"/root/GameState".brainstorm_ready():

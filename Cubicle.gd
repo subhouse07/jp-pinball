@@ -31,6 +31,7 @@ func activate_special_stage(task : int):
 
 func _on_SpecialEntranceArea_body_entered(body):
 	if body.name == "Ball":
+		GameState.score("SpecialEntrance")
 		_set_entrance_enabled(false)
 		match special_trigger:
 			COPIER:

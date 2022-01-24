@@ -24,6 +24,7 @@ func activate_task():
 
 func _on_TargetArea_body_entered(body, ind):
 	if body.name == "Ball" && !targets_hit[ind]:
+		GameState.score(self.name)
 		targets_hit[ind] = true
 		_set_target_active(targets.get_child(ind), DISABLED)
 		var incomplete = false

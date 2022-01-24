@@ -1,4 +1,4 @@
-[gd_scene load_steps=194 format=2]
+[gd_scene load_steps=193 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -483,9 +483,6 @@ bounce = 0.7
 [sub_resource type="StreamTexture" id=107]
 load_path = "res://.import/desks-cluster-proto.png-829fc7a97970b346c43c0bc020d6ecc4.stex"
 
-[sub_resource type="RectangleShape2D" id=108]
-extents = Vector2( 146.704, 141.573 )
-
 [sub_resource type="PhysicsMaterial" id=109]
 friction = 0.0
 bounce = 0.1
@@ -793,7 +790,6 @@ script = ExtResource( 35 )
 position = Vector2( 192, -280 )
 frames = SubResource( 15 )
 animation = "idle_0"
-frame = 1
 playing = true
 
 [node name="CopierSection" parent="Cubicle" instance=ExtResource( 34 )]
@@ -1319,13 +1315,12 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 93 )
-frame = 3
+frame = 4
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 97 )
-frame = 2
 playing = true
 
 [node name="ElevatorDoor" type="StaticBody2D" parent="."]
@@ -1396,13 +1391,6 @@ texture = SubResource( 107 )
 [node name="CollisionShape2D2" type="CollisionPolygon2D" parent="DeskCluster2"]
 position = Vector2( -31.8777, -575.815 )
 polygon = PoolVector2Array( 136.087, -23.2689, 148.1, -19.9318, 144.763, -11.2553, 149.9, -4.6921, 157.444, -1.91142, 154.774, 11.1033, 146.098, 8.7673, 138.9, 11.8081, 135.753, 23.1168, 122.071, 19.7797, 125.373, 9.72703, 121.062, 0.362026, 112.393, -1.91142, 115.73, -13.2576, 125.076, -10.4895, 133.549, -13.7598 )
-
-[node name="YourOfficeArea2D" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YourOfficeArea2D"]
-position = Vector2( 193.985, -237.333 )
-shape = SubResource( 108 )
 
 [node name="OfficeWalls" type="Node2D" parent="."]
 
@@ -1879,8 +1867,6 @@ one_shot = true
 [connection signal="ball_disembarked" from="Launcher" to="." method="_on_Launcher_ball_disembarked"]
 [connection signal="body_entered" from="ElevatorDoor/ElevatorDoorArea" to="." method="_on_ElevatorDoorArea_body_entered"]
 [connection signal="timeout" from="ElevatorDoor2/Timer" to="." method="_on_ElevatorDoorTimer_timeout"]
-[connection signal="body_entered" from="YourOfficeArea2D" to="." method="_on_YourOfficeArea2D_body_entered"]
-[connection signal="body_exited" from="YourOfficeArea2D" to="." method="_on_YourOfficeArea2D_body_exited"]
 [connection signal="body_entered" from="Janitor/BathroomArea" to="Janitor" method="_on_BathroomArea_body_entered"]
 [connection signal="timeout" from="Janitor/MoveTimer" to="Janitor" method="_on_MoveTimer_timeout"]
 [connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_ball_trapped"]

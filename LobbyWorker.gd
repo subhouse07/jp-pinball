@@ -68,6 +68,7 @@ func reset():
 
 func _on_WorkerArea_body_entered(body):
 	if body.name == "Ball" and !at_desk:
+		GameState.score(self.name)
 		emit_signal("worker_hit", index)
 		$CollisionTimer.start()
 
