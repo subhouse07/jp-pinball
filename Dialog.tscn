@@ -3,10 +3,10 @@
 [ext_resource path="res://Fixedsys Excelsior 3.01 Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Dialog.gd" type="Script" id=2]
 
-[sub_resource type="StreamTexture" id=4]
+[sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/dialog-box-test.png-815f1ff7282e683cf73c87a6be78d589.stex"
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 18
 font_data = ExtResource( 1 )
 
@@ -23,7 +23,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -96.0
 margin_right = 480.0
-texture = SubResource( 4 )
+texture = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -35,7 +35,7 @@ margin_left = 126.0
 margin_top = -74.0
 margin_right = 458.0
 margin_bottom = -33.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 text = "Here's some test text. How does this 
@@ -53,3 +53,9 @@ margin_right = 80.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

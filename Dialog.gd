@@ -2,10 +2,12 @@ extends Control
 
 var character_id : int
 
+signal dialog_finished
+
 var icon_paths = [
-	"res://icon-test.png",
-	"res://icon-test.png",
-	"res://icon-test.png"
+	"res://dialog-icon-test.png",
+	"res://dialog-icon-test.png",
+	"res://dialog-icon-test.png"
 ]
 
 var dialog_texts = [
@@ -17,3 +19,8 @@ var dialog_texts = [
 func _ready():
 	$IconTextureRect.texture = load(icon_paths[character_id])
 	$DialogText.text = dialog_texts[character_id]
+
+
+func _on_Timer_timeout():
+	var task_code = 0
+	emit_signal("dialog_finished")

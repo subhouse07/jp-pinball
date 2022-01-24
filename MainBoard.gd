@@ -11,6 +11,7 @@ var bg_dimen : Vector2
 var res_frontdoor_open
 var res_frontdoor_close
 
+var dialog_request_node : Node2D
 var velocity = Vector2(0,0)
 
 var launched = false
@@ -314,3 +315,17 @@ func _on_task_activated(area, name):
 func _on_LobbyBumper_body_entered(body):
 	if body.name == "Ball":
 		GameState.score("LobbyBumper")
+
+
+func _on_dialog_activated(character_id : int):
+	match character_id:
+		Constants.CHAR_ID_OA:
+			dialog_request_node = $Lobby/OfficeAdmin
+		Constants.CHAR_ID_CM:
+			dialog_request_node = $Cubicle/CubeMates
+		Constants.CHAR_ID_EXEC:
+			pass
+	emit_signal("dialog_requested", character_id)
+
+func on_dialog_freed():
+	dialog_request_node.on_dialog_freed()

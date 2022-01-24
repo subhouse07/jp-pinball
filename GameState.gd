@@ -60,7 +60,8 @@ var points = {
 	"UpperTrapDoor": 250,
 	"LowerTrapDoor": 150,
 	"LeftCubeMate": 200,
-	"RightCubeMate": 200
+	"RightCubeMate": 200,
+	"OADoor": 50
 }
 
 var special_state = {
@@ -111,7 +112,8 @@ var mult_state = {
 	"UpperTrapDoor": { "current": 1, "max": 16 },
 	"LowerTrapDoor": { "current": 1, "max": 16 },
 	"RightCubeMate": { "current": 1, "max": 25 },
-	"LeftCubeMate": { "current": 1, "max": 25 }
+	"LeftCubeMate": { "current": 1, "max": 25 },
+	"OADoor": { "current": 1, "max": 16 }
 }
 
 var cube_task_ind = 0 setget cube_task_ind_set, cube_task_ind_get

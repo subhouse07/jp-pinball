@@ -12,6 +12,9 @@ func _ready():
 func _on_dialog_requested(character_id: int):
 	emit_signal("init_dialog", character_id)
 
+func on_dialog_freed(current_scene: String):
+	get_node(current_scene).on_dialog_freed()
+
 func _on_special_triggered(area_name: String, special_name: String):
 	# do a scene transition?
 	# instance the appropriate scene

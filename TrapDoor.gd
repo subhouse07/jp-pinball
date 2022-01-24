@@ -1,7 +1,7 @@
 extends Node2D
 
 
-export(bool) var is_teleport
+export(bool) var is_task_contact
 export(float) var my_time
 export(float) var launch_x
 export(float) var launch_y
@@ -47,20 +47,19 @@ func _on_Area2D_body_entered(body):
 		if sprite:
 			sprite.play()
 		emit_signal("ball_trapped")
-		if !is_teleport:
+		if !is_task_contact:
 			timer.start()
 
 
 func _on_AnimatedSprite_animation_finished():
 	sprite.stop()
-	if is_teleport and is_trapping:
+	if is_task_contact and is_trapping:
 		is_trapping = false
 		sprite.play("default", true)
 
 
 func _on_Timer_timeout():
-	is_trapping = false
-	emit_signal("door_timed_out", launch_x, launch_y)
+	release_ball()
 	
 func set_enabled(enabled : bool):
 	if enabled:
@@ -70,6 +69,9 @@ func set_enabled(enabled : bool):
 		$Area2D.collision_layer = 0
 		$Area2D.collision_mask = 0
 
+func release_ball():
+	is_trapping = false
+	emit_signal("door_timed_out", launch_x, launch_y)
 
 func reset():
 	GameState.reset_mult(self.name)

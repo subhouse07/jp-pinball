@@ -7,7 +7,6 @@ radius = 5.95201
 
 [node name="TrapDoor" type="Node2D"]
 script = ExtResource( 1 )
-is_teleport = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -24,3 +24,7 @@ func add_game_scene():
 
 func _on_GameScene_init_dialog(character_id):
 	$GUILayer/GUI.init_dialog(character_id)
+
+
+func _on_GUI_dialog_freed():
+	$GameScene.on_dialog_freed(current_scene)

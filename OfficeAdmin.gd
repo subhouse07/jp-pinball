@@ -3,6 +3,7 @@ extends Node2D
 var desks_lit = [false, false, false]
 
 signal task_activated(area, name)
+signal dialog_activated(character_id)
 
 func _ready():
 	set_office_admin_enabled(false)
@@ -37,21 +38,18 @@ func reset_desks():
 
 func set_office_admin_enabled(enabled : bool):
 	$OASprite.visible = enabled
-	if enabled:
-		$OAArea2D.collision_layer = 1
-		$OAArea2D.collision_mask = 1
-	else:
-		$OAArea2D.collision_layer = 0
-		$OAArea2D.collision_mask = 0
+	$OADoor.set_enabled(enabled)
 
 
-func _on_OAArea2D_body_entered(body):
-	if body.name == "Ball":
-		# This should signal the contact dialog to start
-		# After that finishes, the following code will execute.
-		GameState.score(self.name)
-		emit_signal("task_activated", $"/root/GameState".AREA_LOBBY, "name")
-		print("OA encountered. Resetting OA")
-		set_office_admin_enabled(false)
-		print("No tasks available now, so resetting desk state")
-		reset_desks()
+func _on_TrapDoor_ball_trapped():
+	emit_signal("dialog_activated", Constants.CHAR_ID_OA)
+
+
+func on_dialog_freed():
+	$OADoor.release_ball()
+	GameState.score(self.name)
+	emit_signal("task_activated", $"/root/GameState".AREA_LOBBY, "name")
+	print("OA encountered. Resetting OA")
+	set_office_admin_enabled(false)
+	print("No tasks available now, so resetting desk state")
+	reset_desks()
