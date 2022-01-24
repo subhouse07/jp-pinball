@@ -26,6 +26,7 @@ func _physics_process(delta):
 
 
 func _on_Courier_captured_ball(index):
+	GameState.score("CourierCapture")
 	var couriers = paths.get_child(active_path).get_children()
 	for c in couriers:
 		c.disable_collision()
@@ -49,6 +50,7 @@ func _on_Courier_hit():
 
 func _on_ReleaseArea_area_entered(area):
 	if ball_captured and area.get_parent().name == "Courier":
+		GameState.score("CourierRelease")
 		ball_captured = false
 		var couriers = paths.get_child(active_path).get_children()
 		for c in couriers:

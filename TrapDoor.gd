@@ -41,6 +41,8 @@ func _add_timer():
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Ball" and !is_trapping:
+		GameState.score(self.name)
+		GameState.increase_mult(self.name, 1)
 		is_trapping = true
 		if sprite:
 			sprite.play()
@@ -67,3 +69,7 @@ func set_enabled(enabled : bool):
 	else:
 		$Area2D.collision_layer = 0
 		$Area2D.collision_mask = 0
+
+
+func reset():
+	GameState.reset_mult(self.name)

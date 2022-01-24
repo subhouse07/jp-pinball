@@ -37,8 +37,10 @@ func _physics_process(delta):
 func _on_Area2D_body_entered(body):
 	if body.name == "Ball" and !in_slow_zone and !disabled:
 		if is_lead and !final:
+			GameState.score("CourierCapture")
 			emit_signal("captured_ball", index)
 		elif !is_lead or final: # Collide and disable collision
+			GameState.score("Courier")
 			disabled = true
 			$Sprite.hide()
 			disable_collision()

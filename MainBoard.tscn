@@ -1,4 +1,4 @@
-[gd_scene load_steps=194 format=2]
+[gd_scene load_steps=193 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -483,9 +483,6 @@ bounce = 0.7
 [sub_resource type="StreamTexture" id=107]
 load_path = "res://.import/desks-cluster-proto.png-829fc7a97970b346c43c0bc020d6ecc4.stex"
 
-[sub_resource type="RectangleShape2D" id=108]
-extents = Vector2( 146.704, 141.573 )
-
 [sub_resource type="PhysicsMaterial" id=109]
 friction = 0.0
 bounce = 0.1
@@ -793,7 +790,6 @@ script = ExtResource( 35 )
 position = Vector2( 192, -280 )
 frames = SubResource( 15 )
 animation = "idle_0"
-frame = 4
 playing = true
 
 [node name="CopierSection" parent="Cubicle" instance=ExtResource( 34 )]
@@ -848,19 +844,37 @@ position = Vector2( 87, -3 )
 rotation = -0.785398
 shape = SubResource( 21 )
 
-[node name="TrapDoor" parent="Cubicle/CubeMates" instance=ExtResource( 13 )]
+[node name="RightCubeMate" parent="Cubicle/CubeMates" groups=[
+"ball_resets",
+] instance=ExtResource( 13 )]
 position = Vector2( 80, -4 )
 is_teleport = false
 my_time = 2.0
 launch_x = -200.0
 launch_y = -200.0
 
-[node name="TrapDoor2" parent="Cubicle/CubeMates" instance=ExtResource( 13 )]
+[node name="LeftCubeMate" parent="Cubicle/CubeMates" groups=[
+"ball_resets",
+] instance=ExtResource( 13 )]
 position = Vector2( -96, -5 )
 is_teleport = false
 my_time = 2.0
 launch_x = 200.0
 launch_y = -200.0
+
+[node name="LeftDeskArea" type="Area2D" parent="Cubicle/CubeMates"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Cubicle/CubeMates/LeftDeskArea"]
+position = Vector2( 87, -3 )
+rotation = -0.785398
+shape = SubResource( 21 )
+
+[node name="RightDeskArea" type="Area2D" parent="Cubicle/CubeMates"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Cubicle/CubeMates/RightDeskArea"]
+position = Vector2( -96, -2 )
+rotation = 0.785398
+shape = SubResource( 18 )
 
 [node name="Flippers2" type="Node2D" parent="Cubicle"]
 
@@ -988,6 +1002,13 @@ position = Vector2( -2.00001, -5.18301 )
 rotation = 1.0472
 shape = SubResource( 39 )
 
+[node name="Area2D" type="Area2D" parent="YSort/LeftBumper"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="YSort/LeftBumper/Area2D"]
+position = Vector2( 10.2377, -5.46584 )
+rotation = -0.523599
+shape = SubResource( 37 )
+
 [node name="RightBumper" type="Node2D" parent="YSort"]
 position = Vector2( 280, 197.183 )
 
@@ -1011,6 +1032,13 @@ flip_h = true
 position = Vector2( 3, -4.18304 )
 rotation = 2.0944
 shape = SubResource( 39 )
+
+[node name="Area2D" type="Area2D" parent="YSort/RightBumper"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="YSort/RightBumper/Area2D"]
+position = Vector2( -8, -4.18301 )
+rotation = -2.61799
+shape = SubResource( 37 )
 
 [node name="CenterPiece" type="Node2D" parent="YSort"]
 position = Vector2( 189, 52 )
@@ -1052,23 +1080,27 @@ shape = SubResource( 53 )
 [node name="Sprite2" type="Sprite" parent="YSort/WaitSign"]
 texture = SubResource( 54 )
 
-[node name="TrapDoor3" parent="YSort" instance=ExtResource( 13 )]
+[node name="WaterCooler" parent="YSort" groups=[
+"ball_resets",
+] instance=ExtResource( 13 )]
 position = Vector2( 102.354, -110.682 )
 is_teleport = false
 my_time = 1.0
 
-[node name="Sprite" type="AnimatedSprite" parent="YSort/TrapDoor3"]
+[node name="Sprite" type="AnimatedSprite" parent="YSort/WaterCooler"]
 position = Vector2( 6.84309, -19.8214 )
 frames = SubResource( 55 )
 
-[node name="ComputerDoor" parent="YSort" instance=ExtResource( 13 )]
+[node name="WorkComputer" parent="YSort" groups=[
+"ball_resets",
+] instance=ExtResource( 13 )]
 position = Vector2( 102.322, -339.495 )
 is_teleport = false
 my_time = 1.5
 launch_x = 150.0
 launch_y = 150.0
 
-[node name="Sprite" type="AnimatedSprite" parent="YSort/ComputerDoor"]
+[node name="Sprite" type="AnimatedSprite" parent="YSort/WorkComputer"]
 frames = SubResource( 56 )
 offset = Vector2( 1, -15 )
 
@@ -1319,7 +1351,7 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 93 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -1395,13 +1427,6 @@ texture = SubResource( 107 )
 [node name="CollisionShape2D2" type="CollisionPolygon2D" parent="DeskCluster2"]
 position = Vector2( -31.8777, -575.815 )
 polygon = PoolVector2Array( 136.087, -23.2689, 148.1, -19.9318, 144.763, -11.2553, 149.9, -4.6921, 157.444, -1.91142, 154.774, 11.1033, 146.098, 8.7673, 138.9, 11.8081, 135.753, 23.1168, 122.071, 19.7797, 125.373, 9.72703, 121.062, 0.362026, 112.393, -1.91142, 115.73, -13.2576, 125.076, -10.4895, 133.549, -13.7598 )
-
-[node name="YourOfficeArea2D" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YourOfficeArea2D"]
-position = Vector2( 193.985, -237.333 )
-shape = SubResource( 108 )
 
 [node name="OfficeWalls" type="Node2D" parent="."]
 
@@ -1493,19 +1518,19 @@ remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite2")
 remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite3")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="1"]
-frame = 0
+frame = 4
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite1")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="1"]
-frame = 0
+frame = 4
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite2")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="1"]
-frame = 0
+frame = 4
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite3")
@@ -1604,8 +1629,10 @@ position = Vector2( 311, 234 )
 rotation = -0.39619
 polygon = PoolVector2Array( 26.3859, -0.886169, 18.5352, 2.33362, 8.30283, 3.47314, -3.92535, 1.60989, -27.224, -4.88422, -27.7788, 6.80731, 19.0537, 16.6421 )
 
-[node name="TrapDoor" parent="RightDoorBlocker" instance=ExtResource( 13 )]
-position = Vector2( 12.5874, 0.555908 )
+[node name="DoorManKicker" parent="RightDoorBlocker" groups=[
+"ball_resets",
+] instance=ExtResource( 13 )]
+position = Vector2( 12, 1 )
 is_teleport = false
 my_time = 0.5
 launch_x = 300.0
@@ -1671,7 +1698,9 @@ collision_mask = 2
 position = Vector2( -34, -3 )
 polygon = PoolVector2Array( 16, -100, 20, -58, 19, 21, 12, 45, 0, 73, -15, 93, -42, 124, -79, 159, -129, 201, -181, 234, -223, 253, -258, 267, -277, 272, -287, 278, -290, 285, -292, 293, -292, 300, -290, 305, -287, 310, -281, 316, -269, 325, -284, 322, -302, 317, -294, 276, -88, 149, 9, 20, 12, -19, 12, -72, -2, -111, -19, -201, -52, -268, -42, -268, -35, -266, -31, -263, -25, -258, -20, -249, -14, -236, -3, -194, 6, -151 )
 
-[node name="LowerTrapDoor" parent="SubTunnel" instance=ExtResource( 13 )]
+[node name="LowerTrapDoor" parent="SubTunnel" groups=[
+"ball_resets",
+] instance=ExtResource( 13 )]
 position = Vector2( -311, 300 )
 is_teleport = false
 my_time = 0.5
@@ -1697,7 +1726,9 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubTunnel/BoardRoomVent/VentStaticBody"]
 shape = SubResource( 132 )
 
-[node name="UpperTrapDoor" parent="SubTunnel/BoardRoomVent" instance=ExtResource( 13 )]
+[node name="UpperTrapDoor" parent="SubTunnel/BoardRoomVent" groups=[
+"ball_resets",
+] instance=ExtResource( 13 )]
 position = Vector2( -109, -284 )
 is_teleport = false
 my_time = 0.5
@@ -1766,49 +1797,49 @@ shape = SubResource( 138 )
 
 [node name="TopWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
-frame = 5
 
 [node name="TopWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
-frame = 5
 
 [node name="LiftWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 240, -228 )
-frame = 4
+frame = 0
 
 [node name="LiftWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 278, -253 )
-frame = 3
+frame = 7
 
 [node name="LiftWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 209, -276 )
-frame = 3
+frame = 7
 
 [node name="LiftWorkerSprite4" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 279, -301 )
-frame = 3
+frame = 7
 
 [node name="LobbyWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 80 )
-frame = 2
+frame = 6
 
 [node name="LobbyWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 24 )
-frame = 2
+frame = 6
 
 [node name="LobbyWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, -40 )
+frame = 5
 
 [node name="LobbyVisitorSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
+frame = 5
 
 [node name="LobbyVisitorSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 0
+frame = 4
 
 [node name="LobbyVisitorSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 0
+frame = 4
 
 [node name="BallReturn" type="Node2D" parent="."]
 position = Vector2( 0, 310 )
@@ -1851,10 +1882,12 @@ one_shot = true
 [connection signal="desk_ball_released" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="desk_ball_trapped" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="task_activated" from="Cubicle/CubeMates" to="." method="_on_task_activated"]
-[connection signal="ball_trapped" from="Cubicle/CubeMates/TrapDoor" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="Cubicle/CubeMates/TrapDoor" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
-[connection signal="ball_trapped" from="Cubicle/CubeMates/TrapDoor2" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="Cubicle/CubeMates/TrapDoor2" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="Cubicle/CubeMates/RightCubeMate" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="Cubicle/CubeMates/RightCubeMate" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="Cubicle/CubeMates/LeftCubeMate" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="Cubicle/CubeMates/LeftCubeMate" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
+[connection signal="body_entered" from="Cubicle/CubeMates/LeftDeskArea" to="Cubicle/CubeMates" method="_on_DeskBumper_body_entered"]
+[connection signal="body_entered" from="Cubicle/CubeMates/RightDeskArea" to="Cubicle/CubeMates" method="_on_DeskBumper_body_entered"]
 [connection signal="file_target_hit" from="Cubicle/FileCabinets" to="." method="_on_FileCabinets_file_target_hit"]
 [connection signal="body_entered" from="Cubicle/SpecialEntrance/SpecialEntranceArea" to="Cubicle" method="_on_SpecialEntranceArea_body_entered"]
 [connection signal="hit" from="Cubicle/Brainstorm" to="." method="_on_Brainstorm_hit"]
@@ -1865,11 +1898,13 @@ one_shot = true
 [connection signal="special_entered" from="CourierCoordinator" to="." method="_on_CourierCoordinator_special_entered"]
 [connection signal="body_entered" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_entered"]
 [connection signal="body_exited" from="YSort/FrontDoorArea" to="." method="_on_FrontDoorArea_body_exited"]
+[connection signal="body_entered" from="YSort/LeftBumper/Area2D" to="." method="_on_LobbyBumper_body_entered"]
+[connection signal="body_entered" from="YSort/RightBumper/Area2D" to="." method="_on_LobbyBumper_body_entered"]
 [connection signal="frame_changed" from="YSort/CenterPiece/AnimatedSprite" to="YSort/CenterPiece" method="_on_AnimatedSprite_frame_changed"]
-[connection signal="ball_trapped" from="YSort/TrapDoor3" to="." method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="YSort/TrapDoor3" to="." method="_on_TrapDoor_door_timed_out"]
-[connection signal="ball_trapped" from="YSort/ComputerDoor" to="." method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="YSort/ComputerDoor" to="." method="_on_ComputerDoor_door_timed_out"]
+[connection signal="ball_trapped" from="YSort/WaterCooler" to="." method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="YSort/WaterCooler" to="." method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="YSort/WorkComputer" to="." method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="YSort/WorkComputer" to="." method="_on_ComputerDoor_door_timed_out"]
 [connection signal="body_entered" from="YSort/CubeWall/Area2D" to="YSort/CubeWall" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="YSort/CubeWall/Area2D" to="YSort/CubeWall" method="_on_Area2D_body_exited"]
 [connection signal="cubicle_reached" from="Elevator" to="." method="_on_Elevator_cubicle_reached"]
@@ -1878,14 +1913,12 @@ one_shot = true
 [connection signal="ball_disembarked" from="Launcher" to="." method="_on_Launcher_ball_disembarked"]
 [connection signal="body_entered" from="ElevatorDoor/ElevatorDoorArea" to="." method="_on_ElevatorDoorArea_body_entered"]
 [connection signal="timeout" from="ElevatorDoor2/Timer" to="." method="_on_ElevatorDoorTimer_timeout"]
-[connection signal="body_entered" from="YourOfficeArea2D" to="." method="_on_YourOfficeArea2D_body_entered"]
-[connection signal="body_exited" from="YourOfficeArea2D" to="." method="_on_YourOfficeArea2D_body_exited"]
 [connection signal="body_entered" from="Janitor/BathroomArea" to="Janitor" method="_on_BathroomArea_body_entered"]
 [connection signal="timeout" from="Janitor/MoveTimer" to="Janitor" method="_on_MoveTimer_timeout"]
-[connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_ball_trapped"]
-[connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="RightDoorBlocker" method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_door_timed_out"]
-[connection signal="door_timed_out" from="RightDoorBlocker/TrapDoor" to="RightDoorBlocker" method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="RightDoorBlocker/DoorManKicker" to="." method="_on_TrapDoor_ball_trapped"]
+[connection signal="ball_trapped" from="RightDoorBlocker/DoorManKicker" to="RightDoorBlocker" method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="RightDoorBlocker/DoorManKicker" to="." method="_on_TrapDoor_door_timed_out"]
+[connection signal="door_timed_out" from="RightDoorBlocker/DoorManKicker" to="RightDoorBlocker" method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="RightDoorBlocker/RightDoorArea" to="RightDoorBlocker" method="_on_RightDoorArea_body_entered"]
 [connection signal="timeout" from="RightDoorBlocker/TrapDoorTimer" to="RightDoorBlocker" method="_on_TrapDoorTimer_timeout"]
 [connection signal="timeout" from="RightDoorBlocker/FrontDoorTimer" to="RightDoorBlocker" method="_on_FrontDoorTimer_timeout"]

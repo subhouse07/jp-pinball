@@ -10,9 +10,11 @@ func _ready():
 
 func _on_DeskArea2D_body_entered(body, desk_ind):
 	if body.name == "Ball":
+		GameState.score("LobbyDesk")
 		desks_lit[desk_ind] = true
 		_light_desk(desk_ind)
 	if _all_desks_lit():
+		GameState.score("AllLobbyDesks")
 		set_office_admin_enabled(true)
 
 
@@ -47,6 +49,7 @@ func _on_OAArea2D_body_entered(body):
 	if body.name == "Ball":
 		# This should signal the contact dialog to start
 		# After that finishes, the following code will execute.
+		GameState.score(self.name)
 		emit_signal("task_activated", $"/root/GameState".AREA_LOBBY, "name")
 		print("OA encountered. Resetting OA")
 		set_office_admin_enabled(false)

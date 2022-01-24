@@ -78,6 +78,8 @@ func _set_collisions_enabled(enabled: bool):
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Ball" and !exploding:
+		GameState.score(self.name)
+		GameState.increase_mult(self.name, 1)
 		exploding = true
 		$Sprite.hide()
 		$ExplodeSprite.show()
