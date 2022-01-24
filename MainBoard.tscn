@@ -790,7 +790,6 @@ script = ExtResource( 35 )
 position = Vector2( 192, -280 )
 frames = SubResource( 15 )
 animation = "idle_0"
-frame = 1
 playing = true
 
 [node name="CopierSection" parent="Cubicle" instance=ExtResource( 34 )]
@@ -845,14 +844,14 @@ position = Vector2( 87, -3 )
 rotation = -0.785398
 shape = SubResource( 21 )
 
-[node name="TrapDoor" parent="Cubicle/CubeMates" instance=ExtResource( 13 )]
+[node name="RightCubeMate" parent="Cubicle/CubeMates" instance=ExtResource( 13 )]
 position = Vector2( 80, -4 )
 is_teleport = false
 my_time = 2.0
 launch_x = -200.0
 launch_y = -200.0
 
-[node name="TrapDoor2" parent="Cubicle/CubeMates" instance=ExtResource( 13 )]
+[node name="LeftCubeMate" parent="Cubicle/CubeMates" instance=ExtResource( 13 )]
 position = Vector2( -96, -5 )
 is_teleport = false
 my_time = 2.0
@@ -1077,23 +1076,23 @@ shape = SubResource( 53 )
 [node name="Sprite2" type="Sprite" parent="YSort/WaitSign"]
 texture = SubResource( 54 )
 
-[node name="TrapDoor3" parent="YSort" instance=ExtResource( 13 )]
+[node name="WaterCooler" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 102.354, -110.682 )
 is_teleport = false
 my_time = 1.0
 
-[node name="Sprite" type="AnimatedSprite" parent="YSort/TrapDoor3"]
+[node name="Sprite" type="AnimatedSprite" parent="YSort/WaterCooler"]
 position = Vector2( 6.84309, -19.8214 )
 frames = SubResource( 55 )
 
-[node name="ComputerDoor" parent="YSort" instance=ExtResource( 13 )]
+[node name="WorkComputer" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 102.322, -339.495 )
 is_teleport = false
 my_time = 1.5
 launch_x = 150.0
 launch_y = 150.0
 
-[node name="Sprite" type="AnimatedSprite" parent="YSort/ComputerDoor"]
+[node name="Sprite" type="AnimatedSprite" parent="YSort/WorkComputer"]
 frames = SubResource( 56 )
 offset = Vector2( 1, -15 )
 
@@ -1344,12 +1343,13 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 93 )
-frame = 1
+frame = 4
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 97 )
+frame = 1
 playing = true
 
 [node name="ElevatorDoor" type="StaticBody2D" parent="."]
@@ -1511,19 +1511,19 @@ remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite2")
 remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite3")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="1"]
-frame = 6
+frame = 5
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite1")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="1"]
-frame = 6
+frame = 5
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite2")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="1"]
-frame = 6
+frame = 5
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite3")
@@ -1622,8 +1622,8 @@ position = Vector2( 311, 234 )
 rotation = -0.39619
 polygon = PoolVector2Array( 26.3859, -0.886169, 18.5352, 2.33362, 8.30283, 3.47314, -3.92535, 1.60989, -27.224, -4.88422, -27.7788, 6.80731, 19.0537, 16.6421 )
 
-[node name="TrapDoor" parent="RightDoorBlocker" instance=ExtResource( 13 )]
-position = Vector2( 12.5874, 0.555908 )
+[node name="DoorManKicker" parent="RightDoorBlocker" instance=ExtResource( 13 )]
+position = Vector2( 12, 1 )
 is_teleport = false
 my_time = 0.5
 launch_x = 300.0
@@ -1784,48 +1784,50 @@ shape = SubResource( 138 )
 
 [node name="TopWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
-frame = 3
+frame = 2
 
 [node name="TopWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
-frame = 3
+frame = 2
 
 [node name="LiftWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 240, -228 )
-frame = 2
 
 [node name="LiftWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 278, -253 )
+frame = 0
 
 [node name="LiftWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 209, -276 )
+frame = 0
 
 [node name="LiftWorkerSprite4" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 279, -301 )
+frame = 0
 
 [node name="LobbyWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 80 )
-frame = 0
+frame = 7
 
 [node name="LobbyWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 24 )
-frame = 0
+frame = 7
 
 [node name="LobbyWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, -40 )
-frame = 7
+frame = 6
 
 [node name="LobbyVisitorSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 7
+frame = 6
 
 [node name="LobbyVisitorSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 6
+frame = 5
 
 [node name="LobbyVisitorSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 6
+frame = 5
 
 [node name="BallReturn" type="Node2D" parent="."]
 position = Vector2( 0, 310 )
@@ -1868,10 +1870,10 @@ one_shot = true
 [connection signal="desk_ball_released" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="desk_ball_trapped" from="Cubicle/CubeMates" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="task_activated" from="Cubicle/CubeMates" to="." method="_on_task_activated"]
-[connection signal="ball_trapped" from="Cubicle/CubeMates/TrapDoor" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="Cubicle/CubeMates/TrapDoor" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
-[connection signal="ball_trapped" from="Cubicle/CubeMates/TrapDoor2" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="Cubicle/CubeMates/TrapDoor2" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="Cubicle/CubeMates/RightCubeMate" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="Cubicle/CubeMates/RightCubeMate" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="Cubicle/CubeMates/LeftCubeMate" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="Cubicle/CubeMates/LeftCubeMate" to="Cubicle/CubeMates" method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="Cubicle/CubeMates/LeftDeskArea" to="Cubicle/CubeMates" method="_on_DeskBumper_body_entered"]
 [connection signal="body_entered" from="Cubicle/CubeMates/RightDeskArea" to="Cubicle/CubeMates" method="_on_DeskBumper_body_entered"]
 [connection signal="file_target_hit" from="Cubicle/FileCabinets" to="." method="_on_FileCabinets_file_target_hit"]
@@ -1887,10 +1889,10 @@ one_shot = true
 [connection signal="body_entered" from="YSort/LeftBumper/Area2D" to="." method="_on_LobbyBumper_body_entered"]
 [connection signal="body_entered" from="YSort/RightBumper/Area2D" to="." method="_on_LobbyBumper_body_entered"]
 [connection signal="frame_changed" from="YSort/CenterPiece/AnimatedSprite" to="YSort/CenterPiece" method="_on_AnimatedSprite_frame_changed"]
-[connection signal="ball_trapped" from="YSort/TrapDoor3" to="." method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="YSort/TrapDoor3" to="." method="_on_TrapDoor_door_timed_out"]
-[connection signal="ball_trapped" from="YSort/ComputerDoor" to="." method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="YSort/ComputerDoor" to="." method="_on_ComputerDoor_door_timed_out"]
+[connection signal="ball_trapped" from="YSort/WaterCooler" to="." method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="YSort/WaterCooler" to="." method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="YSort/WorkComputer" to="." method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="YSort/WorkComputer" to="." method="_on_ComputerDoor_door_timed_out"]
 [connection signal="body_entered" from="YSort/CubeWall/Area2D" to="YSort/CubeWall" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="YSort/CubeWall/Area2D" to="YSort/CubeWall" method="_on_Area2D_body_exited"]
 [connection signal="cubicle_reached" from="Elevator" to="." method="_on_Elevator_cubicle_reached"]
@@ -1901,10 +1903,10 @@ one_shot = true
 [connection signal="timeout" from="ElevatorDoor2/Timer" to="." method="_on_ElevatorDoorTimer_timeout"]
 [connection signal="body_entered" from="Janitor/BathroomArea" to="Janitor" method="_on_BathroomArea_body_entered"]
 [connection signal="timeout" from="Janitor/MoveTimer" to="Janitor" method="_on_MoveTimer_timeout"]
-[connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_ball_trapped"]
-[connection signal="ball_trapped" from="RightDoorBlocker/TrapDoor" to="RightDoorBlocker" method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="RightDoorBlocker/TrapDoor" to="." method="_on_TrapDoor_door_timed_out"]
-[connection signal="door_timed_out" from="RightDoorBlocker/TrapDoor" to="RightDoorBlocker" method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="RightDoorBlocker/DoorManKicker" to="." method="_on_TrapDoor_ball_trapped"]
+[connection signal="ball_trapped" from="RightDoorBlocker/DoorManKicker" to="RightDoorBlocker" method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="RightDoorBlocker/DoorManKicker" to="." method="_on_TrapDoor_door_timed_out"]
+[connection signal="door_timed_out" from="RightDoorBlocker/DoorManKicker" to="RightDoorBlocker" method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="RightDoorBlocker/RightDoorArea" to="RightDoorBlocker" method="_on_RightDoorArea_body_entered"]
 [connection signal="timeout" from="RightDoorBlocker/TrapDoorTimer" to="RightDoorBlocker" method="_on_TrapDoorTimer_timeout"]
 [connection signal="timeout" from="RightDoorBlocker/FrontDoorTimer" to="RightDoorBlocker" method="_on_FrontDoorTimer_timeout"]

@@ -36,13 +36,13 @@ func _on_TrapDoor_ball_trapped():
 func _on_TrapDoor_door_timed_out(x, y):
 	emit_signal("desk_ball_released", x, y)
 	_set_bumpers_enabled(true)
-	$TrapDoor.set_enabled(false)
-	$TrapDoor2.set_enabled(false)
+	$RightCubeMate.set_enabled(false)
+	$LeftCubeMate.set_enabled(false)
 
 
 func _set_bumpers_enabled(enabled : bool):
-	$TrapDoor.set_enabled(!enabled)
-	$TrapDoor2.set_enabled(!enabled)
+	$RightCubeMate.set_enabled(!enabled)
+	$LeftCubeMate.set_enabled(!enabled)
 	if enabled:
 		$LeftDesk.collision_layer = 1
 		$LeftDesk.collision_mask = 1

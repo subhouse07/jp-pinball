@@ -19,8 +19,8 @@ func _disable_collision():
 	$DoorBlock.collision_mask = 0
 	$Doorman.collision_layer = 0
 	$Doorman.collision_mask = 0
-	$TrapDoor/Area2D.collision_layer = 0
-	$TrapDoor/Area2D.collision_mask = 0
+	$DoorManKicker/Area2D.collision_layer = 0
+	$DoorManKicker/Area2D.collision_mask = 0
 
 
 func _enable_collision():
@@ -28,8 +28,8 @@ func _enable_collision():
 	$DoorBlock.collision_mask = 1
 	$Doorman.collision_layer = 1
 	$Doorman.collision_mask = 1
-	$TrapDoor/Area2D.collision_layer = 1
-	$TrapDoor/Area2D.collision_mask = 1
+	$DoorManKicker/Area2D.collision_layer = 1
+	$DoorManKicker/Area2D.collision_mask = 1
 
 
 #func _move_doorman():

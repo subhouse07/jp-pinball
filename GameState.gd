@@ -53,7 +53,14 @@ var points = {
 	"ElevatorOpen": 100,
 	"Elevator": 150,
 	"LobbyBumper": 25,
-	"CubicleBumper": 50
+	"CubicleBumper": 50,
+	"WaterCooler": 50,
+	"WorkComputer": 50,
+	"DoorManKicker": 150,
+	"UpperTrapDoor": 250,
+	"LowerTrapDoor": 150,
+	"LeftCubeMate": 200,
+	"RightCubeMate": 200
 }
 
 var special_state = {
@@ -97,7 +104,14 @@ var hp_state = {
 
 var mult_state = {
 	"Car": { "current": 1, "max": 99 },
-	"Elevator": { "current": 1, "max": 18 }
+	"Elevator": { "current": 1, "max": 18 },
+	"WaterCooler": { "current": 1, "max": 16 },
+	"WorkComputer": { "current": 1, "max": 16 },
+	"DoorManKicker": { "current": 1, "max": 99 },
+	"UpperTrapDoor": { "current": 1, "max": 16 },
+	"LowerTrapDoor": { "current": 1, "max": 16 },
+	"RightCubeMate": { "current": 1, "max": 25 },
+	"LeftCubeMate": { "current": 1, "max": 25 }
 }
 
 var cube_task_ind = 0 setget cube_task_ind_set, cube_task_ind_get
