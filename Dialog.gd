@@ -1,6 +1,8 @@
 extends Control
 
 var character_id : int
+export var bg_size : float
+
 
 signal dialog_finished
 
@@ -19,6 +21,7 @@ var dialog_texts = [
 func _ready():
 	$IconTextureRect.texture = load(icon_paths[character_id])
 	$DialogText.text = dialog_texts[character_id]
+	$AnimationPlayer.play("BgActivate")
 
 
 func _on_Timer_timeout():

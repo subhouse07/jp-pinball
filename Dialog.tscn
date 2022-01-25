@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Fixedsys Excelsior 3.01 Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Dialog.gd" type="Script" id=2]
@@ -10,6 +10,34 @@ load_path = "res://.import/dialog-box-test.png-815f1ff7282e683cf73c87a6be78d589.
 size = 18
 font_data = ExtResource( 1 )
 
+[sub_resource type="Animation" id=3]
+resource_name = "BgActivate"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("BgTextureRect:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0989786, 0.1, 0.147079, 0.198148, 0.248195, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0.1, 0.1 ), Vector2( 0.25, 0.25 ), Vector2( 0.5, 0.5 ), Vector2( 0.75, 0.75 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("IconTextureRect:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.299264, 0.347269, 0.398338, 0.449407, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 1e-05, 1e-05 ), Vector2( 0.25, 0.25 ), Vector2( 0.5, 0.5 ), Vector2( 0.75, 0.75 ), Vector2( 1, 1 ) ]
+}
+
 [node name="Dialog" type="Control"]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -17,12 +45,17 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+bg_size = 0.1
 
 [node name="BgTextureRect" type="TextureRect" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -96.0
 margin_right = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 1e-05, 1e-05 )
+rect_pivot_offset = Vector2( 240, 48 )
 texture = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -50,6 +83,8 @@ anchor_bottom = 1.0
 margin_left = 24.0
 margin_top = -102.0
 margin_right = 80.0
+rect_scale = Vector2( 1e-05, 1e-05 )
+rect_pivot_offset = Vector2( 40, 40 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -58,4 +93,7 @@ __meta__ = {
 wait_time = 4.0
 one_shot = true
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/BgActivate = SubResource( 3 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
