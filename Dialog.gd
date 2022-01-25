@@ -14,7 +14,7 @@ var icon_paths = [
 
 var dialog_texts = [
 	"Busy day at the office, huh!",
-	"I'm your coworker, blah blah ...",
+	"I'm swamped! Could you help me out with a few things?",
 	"I'm some executive, blah blah blah..."
 ]
 

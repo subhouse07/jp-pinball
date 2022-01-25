@@ -6,18 +6,27 @@ const tasks = {
 	"brain": "Brainstorm"
 }
 
-signal desk_ball_trapped
-signal desk_ball_released(x, y)
+var capturing_mate : Node2D
+
+#signal desk_ball_trapped
+#signal desk_ball_released(x, y)
 signal task_activated(area, name)
+signal dialog_activated(character_id)
 
 
 func _ready():
 	_set_bumpers_enabled($"/root/GameState".cube_task_active)
 
 
-func _on_TrapDoor_ball_trapped():
+func _on_TrapDoor_ball_trapped(right_mate_captured: bool):
+	if right_mate_captured:
+		capturing_mate = $RightCubeMate
+	else:
+		capturing_mate = $LeftCubeMate
+	emit_signal("dialog_activated", Constants.CHAR_ID_CM)
+
+func on_dialog_freed():
 	GameState.score(self.name)
-	emit_signal("desk_ball_trapped")
 	var area = $"/root/GameState".AREA_CUBE
 	if $"/root/GameState".brainstorm_ready():
 		emit_signal("task_activated", area, tasks["brain"])
@@ -31,13 +40,18 @@ func _on_TrapDoor_ball_trapped():
 		emit_signal("task_activated", area, tasks["files"])
 		$"/root/GameState".cube_task_ind += 1
 		$"/root/GameState".cube_task_active = true
-
-
-func _on_TrapDoor_door_timed_out(x, y):
-	emit_signal("desk_ball_released", x, y)
+	
 	_set_bumpers_enabled(true)
 	$RightCubeMate.set_enabled(false)
 	$LeftCubeMate.set_enabled(false)
+	capturing_mate.release_ball()
+
+
+#func _on_TrapDoor_door_timed_out(x, y):
+#	emit_signal("desk_ball_released", x, y)
+#	_set_bumpers_enabled(true)
+#	$RightCubeMate.set_enabled(false)
+#	$LeftCubeMate.set_enabled(false)
 
 
 func _set_bumpers_enabled(enabled : bool):
