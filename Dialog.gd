@@ -6,6 +6,12 @@ export var bg_size : float
 
 signal dialog_finished
 
+var bg_paths = [
+	"res://dialog-box-test.png",
+	"res://dialog-box-cm.png",
+	"res://dialog-box-test.png"
+]
+
 var icon_paths = [
 	"res://dialog-icon-test.png",
 	"res://dialog-icon-test.png",
@@ -20,6 +26,7 @@ var dialog_texts = [
 
 func _ready():
 	$IconTextureRect.texture = load(icon_paths[character_id])
+	$BgTextureRect.texture = load(bg_paths[character_id])
 	$DialogText.text = dialog_texts[character_id]
 	$AnimationPlayer.play("BgActivate")
 
