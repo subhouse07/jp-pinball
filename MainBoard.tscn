@@ -483,16 +483,20 @@ bounce = 0.7
 [sub_resource type="StreamTexture" id=107]
 load_path = "res://.import/desks-cluster-proto.png-829fc7a97970b346c43c0bc020d6ecc4.stex"
 
-[sub_resource type="PhysicsMaterial" id=109]
+[sub_resource type="PhysicsMaterial" id=108]
 friction = 0.0
 bounce = 0.1
 
-[sub_resource type="PhysicsMaterial" id=110]
+[sub_resource type="PhysicsMaterial" id=109]
 friction = 0.0
 bounce = 1.4
 
-[sub_resource type="StreamTexture" id=111]
+[sub_resource type="StreamTexture" id=110]
 load_path = "res://.import/file-cab-bump.png-a1e9c1b7d010831f8d85381e00b6ef60.stex"
+
+[sub_resource type="PhysicsMaterial" id=111]
+friction = 0.0
+bounce = 0.1
 
 [sub_resource type="PhysicsMaterial" id=112]
 friction = 0.0
@@ -500,60 +504,60 @@ bounce = 0.1
 
 [sub_resource type="PhysicsMaterial" id=113]
 friction = 0.0
-bounce = 0.1
+bounce = 0.9
 
 [sub_resource type="PhysicsMaterial" id=114]
 friction = 0.0
-bounce = 0.9
-
-[sub_resource type="PhysicsMaterial" id=115]
-friction = 0.0
 bounce = 0.1
 
-[sub_resource type="PhysicsMaterial" id=116]
+[sub_resource type="PhysicsMaterial" id=115]
 bounce = 0.3
 absorbent = true
 
-[sub_resource type="PhysicsMaterial" id=117]
+[sub_resource type="PhysicsMaterial" id=116]
 friction = 0.0
 bounce = 0.1
 
-[sub_resource type="StreamTexture" id=118]
+[sub_resource type="StreamTexture" id=117]
 load_path = "res://.import/desk-proto.png-def8da42503c0e6042710f967523f714.stex"
 
-[sub_resource type="RectangleShape2D" id=119]
+[sub_resource type="RectangleShape2D" id=118]
 extents = Vector2( 2.61137, 25.4809 )
 
-[sub_resource type="PhysicsMaterial" id=120]
+[sub_resource type="PhysicsMaterial" id=119]
 friction = 0.0
 bounce = 0.5
 
-[sub_resource type="RectangleShape2D" id=121]
+[sub_resource type="RectangleShape2D" id=120]
 extents = Vector2( 10, 5.36858 )
 
-[sub_resource type="PhysicsMaterial" id=122]
+[sub_resource type="PhysicsMaterial" id=121]
 friction = 0.0
 bounce = 0.1
 
-[sub_resource type="StreamTexture" id=123]
+[sub_resource type="StreamTexture" id=122]
 load_path = "res://.import/desk-proto.png-def8da42503c0e6042710f967523f714.stex"
 
-[sub_resource type="RectangleShape2D" id=124]
+[sub_resource type="RectangleShape2D" id=123]
 extents = Vector2( 3, 13 )
 
-[sub_resource type="PhysicsMaterial" id=125]
+[sub_resource type="PhysicsMaterial" id=124]
 friction = 0.0
 bounce = 0.1
 
-[sub_resource type="StreamTexture" id=126]
+[sub_resource type="StreamTexture" id=125]
 load_path = "res://.import/right-door-closed.png-28050b00c086a4d3e114207683728885.stex"
 
-[sub_resource type="RectangleShape2D" id=127]
+[sub_resource type="RectangleShape2D" id=126]
 extents = Vector2( 14.8443, 4.2094 )
+
+[sub_resource type="PhysicsMaterial" id=127]
+friction = 0.0
+bounce = 0.3
 
 [sub_resource type="PhysicsMaterial" id=128]
 friction = 0.0
-bounce = 0.3
+bounce = 0.1
 
 [sub_resource type="PhysicsMaterial" id=129]
 friction = 0.0
@@ -561,73 +565,69 @@ bounce = 0.1
 
 [sub_resource type="PhysicsMaterial" id=130]
 friction = 0.0
-bounce = 0.1
-
-[sub_resource type="PhysicsMaterial" id=131]
-friction = 0.0
 bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id=131]
+extents = Vector2( 2, 10 )
 
 [sub_resource type="RectangleShape2D" id=132]
 extents = Vector2( 2, 10 )
 
 [sub_resource type="RectangleShape2D" id=133]
-extents = Vector2( 2, 10 )
-
-[sub_resource type="RectangleShape2D" id=134]
 extents = Vector2( 12, 4 )
 
-[sub_resource type="PhysicsMaterial" id=135]
+[sub_resource type="PhysicsMaterial" id=134]
 friction = 0.0
 bounce = 1.4
 
-[sub_resource type="RectangleShape2D" id=136]
+[sub_resource type="RectangleShape2D" id=135]
 extents = Vector2( 13, 11 )
 
-[sub_resource type="RectangleShape2D" id=137]
+[sub_resource type="RectangleShape2D" id=136]
 extents = Vector2( 28, 19 )
 
-[sub_resource type="RectangleShape2D" id=138]
+[sub_resource type="RectangleShape2D" id=137]
 extents = Vector2( 16, 6 )
 
-[sub_resource type="RectangleShape2D" id=139]
+[sub_resource type="RectangleShape2D" id=138]
 extents = Vector2( 35, 10 )
 
-[sub_resource type="AtlasTexture" id=140]
+[sub_resource type="AtlasTexture" id=139]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 14, 15 )
 
-[sub_resource type="AtlasTexture" id=141]
+[sub_resource type="AtlasTexture" id=140]
 atlas = ExtResource( 3 )
 region = Rect2( 14, 0, 14, 15 )
 
-[sub_resource type="AtlasTexture" id=142]
+[sub_resource type="AtlasTexture" id=141]
 atlas = ExtResource( 3 )
 region = Rect2( 28, 0, 14, 15 )
 
-[sub_resource type="AtlasTexture" id=143]
+[sub_resource type="AtlasTexture" id=142]
 atlas = ExtResource( 3 )
 region = Rect2( 42, 0, 14, 15 )
 
-[sub_resource type="AtlasTexture" id=144]
+[sub_resource type="AtlasTexture" id=143]
 atlas = ExtResource( 3 )
 region = Rect2( 56, 0, 14, 15 )
 
-[sub_resource type="AtlasTexture" id=145]
+[sub_resource type="AtlasTexture" id=144]
 atlas = ExtResource( 3 )
 region = Rect2( 70, 0, 14, 15 )
 
-[sub_resource type="SpriteFrames" id=146]
+[sub_resource type="SpriteFrames" id=145]
 animations = [ {
-"frames": [ SubResource( 140 ), SubResource( 141 ), SubResource( 142 ), SubResource( 143 ), SubResource( 144 ), SubResource( 145 ) ],
+"frames": [ SubResource( 139 ), SubResource( 140 ), SubResource( 141 ), SubResource( 142 ), SubResource( 143 ), SubResource( 144 ) ],
 "loop": true,
 "name": "default",
 "speed": 6.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=147]
+[sub_resource type="RectangleShape2D" id=146]
 extents = Vector2( 4, 10 )
 
-[sub_resource type="RectangleShape2D" id=148]
+[sub_resource type="RectangleShape2D" id=147]
 extents = Vector2( 27, 16 )
 
 [node name="MainBoard" type="Node2D"]
@@ -790,6 +790,7 @@ script = ExtResource( 35 )
 position = Vector2( 192, -280 )
 frames = SubResource( 15 )
 animation = "idle_0"
+frame = 4
 playing = true
 
 [node name="CopierSection" parent="Cubicle" instance=ExtResource( 34 )]
@@ -1351,12 +1352,13 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 93 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 97 )
+frame = 2
 playing = true
 
 [node name="ElevatorDoor" type="StaticBody2D" parent="."]
@@ -1442,14 +1444,14 @@ polygon = PoolVector2Array( -49.887, -31.336, -37.887, -25.336, -8.401, 2.66386,
 polygon = PoolVector2Array( 304, -182, 312, -183, 311, -152, 270, -128, 270, -108, 265, -106, 266, -117, 260.835, -124.496, 263, -129, 268, -147 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="OfficeWalls"]
-physics_material_override = SubResource( 109 )
+physics_material_override = SubResource( 108 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D3"]
 position = Vector2( 0, -14 )
 polygon = PoolVector2Array( 73, -301, 87, -297, 81, -341, 140, -342, 142, -346, 72, -347 )
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="OfficeWalls"]
-physics_material_override = SubResource( 110 )
+physics_material_override = SubResource( 109 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D6"]
 position = Vector2( 0, 64 )
@@ -1457,25 +1459,25 @@ polygon = PoolVector2Array( 339, -286, 339, -250, 329, -268 )
 
 [node name="Sprite" type="Sprite" parent="OfficeWalls/StaticBody2D6"]
 position = Vector2( 342, -209 )
-texture = SubResource( 111 )
+texture = SubResource( 110 )
 flip_h = true
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="OfficeWalls"]
-physics_material_override = SubResource( 112 )
+physics_material_override = SubResource( 111 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D7"]
 position = Vector2( 0, -25 )
 polygon = PoolVector2Array( 96, -390, 107, -384, 161, -366, 161, -369, 121, -385, 125, -398, 83, -419, 87, -393 )
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="OfficeWalls"]
-physics_material_override = SubResource( 113 )
+physics_material_override = SubResource( 112 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D10"]
 position = Vector2( 0, -25 )
 polygon = PoolVector2Array( 222, -364, 232, -367, 309, -389, 309, -442, 303, -409, 272, -401, 274, -387, 221, -368 )
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="OfficeWalls"]
-physics_material_override = SubResource( 114 )
+physics_material_override = SubResource( 113 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OfficeWalls/StaticBody2D8"]
 polygon = PoolVector2Array( 138, -361, 77, -362, 110, -371 )
@@ -1491,7 +1493,7 @@ polygon = PoolVector2Array( 339, 117, 339, 98, 330, 103, 334, 106, 337, 111 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="RailingLeft"]
 constant_linear_velocity = Vector2( 50, 0 )
-physics_material_override = SubResource( 115 )
+physics_material_override = SubResource( 114 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="RailingLeft/StaticBody2D"]
 position = Vector2( 87, 319 )
@@ -1500,7 +1502,7 @@ polygon = PoolVector2Array( 83, -3, 83, 3, -85, 3, -85, -57, -81, -57, -82, -3 )
 [node name="RailingRight" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="RailingRight"]
-physics_material_override = SubResource( 116 )
+physics_material_override = SubResource( 115 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="RailingRight/StaticBody2D"]
 position = Vector2( 280, 319 )
@@ -1517,20 +1519,11 @@ remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite2")
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/WorkerPaths/WorkerPath3/LobbyWorker" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite3")
 
-[node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="1"]
-frame = 4
-
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite1")
 
-[node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="1"]
-frame = 4
-
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite2")
-
-[node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="1"]
-frame = 4
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite3")
@@ -1551,7 +1544,7 @@ script = ExtResource( 26 )
 
 [node name="SideDivider" type="StaticBody2D" parent="Janitor"]
 position = Vector2( -281, 126 )
-physics_material_override = SubResource( 117 )
+physics_material_override = SubResource( 116 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -1560,17 +1553,17 @@ __meta__ = {
 position = Vector2( 322.7, 79.7354 )
 rotation = 1.78896
 scale = Vector2( 0.3, 1.2 )
-texture = SubResource( 118 )
+texture = SubResource( 117 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Janitor/SideDivider"]
 position = Vector2( 322.7, 79.7354 )
 rotation = 1.78896
-shape = SubResource( 119 )
+shape = SubResource( 118 )
 
 [node name="ClosetDoor" type="StaticBody2D" parent="Janitor"]
 position = Vector2( 365, 314 )
 rotation = 3.14159
-physics_material_override = SubResource( 120 )
+physics_material_override = SubResource( 119 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -1589,7 +1582,7 @@ texture = SubResource( 52 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Janitor/BathroomArea"]
 position = Vector2( 56, 205 )
 rotation = 0.301942
-shape = SubResource( 121 )
+shape = SubResource( 120 )
 
 [node name="MoveTimer" type="Timer" parent="Janitor"]
 wait_time = 2.0
@@ -1610,19 +1603,19 @@ position = Vector2( 283, 229 )
 script = ExtResource( 28 )
 
 [node name="Doorman" type="StaticBody2D" parent="RightDoorBlocker"]
-physics_material_override = SubResource( 122 )
+physics_material_override = SubResource( 121 )
 
 [node name="Sprite" type="Sprite" parent="RightDoorBlocker/Doorman"]
 scale = Vector2( 0.5, 0.75 )
-texture = SubResource( 123 )
+texture = SubResource( 122 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightDoorBlocker/Doorman"]
 position = Vector2( 0, 1 )
-shape = SubResource( 124 )
+shape = SubResource( 123 )
 
 [node name="DoorBlock" type="StaticBody2D" parent="RightDoorBlocker"]
 position = Vector2( -283, -229 )
-physics_material_override = SubResource( 125 )
+physics_material_override = SubResource( 124 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="RightDoorBlocker/DoorBlock"]
 position = Vector2( 311, 234 )
@@ -1639,30 +1632,30 @@ launch_x = 300.0
 
 [node name="DoorSprite" type="Sprite" parent="RightDoorBlocker"]
 position = Vector2( 28, 3.49606 )
-texture = SubResource( 126 )
+texture = SubResource( 125 )
 
 [node name="RightDoorArea" type="Area2D" parent="RightDoorBlocker"]
 position = Vector2( 24.0057, 19.8935 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightDoorBlocker/RightDoorArea"]
 position = Vector2( 0.472473, -2.51985 )
-shape = SubResource( 127 )
+shape = SubResource( 126 )
 
 [node name="RightDoorBody" type="StaticBody2D" parent="RightDoorBlocker"]
-physics_material_override = SubResource( 128 )
+physics_material_override = SubResource( 127 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="RightDoorBlocker/RightDoorBody"]
 position = Vector2( 26.7733, 20.0013 )
 polygon = PoolVector2Array( 24.9909, -25.1058, 23.5735, -5.73451, 14.1241, 8.91208, -18.4764, 9.54202, -18.7914, 2.92744, 13.6516, 3.24242 )
 
 [node name="OuterBody" type="StaticBody2D" parent="RightDoorBlocker"]
-physics_material_override = SubResource( 129 )
+physics_material_override = SubResource( 128 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightDoorBlocker/OuterBody"]
 polygon = PoolVector2Array( 37.2356, 29.4568, 40.6068, 23.089, 61.3958, 22.1525, 61.3958, 30.9551, 56.7136, 35.45, 56.5263, 44.8144, 36.8611, 39.1958 )
 
 [node name="OuterBody2" type="StaticBody2D" parent="RightDoorBlocker"]
-physics_material_override = SubResource( 130 )
+physics_material_override = SubResource( 129 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightDoorBlocker/OuterBody2"]
 position = Vector2( -50.7552, 8.98984 )
@@ -1718,13 +1711,13 @@ position = Vector2( -110, -284 )
 collision_layer = 2
 collision_mask = 2
 constant_linear_velocity = Vector2( 50, 0 )
-physics_material_override = SubResource( 131 )
+physics_material_override = SubResource( 130 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubTunnel/BoardRoomVent/VentStaticBody"]
-shape = SubResource( 132 )
+shape = SubResource( 131 )
 
 [node name="UpperTrapDoor" parent="SubTunnel/BoardRoomVent" groups=[
 "ball_resets",
@@ -1744,7 +1737,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubTunnel/BoardRoomVent/VentHitArea"]
-shape = SubResource( 133 )
+shape = SubResource( 132 )
 
 [node name="HitTimer" type="Timer" parent="SubTunnel/BoardRoomVent"]
 wait_time = 2.0
@@ -1759,13 +1752,13 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubTunnel/BoardRoomVent/VentBlockerBody"]
-shape = SubResource( 134 )
+shape = SubResource( 133 )
 
 [node name="SubEntrances" type="Node2D" parent="."]
 position = Vector2( 335, -409 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="SubEntrances"]
-physics_material_override = SubResource( 135 )
+physics_material_override = SubResource( 134 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SubEntrances/StaticBody2D"]
 position = Vector2( -334, 410 )
@@ -1775,7 +1768,7 @@ polygon = PoolVector2Array( 339, -387, 335, -367, 343, -367 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubEntrances/SubEntrArea"]
 position = Vector2( -6, -14 )
-shape = SubResource( 136 )
+shape = SubResource( 135 )
 
 [node name="LowerSubExit" type="Area2D" parent="SubEntrances"]
 collision_layer = 2
@@ -1783,7 +1776,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubEntrances/LowerSubExit"]
 position = Vector2( -256, 315 )
-shape = SubResource( 137 )
+shape = SubResource( 136 )
 
 [node name="UpperSubExit" type="Area2D" parent="SubEntrances"]
 collision_layer = 2
@@ -1791,55 +1784,57 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubEntrances/UpperSubExit"]
 position = Vector2( -105, -262 )
-shape = SubResource( 138 )
+shape = SubResource( 137 )
 
 [node name="SpritesYSort" type="YSort" parent="."]
 
 [node name="TopWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
+frame = 0
 
 [node name="TopWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
+frame = 0
 
 [node name="LiftWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 240, -228 )
-frame = 0
+frame = 7
 
 [node name="LiftWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 278, -253 )
-frame = 7
+frame = 6
 
 [node name="LiftWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 209, -276 )
-frame = 7
+frame = 6
 
 [node name="LiftWorkerSprite4" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 279, -301 )
-frame = 7
+frame = 6
 
 [node name="LobbyWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 80 )
-frame = 6
+frame = 5
 
 [node name="LobbyWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 24 )
-frame = 6
+frame = 5
 
 [node name="LobbyWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, -40 )
-frame = 5
+frame = 4
 
 [node name="LobbyVisitorSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 5
+frame = 4
 
 [node name="LobbyVisitorSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 4
+frame = 3
 
 [node name="LobbyVisitorSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 4
+frame = 3
 
 [node name="BallReturn" type="Node2D" parent="."]
 position = Vector2( 0, 310 )
@@ -1850,16 +1845,16 @@ position = Vector2( 60, 0 )
 gravity = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallReturn/RetriavalArea"]
-shape = SubResource( 139 )
+shape = SubResource( 138 )
 
 [node name="CrowdArea" type="Area2D" parent="BallReturn"]
 position = Vector2( -15, 0 )
 
 [node name="Sprite" type="AnimatedSprite" parent="BallReturn/CrowdArea"]
-frames = SubResource( 146 )
+frames = SubResource( 145 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallReturn/CrowdArea"]
-shape = SubResource( 147 )
+shape = SubResource( 146 )
 
 [node name="Tween" type="Tween" parent="BallReturn"]
 
@@ -1868,7 +1863,7 @@ position = Vector2( 310, -10 )
 gravity = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallReturn/RightRetrievalArea"]
-shape = SubResource( 148 )
+shape = SubResource( 147 )
 
 [node name="AnimTimer" type="Timer" parent="BallReturn"]
 one_shot = true

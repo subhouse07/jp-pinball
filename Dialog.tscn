@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Fixedsys Excelsior 3.01 Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/dialog-box-test.png-815f1ff7282e683cf73c87a6be78d589.stex"
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+font_data = ExtResource( 1 )
+
+[sub_resource type="StreamTexture" id=5]
+load_path = "res://.import/dialog-icon-test.png-6f86f55e3fcb76adfe8392eb216e77af.stex"
+
+[node name="Dialog" type="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -96.0
+margin_right = 480.0
+texture = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogText" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 126.0
+margin_top = -74.0
+margin_right = 458.0
+margin_bottom = -33.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+text = "Here's some test text. How does this 
+look?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = -102.0
+margin_right = 80.0
+texture = SubResource( 5 )
