@@ -31,6 +31,7 @@ var elevator_open = false
 var ball : RigidBody2D
 
 signal special_triggered(special_name)
+signal dialog_requested(character_id)
 
 func _ready():
 	ball = $YSort/Ball

@@ -3,8 +3,14 @@ extends Node2D
 var special_scene_name = ""
 var special_area = ""
 
+signal init_dialog(character_id)
+
 func _ready():
 	load_main_board()
+
+
+func _on_dialog_requested(character_id: int):
+	emit_signal("init_dialog", character_id)
 
 func _on_special_triggered(area_name: String, special_name: String):
 	# do a scene transition?
@@ -41,4 +47,5 @@ func load_main_board():
 	var scene = load("res://MainBoard.tscn")
 	var main_board = scene.instance()
 	main_board.connect("special_triggered", self, "_on_special_triggered")
+	main_board.connect("dialog_requested", self, "_on_dialog_requested")
 	add_child(main_board)

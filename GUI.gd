@@ -12,3 +12,9 @@ func disable_dev_panel():
 func update():
 	if $DevPanel:
 		$DevPanel.update()
+
+func init_dialog(character_id : int):
+	var scene = load("res://Dialog.tscn")
+	var dialog = scene.instance()
+	dialog.character_id = character_id
+	add_child(dialog)

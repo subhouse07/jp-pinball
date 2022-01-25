@@ -14,3 +14,4 @@ dev_mode_enabled = true
 
 [node name="GameScene" type="Node2D" parent="."]
 script = ExtResource( 3 )
+[connection signal="init_dialog" from="GameScene" to="." method="_on_GameScene_init_dialog"]

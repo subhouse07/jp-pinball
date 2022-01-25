@@ -21,3 +21,6 @@ func add_game_scene():
 	var node = scene.instance()
 	$GameScene.add_child(node)
 
+
+func _on_GameScene_init_dialog(character_id):
+	$GUILayer/GUI.init_dialog(character_id)

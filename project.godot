@@ -21,7 +21,7 @@ run/main_scene="res://main.tscn"
 [autoload]
 
 GameState="*res://GameState.gd"
-Scores="*res://Scores.gd"
+Constants="*res://Constants.gd"
 
 [display]
 

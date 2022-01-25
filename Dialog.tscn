@@ -1,6 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fixedsys Excelsior 3.01 Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Dialog.gd" type="Script" id=2]
 
 [sub_resource type="StreamTexture" id=4]
 load_path = "res://.import/dialog-box-test.png-815f1ff7282e683cf73c87a6be78d589.stex"
@@ -9,17 +10,15 @@ load_path = "res://.import/dialog-box-test.png-815f1ff7282e683cf73c87a6be78d589.
 size = 18
 font_data = ExtResource( 1 )
 
-[sub_resource type="StreamTexture" id=5]
-load_path = "res://.import/dialog-icon-test.png-6f86f55e3fcb76adfe8392eb216e77af.stex"
-
 [node name="Dialog" type="Control"]
 anchor_top = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BgTextureRect" type="TextureRect" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -96.0
@@ -45,10 +44,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="IconTextureRect" type="TextureRect" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 24.0
 margin_top = -102.0
 margin_right = 80.0
-texture = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
