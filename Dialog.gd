@@ -13,7 +13,7 @@ var icon_paths = [
 ]
 
 var dialog_texts = [
-	"I'm the OA, blah blah blah...",
+	"Busy day at the office, huh!",
 	"I'm your coworker, blah blah ...",
 	"I'm some executive, blah blah blah..."
 ]
