@@ -3,11 +3,11 @@
 [ext_resource path="res://Fixedsys Excelsior 3.01 Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Dialog.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 18
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "BgActivate"
 tracks/0/type = "value"
 tracks/0/path = NodePath("BgTextureRect:rect_scale")
@@ -47,7 +47,7 @@ tracks/2/keys = {
 }
 
 [node name="Dialog" type="Control"]
-anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 __meta__ = {
@@ -74,7 +74,7 @@ margin_left = 126.0
 margin_top = -74.0
 margin_right = 458.0
 margin_bottom = -33.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 text = "Here's some test text. How does this look?"
@@ -100,5 +100,5 @@ one_shot = true
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/BgActivate = SubResource( 3 )
+anims/BgActivate = SubResource( 2 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
