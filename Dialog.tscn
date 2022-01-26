@@ -79,6 +79,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 text = "Here's some test text. How does this look?"
 autowrap = true
+percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -89,6 +90,7 @@ anchor_bottom = 1.0
 margin_left = 24.0
 margin_top = -102.0
 margin_right = 80.0
+rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 40, 40 )
 __meta__ = {
 "_edit_use_anchors_": false
