@@ -8,15 +8,12 @@ const COLOR_STYLEBOX_BG = Color(0,0,0,1.0)
 var rev_count : int = 0
 var timeout_count = 0
 var task_labels = []
-var task_names = [
-	"Task 1",
-	"Task 2",
-	"Task 3",
-	"Task 4"
-]
+var task_names = []
 var selected_task_ind = 2
 var highlight_ind = 0
 var highlight_box : StyleBoxFlat
+
+signal finished_spinning
 
 onready var font_data = load("res://Fixedsys Excelsior 3.01 Regular.ttf")
 
@@ -41,7 +38,6 @@ func _populate_label_container():
 
 
 func _on_HighlightTimer_timeout():
-	print($HighlightTimer.wait_time)
 	_unhighlight_label(highlight_ind)
 	highlight_ind = (highlight_ind + 1) % task_names.size() 
 	_highlight_label(highlight_ind)
@@ -49,6 +45,7 @@ func _on_HighlightTimer_timeout():
 	rev_count = int(timeout_count / task_names.size())
 	if rev_count > 5 and highlight_ind == selected_task_ind:
 		$HighlightTimer.stop()
+		emit_signal("finished_spinning")
 	elif rev_count == 5:
 		$HighlightTimer.wait_time = 0.25
 	elif rev_count == 3:

@@ -53,7 +53,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-bg_size = 0.1
 
 [node name="BgTextureRect" type="TextureRect" parent="."]
 anchor_top = 1.0
@@ -62,6 +61,7 @@ margin_top = -96.0
 margin_right = 480.0
 grow_horizontal = 2
 grow_vertical = 2
+rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 240, 48 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -97,10 +97,9 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
 one_shot = true
-autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/BgActivate = SubResource( 2 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

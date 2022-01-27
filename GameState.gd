@@ -115,7 +115,7 @@ var mult_state = {
 	"LeftCubeMate": { "current": 1, "max": 25 },
 	"OADoor": { "current": 1, "max": 16 }
 }
-
+var lobby_task_ind = 0
 var cube_task_ind = 0 setget cube_task_ind_set, cube_task_ind_get
 var cube_task_active = false setget cube_task_active_set, cube_task_active_get
 
