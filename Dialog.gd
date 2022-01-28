@@ -26,8 +26,8 @@ const TASK_NAMES = [
 		"Office Basement"
 	],
 	[
-		"I need files.",
 		"Makin' copies",
+		"I need files.",
 		"Do your job!",
 		"BRAIN STORM"
 	],

@@ -5,7 +5,7 @@
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/dialog-sm-oa.png-7d66f5fc13134e63b3b4cdaf8b2a4204.stex"
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "ActivateSpinner"
 step = 0.05
 tracks/0/type = "value"
@@ -61,6 +61,6 @@ __meta__ = {
 wait_time = 0.066
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/ActivateSpinner = SubResource( 3 )
+anims/ActivateSpinner = SubResource( 2 )
 [connection signal="timeout" from="HighlightTimer" to="." method="_on_HighlightTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,12 +1,13 @@
 extends Node2D
 
-const tasks = {
+const TASKS = {
 	"copier": "CopierSection",
 	"files": "FileCabinets",
 	"brain": "Brainstorm"
 }
 
 var capturing_mate : Node2D
+var task : String
 
 signal task_activated(area, name)
 signal dialog_activated(character_id)
@@ -21,6 +22,7 @@ func _on_TrapDoor_ball_trapped(right_mate_captured: bool):
 		capturing_mate = $RightCubeMate
 	else:
 		capturing_mate = $LeftCubeMate
+	_select_task()
 	emit_signal("dialog_activated", Constants.CHAR_ID_CM)
 
 
@@ -30,22 +32,26 @@ func on_dialog_freed():
 	$RightCubeMate.set_enabled(false)
 	$LeftCubeMate.set_enabled(false)
 	capturing_mate.release_ball()
+	emit_signal("task_activated", GameState.AREA_CUBE, task)
 
 
 func _select_task():
-	var area = $"/root/GameState".AREA_CUBE
-	if $"/root/GameState".brainstorm_ready():
-		emit_signal("task_activated", area, tasks["brain"])
-		$"/root/GameState".cube_task_ind = 2
-		$"/root/GameState".cube_task_active = true
-	elif $"/root/GameState".cube_task_ind > 0:
-		emit_signal("task_activated", area, tasks["copier"])
-		$"/root/GameState".cube_task_ind = 0
-		$"/root/GameState".cube_task_active = true
+#	var area = $"/root/GameState".AREA_CUBE
+	if GameState.brainstorm_ready():
+#		emit_signal("task_activated", area, TASKS["brain"])
+		GameState.cube_task_ind = 2
+		GameState.cube_task_active = true
+		task = TASKS["brain"]
+	elif GameState.cube_task_ind > 0:
+#		emit_signal("task_activated", area, TASKS["copier"])
+		GameState.cube_task_ind = 0
+		GameState.cube_task_active = true
+		task = TASKS["copier"]
 	else:
-		emit_signal("task_activated", area, tasks["files"])
-		$"/root/GameState".cube_task_ind += 1
-		$"/root/GameState".cube_task_active = true
+#		emit_signal("task_activated", area, TASKS["files"])
+		GameState.cube_task_ind = 1
+		GameState.cube_task_active = true
+		task = TASKS["files"]
 
 
 func _set_bumpers_enabled(enabled : bool):
