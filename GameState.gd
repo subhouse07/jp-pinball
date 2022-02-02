@@ -241,6 +241,7 @@ func lobby_basement_ready():
 
 func select_lobby_task():
 	randomize()
-	var selected_index = randi() % Constants.LOBBY_TASKS.size() - 1
+	var selected_index = randi() % (Constants.LOBBY_TASKS.size() - 1)
 	while special_state["lobby"]["stages"][Constants.LOBBY_TASKS[selected_index]]:
-		selected_index = randi() % Constants.LOBBY_TASKS.size() - 1
+		selected_index = randi() % (Constants.LOBBY_TASKS.size() - 1)
+	lobby_task_ind = selected_index
