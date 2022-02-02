@@ -233,9 +233,9 @@ func _set_sublvl_collision(enabled : bool):
 func _on_CopierSection_copier_hit():
 	if $Cubicle/CopierSection.task_active:
 		GameState.score("CopierActive")
-		$"/root/GameState".hit_copier()
-		if $"/root/GameState".hp_state["copier"] <= 0:
-			$"/root/GameState".reset_copier()
+		GameState.hit_copier()
+		if GameState.hp_state["copier"] <= 0:
+			GameState.reset_copier()
 			$Cubicle.activate_special_stage($Cubicle.COPIER)
 	else:
 		# do whatever, maybe nothing
@@ -243,16 +243,14 @@ func _on_CopierSection_copier_hit():
 
 
 func _on_FileCabinets_file_target_hit():
-	$"/root/GameState".hit_file_cabinet()
-	if $"/root/GameState".hp_state["file_cab"] <= 0:
-		$"/root/GameState".reset_file_cab()
+	GameState.hit_file_cabinet()
+	if GameState.hp_state["file_cab"] <= 0:
+		GameState.reset_file_cab()
 		$Cubicle.activate_special_stage($Cubicle.FILES)
 
 
 func _on_CourierCoordinator_special_entered():
-	var name = $"/root/GameState".SP_NAME_COURIER
-	var area = $"/root/GameState".AREA_CUBE
-	_trigger_special_stage(area, name)
+	_trigger_special_stage(Constants.AREA_CUBE, Constants.SP_NAME_COURIER)
 
 
 func _trigger_special_stage(area: String, name: String):
@@ -260,9 +258,8 @@ func _trigger_special_stage(area: String, name: String):
 
 
 func _on_Cubicle_special_entered(special_name):
-	$"/root/GameState".cube_task_active = false
-	var area = $"/root/GameState".AREA_CUBE
-	_trigger_special_stage(area, special_name)
+	GameState.cube_task_active = false
+	_trigger_special_stage(Constants.AREA_CUBE, special_name)
 
 
 func _on_Brainstorm_hit(finished: bool):
@@ -299,16 +296,14 @@ func _on_AnimTimer_timeout():
 
 
 func _on_task_activated(area, name):
-	var boardroom = $"/root/GameState".AREA_BOARDROOM
-	var cube = $"/root/GameState".AREA_CUBE
-	var lobby = $"/root/GameState".AREA_LOBBY
-	
+	# leaving this here for now because it will probably signal for GUI to
+	# trigger an animation somewhere
 	match area:
-		boardroom:
+		Constants.AREA_BOARDROOM:
 			pass
-		cube:
+		Constants.AREA_CUBE:
 			get_node("Cubicle/%s" % name).activate_task()
-		lobby:
+		Constants.AREA_LOBBY:
 			get_node("Lobby").activate_task()
 
 
@@ -316,6 +311,8 @@ func _on_LobbyBumper_body_entered(body):
 	if body.name == "Ball":
 		GameState.score("LobbyBumper")
 
+func lobby_task_complete():
+	$Lobby.activate_special_stage()
 
 func _on_dialog_activated(character_id : int):
 	match character_id:

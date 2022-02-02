@@ -8,8 +8,8 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if body.name == "Ball":
 		GameState.score(self.name)
-		$"/root/GameState".hit_boardroom_doors()
-		if $"/root/GameState".hp_state["boardroom_doors"] <= 0:
+		GameState.hit_boardroom_doors()
+		if GameState.hp_state["boardroom_doors"] <= 0:
 			# Replace with door animation or whatever
 			GameState.score("BoardRoomOpen")
 			$Sprite.hide()
@@ -31,6 +31,6 @@ func _enable_collision():
 
 
 func reset():
-	$"/root/GameState".reset_boardroom_doors()
+	GameState.reset_boardroom_doors()
 	$Sprite.show()
 	_enable_collision()

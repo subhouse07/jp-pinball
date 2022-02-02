@@ -11,14 +11,14 @@ var cube_task_count = 0
 
 func _ready():
 	panel_grid = $PanelContainer/ScrollContainer/DevPanelGrid
-	panel_labels = $"/root/GameState".hp_state.keys()
+	panel_labels = GameState.hp_state.keys()
 	_populate_dev_panel()
 
 
 func update():
 	for label in panel_labels:
 		var spinbox = panel_grid.get_node("%sSpinBox" % label)
-		spinbox.value = $"/root/GameState".hp_state[label]
+		spinbox.value = GameState.hp_state[label]
 
 
 func _populate_dev_panel():
@@ -32,7 +32,7 @@ func _add_state_entry(label):
 	entry_label.name = String("%sLabel" % label)
 	
 	var entry_spinbox = SpinBox.new()
-	entry_spinbox.value = $"/root/GameState".hp_state[label]
+	entry_spinbox.value = GameState.hp_state[label]
 	entry_spinbox.name = String("%sSpinBox" % label)
 	
 	entry_spinbox.connect("value_changed", self, "_on_state_value_changed", [label])
@@ -46,7 +46,7 @@ func _on_ToggleButton_toggled(button_pressed):
 
 
 func _on_state_value_changed(value: float, name: String):
-	$"/root/GameState".hp_state[name] = value
+	GameState.hp_state[name] = value
 	var current_focus_control = get_focus_owner()
 	if current_focus_control:
 		current_focus_control.release_focus()

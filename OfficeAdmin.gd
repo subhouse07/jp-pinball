@@ -12,8 +12,9 @@ func _ready():
 func _on_DeskArea2D_body_entered(body, desk_ind):
 	if body.name == "Ball":
 		GameState.score("LobbyDesk")
-		desks_lit[desk_ind] = true
-		_light_desk(desk_ind)
+		if !GameState.lobby_task_active:
+			desks_lit[desk_ind] = true
+			_light_desk(desk_ind)
 	if _all_desks_lit():
 		GameState.score("AllLobbyDesks")
 		set_office_admin_enabled(true)
@@ -42,14 +43,17 @@ func set_office_admin_enabled(enabled : bool):
 
 
 func _on_TrapDoor_ball_trapped():
+	if GameState.lobby_basement_ready():
+		GameState.lobby_task_ind = Constants.BASEMENT
+	else:
+		GameState.select_lobby_task()
+	GameState.lobby_task_active = true
 	emit_signal("dialog_activated", Constants.CHAR_ID_OA)
 
 
 func on_dialog_freed():
 	$OADoor.release_ball()
 	GameState.score(self.name)
-	emit_signal("task_activated", $"/root/GameState".AREA_LOBBY, "name")
-	print("OA encountered. Resetting OA")
+	emit_signal("task_activated", Constants.AREA_LOBBY, "name")
 	set_office_admin_enabled(false)
-	print("No tasks available now, so resetting desk state")
 	reset_desks()

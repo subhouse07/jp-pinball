@@ -1,77 +1,14 @@
 extends Node
 
-enum { VAN, MINI, SPORT, HATCH, TRUCK }
-
-const BOARDROOM_DOORS_MAX = 3
-const BOARDROOM_VENT_MAX = 1
-const CENTERPIECE_MAX = 5
-const COMPUTER_MAX = 3
-const COPIER_MAX = 3
-const FILE_CAB_MAX = 6
-const JANITOR_MAX = 3
-const AREA_CUBE = "cube"
-const AREA_BOARDROOM = "boardroom"
-const AREA_LOBBY = "lobby"
-const SP_NAME_BRAIN = "SpecialBrain"
-const SP_NAME_COPIER = "SpecialCopier"
-const SP_NAME_COURIER = "SpecialCourier"
-const SP_NAME_FILES = "SpecialFiles"
-const SP_NAME_WORK = "SpecialWork"
-const SP_NAME_DUNGEON = "SpecialDungeon"
-const SP_NAME_BOSS = "SpecialBoss"
-const SP_NAME_SEWER = "SpecialSewer"
-const SP_NAME_CENTER = "SpecialCenter"
-const SP_NAME_NETWORK = "SpecialNetwork"
-const SP_NAME_LUNCH = "SpecialLunch"
-const SP_NAME_TRAFFIC = "SpecialTraffic"
-
 var score_total : int
-var points = {
-	"Car": 10,
-	"OfficeAdmin": 50,
-	"LobbyDesk": 10,
-	"AllLobbyDesks": 100,
-	"CopyWorker": 25,
-	"Copier": 25,
-	"CopierActive": 100,
-	"Lift": 50,
-	"CubeMates": 50,
-	"FileCabinets": 100,
-	"SpecialEntrance": 500,
-	"Brainstorm": 100,
-	"CourierCapture": 150,
-	"Courier": 100,
-	"CourierRelease": 100,
-	"LobbyWorker": 25,
-	"LobbyVisitor": 25,
-	"Janitor": 25,
-	"JanitorMove": 100,
-	"BoardRoomDoors": 50,
-	"BoardRoomOpen": 250,
-	"BoardRoomVent": 250,
-	"SublvlEnter": 150,
-	"ElevatorOpen": 100,
-	"Elevator": 150,
-	"LobbyBumper": 25,
-	"CubicleBumper": 50,
-	"WaterCooler": 50,
-	"WorkComputer": 50,
-	"DoorManKicker": 150,
-	"UpperTrapDoor": 250,
-	"LowerTrapDoor": 150,
-	"LeftCubeMate": 200,
-	"RightCubeMate": 200,
-	"OADoor": 50
-}
-
 var special_state = {
 	"cube": {
 		"complete": false,
 		"stages": {
-			SP_NAME_BRAIN: false,
-			SP_NAME_COPIER: false,
-			SP_NAME_FILES: false,
-			SP_NAME_WORK: true
+			Constants.SP_NAME_BRAIN: false,
+			Constants.SP_NAME_COPIER: false,
+			Constants.SP_NAME_FILES: false,
+			Constants.SP_NAME_WORK: true
 		},
 	},
 	"boardroom": {
@@ -84,23 +21,22 @@ var special_state = {
 	"lobby": {
 		"complete": false,
 		"stages": {
-			"sewer": false,
-			"centerpiece": false,
-			"networking": false,
-			"lunch": false,
-			"traffic": false
+			Constants.LOBBY_TASKS[Constants.LUNCH]: false,
+			Constants.LOBBY_TASKS[Constants.NETWORK]: false,
+			Constants.LOBBY_TASKS[Constants.TRAFFIC]: false,
+			Constants.LOBBY_TASKS[Constants.BASEMENT]: false
 		}
 	}
 }
 
 var hp_state = {
-	"boardroom_doors": BOARDROOM_DOORS_MAX,
-	"boardroom_vent": BOARDROOM_VENT_MAX,
-	"centerpiece": CENTERPIECE_MAX,
-	"computer": COMPUTER_MAX,
-	"copier": COPIER_MAX,
-	"file_cab": FILE_CAB_MAX,
-	"janitor": JANITOR_MAX
+	"boardroom_doors": Constants.BOARDROOM_DOORS_MAX,
+	"boardroom_vent": Constants.BOARDROOM_VENT_MAX,
+	"centerpiece": Constants.CENTERPIECE_MAX,
+	"computer": Constants.COMPUTER_MAX,
+	"copier": Constants.COPIER_MAX,
+	"file_cab": Constants.FILE_CAB_MAX,
+	"janitor": Constants.JANITOR_MAX
 }
 
 var mult_state = {
@@ -116,6 +52,18 @@ var mult_state = {
 	"OADoor": { "current": 1, "max": 16 }
 }
 var lobby_task_ind = 0
+var lobby_task_active = false
+var lobby_task_targets = {
+	Constants.LOBBY_TARGET_TASKS[0]: {
+		"CopyWorker": 0,
+		"LobbyVisitor": 0,
+		"LobbyWorker": 0,
+	},
+	Constants.LOBBY_TARGET_TASKS[1]: {
+		"WaterCooler": 0,
+		"Elevator": 0
+	}
+}
 var cube_task_ind = 0 setget cube_task_ind_set, cube_task_ind_get
 var cube_task_active = false setget cube_task_active_set, cube_task_active_get
 
@@ -129,14 +77,13 @@ func _ready():
 func score(name : String):
 	_check_task_status(name)
 	var mult = _check_multiplier(name)
-	score_total += points[name] * mult
+	score_total += Constants.POINTS[name] * mult
 	print(score_total)
 
 func increase_mult(name : String, incr: int):
 	mult_state[name]["current"] += incr
 	if mult_state[name]["current"] > mult_state[name]["max"]:
 		mult_state[name]["current"] = mult_state[name]["max"]
-	
 
 func reset_mult(name : String):
 	mult_state[name]["current"] = 1
@@ -147,8 +94,6 @@ func _check_multiplier(name):
 		mult = mult_state[name]["current"]
 	return mult
 
-func _check_task_status(name: String):
-	pass
 
 func complete_special_stage(area: String, name: String):
 	special_state[area]["stages"][name] = true
@@ -168,7 +113,7 @@ func hit_computer():
 
 
 func reset_computer():
-	hp_state["computer"] = COMPUTER_MAX
+	hp_state["computer"] = Constants.COMPUTER_MAX
 	gui.update()
 
 
@@ -181,7 +126,7 @@ func hit_janitor():
 
 
 func reset_janitor():
-	hp_state["janitor"] = JANITOR_MAX
+	hp_state["janitor"] = Constants.JANITOR_MAX
 	gui.update()
 
 # - - - - - - - - - 
@@ -192,7 +137,7 @@ func hit_boardroom_vent():
 	gui.update()
 
 func reset_boardroom_vent():
-	hp_state["boardroom_vent"] = BOARDROOM_VENT_MAX
+	hp_state["boardroom_vent"] = Constants.BOARDROOM_VENT_MAX
 	gui.update()
 
 
@@ -205,7 +150,7 @@ func hit_boardroom_doors():
 
 
 func reset_boardroom_doors():
-	hp_state["boardroom_doors"] = BOARDROOM_DOORS_MAX
+	hp_state["boardroom_doors"] = Constants.BOARDROOM_DOORS_MAX
 	gui.update()
 
 
@@ -218,7 +163,7 @@ func hit_copier():
 
 
 func reset_copier():
-	hp_state["copier"] = COPIER_MAX
+	hp_state["copier"] = Constants.COPIER_MAX
 	gui.update()
 
 
@@ -231,7 +176,7 @@ func hit_file_cabinet():
 
 
 func reset_file_cab():
-	hp_state["file_cab"] = FILE_CAB_MAX
+	hp_state["file_cab"] = Constants.FILE_CAB_MAX
 	gui.update()
 
 
@@ -240,7 +185,8 @@ func reset_file_cab():
 # - - - - -
 func brainstorm_ready():
 	var stages = special_state["cube"]["stages"]
-	return stages[SP_NAME_WORK] and stages[SP_NAME_FILES] and stages[SP_NAME_COPIER]
+	return stages[Constants.SP_NAME_WORK] and stages[Constants.SP_NAME_FILES] \
+		and stages[Constants.SP_NAME_COPIER]
 
 func cube_task_ind_set(index: int):
 	cube_task_ind = index
@@ -256,3 +202,45 @@ func cube_task_active_set(active: bool):
 
 func cube_task_active_get():
 	return cube_task_active
+
+
+# - - - -
+# Lobby
+# - - - -
+func _check_task_status(name: String):
+	if !lobby_task_active or lobby_task_ind > 1:
+		return
+	var active_task = lobby_task_targets[Constants.LOBBY_TARGET_TASKS[lobby_task_ind]]
+	if active_task.keys().has(name):
+		active_task[name] += 1
+		_check_lobby_task_completion(active_task)
+
+
+func _check_lobby_task_completion(active_task: Dictionary):
+	var total = 0
+	for val in active_task.values():
+		total += val
+	if total >= Constants.LOBBY_TARGET_TASK_THRESHOLDS[lobby_task_ind]:
+		var main_board = get_parent().get_node_or_null("main/GameScene/MainBoard")
+		if main_board:
+			main_board.lobby_task_complete()
+			_reset_lobby_targets(active_task)
+		else:
+			print("Mainboard doesn't exist")
+
+
+func _reset_lobby_targets(active_task: Dictionary):
+	for key in active_task.keys():
+		active_task[key] = 0
+
+func lobby_basement_ready():
+	var stages = special_state["lobby"].stages
+	return stages[Constants.LOBBY_TASKS[Constants.LUNCH]] and \
+		stages[Constants.LOBBY_TASKS[Constants.NETWORK]] and \
+		stages[Constants.LOBBY_TASKS[Constants.TRAFFIC]]
+
+func select_lobby_task():
+	randomize()
+	var selected_index = randi() % Constants.LOBBY_TASKS.size() - 1
+	while special_state["lobby"]["stages"][Constants.LOBBY_TASKS[selected_index]]:
+		selected_index = randi() % Constants.LOBBY_TASKS.size() - 1
