@@ -21,8 +21,8 @@ const DIALOG_TEXTS = [
 const TASK_NAMES = [
 	[
 		"Lunch is on me!",
-		"Office Errands",
 		"Go, Network!",
+		"Office Errands",
 		"Office Basement"
 	],
 	[

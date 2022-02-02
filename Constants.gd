@@ -24,3 +24,41 @@ const SP_NAME_CENTER = "SpecialCenter"
 const SP_NAME_NETWORK = "SpecialNetwork"
 const SP_NAME_LUNCH = "SpecialLunch"
 const SP_NAME_TRAFFIC = "SpecialTraffic"
+const LOBBY_TARGET_TASKS = ["lunch", "networking"]
+const POINTS = {
+	"Car": 10,
+	"OfficeAdmin": 50,
+	"LobbyDesk": 10,
+	"AllLobbyDesks": 100,
+	"CopyWorker": 25,
+	"Copier": 25,
+	"CopierActive": 100,
+	"Lift": 50,
+	"CubeMates": 50,
+	"FileCabinets": 100,
+	"SpecialEntrance": 500,
+	"Brainstorm": 100,
+	"CourierCapture": 150,
+	"Courier": 100,
+	"CourierRelease": 100,
+	"LobbyWorker": 25,
+	"LobbyVisitor": 25,
+	"Janitor": 25,
+	"JanitorMove": 100,
+	"BoardRoomDoors": 50,
+	"BoardRoomOpen": 250,
+	"BoardRoomVent": 250,
+	"SublvlEnter": 150,
+	"ElevatorOpen": 100,
+	"Elevator": 150,
+	"LobbyBumper": 25,
+	"CubicleBumper": 50,
+	"WaterCooler": 50,
+	"WorkComputer": 50,
+	"DoorManKicker": 150,
+	"UpperTrapDoor": 250,
+	"LowerTrapDoor": 150,
+	"LeftCubeMate": 200,
+	"RightCubeMate": 200,
+	"OADoor": 50
+}

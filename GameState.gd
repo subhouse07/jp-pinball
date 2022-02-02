@@ -1,46 +1,6 @@
 extends Node
 
-enum { VAN, MINI, SPORT, HATCH, TRUCK }
-
 var score_total : int
-var points = {
-	"Car": 10,
-	"OfficeAdmin": 50,
-	"LobbyDesk": 10,
-	"AllLobbyDesks": 100,
-	"CopyWorker": 25,
-	"Copier": 25,
-	"CopierActive": 100,
-	"Lift": 50,
-	"CubeMates": 50,
-	"FileCabinets": 100,
-	"SpecialEntrance": 500,
-	"Brainstorm": 100,
-	"CourierCapture": 150,
-	"Courier": 100,
-	"CourierRelease": 100,
-	"LobbyWorker": 25,
-	"LobbyVisitor": 25,
-	"Janitor": 25,
-	"JanitorMove": 100,
-	"BoardRoomDoors": 50,
-	"BoardRoomOpen": 250,
-	"BoardRoomVent": 250,
-	"SublvlEnter": 150,
-	"ElevatorOpen": 100,
-	"Elevator": 150,
-	"LobbyBumper": 25,
-	"CubicleBumper": 50,
-	"WaterCooler": 50,
-	"WorkComputer": 50,
-	"DoorManKicker": 150,
-	"UpperTrapDoor": 250,
-	"LowerTrapDoor": 150,
-	"LeftCubeMate": 200,
-	"RightCubeMate": 200,
-	"OADoor": 50
-}
-
 var special_state = {
 	"cube": {
 		"complete": false,
@@ -92,27 +52,40 @@ var mult_state = {
 	"OADoor": { "current": 1, "max": 16 }
 }
 var lobby_task_ind = 0
+var lobby_task_active = false
+var lobby_task_targets = {
+	Constants.LOBBY_TARGET_TASKS[0]: {
+		"CopyWorker": 0,
+		"LobbyVisitor": 0,
+		"LobbyWorker": 0,
+	},
+	Constants.LOBBY_TARGET_TASKS[1]: {
+		"WaterCooler": 0,
+		"Elevator": 0
+	}
+}
 var cube_task_ind = 0 setget cube_task_ind_set, cube_task_ind_get
 var cube_task_active = false setget cube_task_active_set, cube_task_active_get
 
 var main_board_ball_pos := Vector2(126, 144)
 
 var gui : Control
+var main_board : Node2D
 
 func _ready():
 	gui = get_parent().get_node("main/GUILayer/GUI")
+	main_board = get_parent().get_node("main/GameScene/MainBoard")
 
 func score(name : String):
 	_check_task_status(name)
 	var mult = _check_multiplier(name)
-	score_total += points[name] * mult
+	score_total += Constants.POINTS[name] * mult
 	print(score_total)
 
 func increase_mult(name : String, incr: int):
 	mult_state[name]["current"] += incr
 	if mult_state[name]["current"] > mult_state[name]["max"]:
 		mult_state[name]["current"] = mult_state[name]["max"]
-	
 
 func reset_mult(name : String):
 	mult_state[name]["current"] = 1
@@ -124,7 +97,13 @@ func _check_multiplier(name):
 	return mult
 
 func _check_task_status(name: String):
-	pass
+	if !lobby_task_active or lobby_task_ind > 1:
+		return
+	var active_task = lobby_task_targets[Constants.LOBBY_TARGET_TASKS[lobby_task_ind]]
+	if active_task.keys().contains(name):
+		active_task[name] += 1
+		main_board.advance_lobby_task()
+		
 
 func complete_special_stage(area: String, name: String):
 	special_state[area]["stages"][name] = true

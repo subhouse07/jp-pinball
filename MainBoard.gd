@@ -309,6 +309,8 @@ func _on_LobbyBumper_body_entered(body):
 	if body.name == "Ball":
 		GameState.score("LobbyBumper")
 
+func advance_lobby_task():
+	pass
 
 func _on_dialog_activated(character_id : int):
 	match character_id:
