@@ -35,11 +35,11 @@ func _on_SpecialEntranceArea_body_entered(body):
 		_set_entrance_enabled(false)
 		match special_trigger:
 			COPIER:
-				emit_signal("special_entered", $"/root/GameState".SP_NAME_COPIER)
+				emit_signal("special_entered", Constants.SP_NAME_COPIER)
 			FILES:
-				emit_signal("special_entered", $"/root/GameState".SP_NAME_FILES)
+				emit_signal("special_entered", Constants.SP_NAME_FILES)
 			BRAIN:
-				emit_signal("special_entered", $"/root/GameState".SP_NAME_BRAIN)
+				emit_signal("special_entered", Constants.SP_NAME_BRAIN)
 
 
 func _set_entrance_enabled(enabled: bool):

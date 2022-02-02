@@ -14,7 +14,7 @@ signal dialog_activated(character_id)
 
 
 func _ready():
-	_set_bumpers_enabled($"/root/GameState".cube_task_active)
+	_set_bumpers_enabled(GameState.cube_task_active)
 
 
 func _on_TrapDoor_ball_trapped(right_mate_captured: bool):
@@ -32,7 +32,7 @@ func on_dialog_freed():
 	$RightCubeMate.set_enabled(false)
 	$LeftCubeMate.set_enabled(false)
 	capturing_mate.release_ball()
-	emit_signal("task_activated", GameState.AREA_CUBE, task)
+	emit_signal("task_activated", Constants.AREA_CUBE, task)
 
 
 func _select_task():

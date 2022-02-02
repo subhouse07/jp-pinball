@@ -48,7 +48,7 @@ func _on_TrapDoor_ball_trapped():
 func on_dialog_freed():
 	$OADoor.release_ball()
 	GameState.score(self.name)
-	emit_signal("task_activated", $"/root/GameState".AREA_LOBBY, "name")
+	emit_signal("task_activated", Constants.AREA_LOBBY, "name")
 	print("OA encountered. Resetting OA")
 	set_office_admin_enabled(false)
 	print("No tasks available now, so resetting desk state")

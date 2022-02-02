@@ -2,29 +2,6 @@ extends Node
 
 enum { VAN, MINI, SPORT, HATCH, TRUCK }
 
-const BOARDROOM_DOORS_MAX = 3
-const BOARDROOM_VENT_MAX = 1
-const CENTERPIECE_MAX = 5
-const COMPUTER_MAX = 3
-const COPIER_MAX = 3
-const FILE_CAB_MAX = 6
-const JANITOR_MAX = 3
-const AREA_CUBE = "cube"
-const AREA_BOARDROOM = "boardroom"
-const AREA_LOBBY = "lobby"
-const SP_NAME_BRAIN = "SpecialBrain"
-const SP_NAME_COPIER = "SpecialCopier"
-const SP_NAME_COURIER = "SpecialCourier"
-const SP_NAME_FILES = "SpecialFiles"
-const SP_NAME_WORK = "SpecialWork"
-const SP_NAME_DUNGEON = "SpecialDungeon"
-const SP_NAME_BOSS = "SpecialBoss"
-const SP_NAME_SEWER = "SpecialSewer"
-const SP_NAME_CENTER = "SpecialCenter"
-const SP_NAME_NETWORK = "SpecialNetwork"
-const SP_NAME_LUNCH = "SpecialLunch"
-const SP_NAME_TRAFFIC = "SpecialTraffic"
-
 var score_total : int
 var points = {
 	"Car": 10,
@@ -68,10 +45,10 @@ var special_state = {
 	"cube": {
 		"complete": false,
 		"stages": {
-			SP_NAME_BRAIN: false,
-			SP_NAME_COPIER: false,
-			SP_NAME_FILES: false,
-			SP_NAME_WORK: true
+			Constants.SP_NAME_BRAIN: false,
+			Constants.SP_NAME_COPIER: false,
+			Constants.SP_NAME_FILES: false,
+			Constants.SP_NAME_WORK: true
 		},
 	},
 	"boardroom": {
@@ -84,7 +61,6 @@ var special_state = {
 	"lobby": {
 		"complete": false,
 		"stages": {
-			"sewer": false,
 			"centerpiece": false,
 			"networking": false,
 			"lunch": false,
@@ -94,13 +70,13 @@ var special_state = {
 }
 
 var hp_state = {
-	"boardroom_doors": BOARDROOM_DOORS_MAX,
-	"boardroom_vent": BOARDROOM_VENT_MAX,
-	"centerpiece": CENTERPIECE_MAX,
-	"computer": COMPUTER_MAX,
-	"copier": COPIER_MAX,
-	"file_cab": FILE_CAB_MAX,
-	"janitor": JANITOR_MAX
+	"boardroom_doors": Constants.BOARDROOM_DOORS_MAX,
+	"boardroom_vent": Constants.BOARDROOM_VENT_MAX,
+	"centerpiece": Constants.CENTERPIECE_MAX,
+	"computer": Constants.COMPUTER_MAX,
+	"copier": Constants.COPIER_MAX,
+	"file_cab": Constants.FILE_CAB_MAX,
+	"janitor": Constants.JANITOR_MAX
 }
 
 var mult_state = {
@@ -168,7 +144,7 @@ func hit_computer():
 
 
 func reset_computer():
-	hp_state["computer"] = COMPUTER_MAX
+	hp_state["computer"] = Constants.COMPUTER_MAX
 	gui.update()
 
 
@@ -181,7 +157,7 @@ func hit_janitor():
 
 
 func reset_janitor():
-	hp_state["janitor"] = JANITOR_MAX
+	hp_state["janitor"] = Constants.JANITOR_MAX
 	gui.update()
 
 # - - - - - - - - - 
@@ -192,7 +168,7 @@ func hit_boardroom_vent():
 	gui.update()
 
 func reset_boardroom_vent():
-	hp_state["boardroom_vent"] = BOARDROOM_VENT_MAX
+	hp_state["boardroom_vent"] = Constants.BOARDROOM_VENT_MAX
 	gui.update()
 
 
@@ -205,7 +181,7 @@ func hit_boardroom_doors():
 
 
 func reset_boardroom_doors():
-	hp_state["boardroom_doors"] = BOARDROOM_DOORS_MAX
+	hp_state["boardroom_doors"] = Constants.BOARDROOM_DOORS_MAX
 	gui.update()
 
 
@@ -218,7 +194,7 @@ func hit_copier():
 
 
 func reset_copier():
-	hp_state["copier"] = COPIER_MAX
+	hp_state["copier"] = Constants.COPIER_MAX
 	gui.update()
 
 
@@ -231,7 +207,7 @@ func hit_file_cabinet():
 
 
 func reset_file_cab():
-	hp_state["file_cab"] = FILE_CAB_MAX
+	hp_state["file_cab"] = Constants.FILE_CAB_MAX
 	gui.update()
 
 
@@ -240,7 +216,8 @@ func reset_file_cab():
 # - - - - -
 func brainstorm_ready():
 	var stages = special_state["cube"]["stages"]
-	return stages[SP_NAME_WORK] and stages[SP_NAME_FILES] and stages[SP_NAME_COPIER]
+	return stages[Constants.SP_NAME_WORK] and stages[Constants.SP_NAME_FILES] \
+		and stages[Constants.SP_NAME_COPIER]
 
 func cube_task_ind_set(index: int):
 	cube_task_ind = index

@@ -12,15 +12,15 @@ func _ready():
 func _on_BathroomArea_body_entered(body):
 	if $HitTimer.is_stopped() and body.name == "Ball":
 		GameState.score(self.name)
-		$"/root/GameState".hit_janitor()
+		GameState.hit_janitor()
 		$HitTimer.start()
-		if $"/root/GameState".hp_state["janitor"] <= 0:
+		if GameState.hp_state["janitor"] <= 0:
 			GameState.score("JanitorMove")
 			$MoveTimer.start()
 
 
 func _move_janitor_to_closet():
-	$"/root/GameState".reset_janitor()
+	GameState.reset_janitor()
 	$BathroomArea/CollisionShape2D.disabled = true
 	$SideDivider.hide()
 	$SideDivider/CollisionShape2D.disabled = true
