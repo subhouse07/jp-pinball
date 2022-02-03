@@ -15,7 +15,7 @@ var init_rotation
 func _ready():
 	if is_flipped:
 		max_rotation = -23
-		init_rotation = 17.5
+		init_rotation = 21.5
 		if use_polygon:
 			$LeftArea/CollisionShape2D.disabled = true
 			$LeftArea/CollisionPolygon2D.disabled = false
@@ -23,7 +23,7 @@ func _ready():
 		$RightSprite.queue_free()
 	else:
 		max_rotation = 23
-		init_rotation = -17.5
+		init_rotation = -21.5
 		if use_polygon:
 			$RightArea/CollisionShape2D.disabled = true
 			$RightArea/CollisionPolygon2D.disabled = false
