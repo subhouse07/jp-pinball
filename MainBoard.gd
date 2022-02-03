@@ -23,6 +23,7 @@ var tele_speed = 50
 
 var ball_in_launcher = false
 var ball_in_elevator = false
+var ball_in_task_car = false
 var ball_in_sublvl = false
 var ball_in_crowd_return = false
 var ball_in_right_return = false
@@ -72,6 +73,9 @@ func _physics_process(delta):
 		
 	if ball_in_right_return:
 		ball.global_position = $BallReturn.man_pos
+		
+	if ball_in_task_car:
+		ball.global_position = $Lobby/TrafficTask.task_car_pos
 
 
 func _on_TrapDoor_ball_trapped():
@@ -262,6 +266,11 @@ func _on_Cubicle_special_entered(special_name):
 	_trigger_special_stage(Constants.AREA_CUBE, special_name)
 
 
+func _on_Lobby_special_entered(special_name):
+	GameState.lobby_task_active = false
+	_trigger_special_stage(Constants.AREA_LOBBY, special_name)
+
+
 func _on_Brainstorm_hit(finished: bool):
 	if finished:
 		$Cubicle.activate_special_stage($Cubicle.BRAIN)
@@ -326,3 +335,15 @@ func _on_dialog_activated(character_id : int):
 
 func on_dialog_freed():
 	dialog_request_node.on_dialog_freed()
+
+
+func _on_TrafficTask_task_car_captured():
+	ball.hide()
+	ball.global_position
+	ball.mode = RigidBody2D.MODE_KINEMATIC
+	ball.collision_layer = 0
+	ball.collision_mask = 0
+	ball_in_task_car = true
+
+
+
