@@ -296,6 +296,8 @@ func _on_AnimTimer_timeout():
 
 
 func _on_task_activated(area, name):
+	# leaving this here for now because it will probably signal for GUI to
+	# trigger an animation somewhere
 	match area:
 		Constants.AREA_BOARDROOM:
 			pass
@@ -309,8 +311,8 @@ func _on_LobbyBumper_body_entered(body):
 	if body.name == "Ball":
 		GameState.score("LobbyBumper")
 
-func advance_lobby_task():
-	pass
+func lobby_task_complete():
+	$Lobby.activate_special_stage()
 
 func _on_dialog_activated(character_id : int):
 	match character_id:

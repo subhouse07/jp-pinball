@@ -1,6 +1,7 @@
 extends Node
 
 enum { CHAR_ID_OA, CHAR_ID_CM, CHAR_ID_EXEC }
+enum { LUNCH, NETWORK, TRAFFIC, BASEMENT }
 
 const BOARDROOM_DOORS_MAX = 3
 const BOARDROOM_VENT_MAX = 1
@@ -24,7 +25,9 @@ const SP_NAME_CENTER = "SpecialCenter"
 const SP_NAME_NETWORK = "SpecialNetwork"
 const SP_NAME_LUNCH = "SpecialLunch"
 const SP_NAME_TRAFFIC = "SpecialTraffic"
+const LOBBY_TASKS = ["lunch", "networking", "traffic", "basement"]
 const LOBBY_TARGET_TASKS = ["lunch", "networking"]
+const LOBBY_TARGET_TASK_THRESHOLDS = [8, 4]
 const POINTS = {
 	"Car": 10,
 	"OfficeAdmin": 50,
