@@ -234,11 +234,10 @@ func _reset_lobby_targets(active_task: Dictionary):
 		active_task[key] = 0
 
 func lobby_basement_ready():
-	return true
-#	var stages = special_state["lobby"].stages
-#	return stages[Constants.LOBBY_TASKS[Constants.LUNCH]] and \
-#		stages[Constants.LOBBY_TASKS[Constants.NETWORK]] and \
-#		stages[Constants.LOBBY_TASKS[Constants.TRAFFIC]]
+	var stages = special_state["lobby"].stages
+	return stages[Constants.LOBBY_TASKS[Constants.LUNCH]] and \
+		stages[Constants.LOBBY_TASKS[Constants.NETWORK]] and \
+		stages[Constants.LOBBY_TASKS[Constants.TRAFFIC]]
 
 func select_lobby_task():
 	if lobby_basement_ready():
