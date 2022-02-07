@@ -234,14 +234,18 @@ func _reset_lobby_targets(active_task: Dictionary):
 		active_task[key] = 0
 
 func lobby_basement_ready():
-	var stages = special_state["lobby"].stages
-	return stages[Constants.LOBBY_TASKS[Constants.LUNCH]] and \
-		stages[Constants.LOBBY_TASKS[Constants.NETWORK]] and \
-		stages[Constants.LOBBY_TASKS[Constants.TRAFFIC]]
+	return true
+#	var stages = special_state["lobby"].stages
+#	return stages[Constants.LOBBY_TASKS[Constants.LUNCH]] and \
+#		stages[Constants.LOBBY_TASKS[Constants.NETWORK]] and \
+#		stages[Constants.LOBBY_TASKS[Constants.TRAFFIC]]
 
 func select_lobby_task():
-	randomize()
-	var selected_index = randi() % (Constants.LOBBY_TASKS.size() - 1)
-	while special_state["lobby"]["stages"][Constants.LOBBY_TASKS[selected_index]]:
-		selected_index = randi() % (Constants.LOBBY_TASKS.size() - 1)
-	lobby_task_ind = selected_index
+	if lobby_basement_ready():
+		lobby_task_ind = Constants.BASEMENT
+	else:
+		randomize()
+		var selected_index = randi() % (Constants.LOBBY_TASKS.size() - 1)
+		while special_state["lobby"]["stages"][Constants.LOBBY_TASKS[selected_index]]:
+			selected_index = randi() % (Constants.LOBBY_TASKS.size() - 1)
+		lobby_task_ind = selected_index

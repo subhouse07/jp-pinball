@@ -21,7 +21,7 @@ func activate_task():
 		Constants.NETWORK:
 			pass
 		Constants.BASEMENT:
-			pass
+			$CenterPiece.activate_entrance()
 	# this function will probably light up some target indicators depending on
 	# the task. It will also open up the door to the basement, as well as open 
 	# the side road entrance to the traffic special stage
