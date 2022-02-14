@@ -63,5 +63,7 @@ const POINTS = {
 	"LowerTrapDoor": 150,
 	"LeftCubeMate": 200,
 	"RightCubeMate": 200,
-	"OADoor": 50
+	"OADoor": 50,
+	"SpecialTestSuccess": 300,
+	"TimeClockDoor": 50
 }

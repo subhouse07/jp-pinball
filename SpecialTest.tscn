@@ -5,11 +5,11 @@
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SpecialTest.gd" type="Script" id=4]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 0.1
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 68, 10 )
 
 [node name="SpecialTest" type="Node2D"]
@@ -26,7 +26,7 @@ rotation = -0.261799
 rotation_speed = 1200
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 279, 348, 273, 349, 324, 338, 331, 336, 326, 317, 464, 278, 465, 18, 17, 14, 16, 294, 166, 320, 167, 334, 206, 347, 198, 359, -1, 307, 0, -1, 478, 1, 479, 361, 300, 363 )
@@ -37,16 +37,15 @@ mode = 2
 mass = 0.5
 gravity_scale = 5.7
 
-[node name="TrapDoor" parent="." instance=ExtResource( 2 )]
+[node name="SpecialTestSuccess" parent="." instance=ExtResource( 2 )]
 position = Vector2( 354, 88 )
-is_teleport = false
 my_time = 1.2
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 247, 374 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 277.0
@@ -57,6 +56,6 @@ text = "Success ->     <-"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="ball_trapped" from="TrapDoor" to="." method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="TrapDoor" to="." method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="SpecialTestSuccess" to="." method="_on_TrapDoor_ball_trapped"]
+[connection signal="door_timed_out" from="SpecialTestSuccess" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

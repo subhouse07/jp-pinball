@@ -9,8 +9,7 @@ func _ready():
 	pass
 
 func activate_special_stage():
-	print("Congrats the special stage %s is available" % Constants.LOBBY_TASKS[GameState.lobby_task_ind])
-	GameState.lobby_task_active = false
+	entrance_enabled = true
 
 func activate_task():
 	match GameState.lobby_task_ind:
@@ -29,3 +28,12 @@ func activate_task():
 
 func _on_TrafficTask_traffic_special_entered():
 	emit_signal("special_entered", Constants.SP_NAME_TRAFFIC)
+
+
+func _on_TimeClockDoor_ball_trapped():
+	if entrance_enabled:
+		GameState.lobby_task_active = false
+		if GameState.lobby_task_ind == Constants.LUNCH:
+			emit_signal("special_entered", Constants.SP_NAME_LUNCH)
+		else:
+			emit_signal("special_entered", Constants.SP_NAME_NETWORK)

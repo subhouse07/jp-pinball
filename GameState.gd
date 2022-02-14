@@ -49,7 +49,9 @@ var mult_state = {
 	"LowerTrapDoor": { "current": 1, "max": 16 },
 	"RightCubeMate": { "current": 1, "max": 25 },
 	"LeftCubeMate": { "current": 1, "max": 25 },
-	"OADoor": { "current": 1, "max": 16 }
+	"OADoor": { "current": 1, "max": 16 },
+	"SpecialTestSuccess": { "current": 1, "max": 1 },
+	"TimeClockDoor": { "current": 1, "max": 1 }
 }
 var lobby_task_ind = 0
 var lobby_task_active = false
@@ -235,6 +237,9 @@ func _reset_lobby_targets(active_task: Dictionary):
 
 func lobby_basement_ready():
 	var stages = special_state["lobby"].stages
+	print(stages[Constants.LOBBY_TASKS[Constants.LUNCH]])
+	print(stages[Constants.LOBBY_TASKS[Constants.NETWORK]])
+	print(stages[Constants.LOBBY_TASKS[Constants.TRAFFIC]])
 	return stages[Constants.LOBBY_TASKS[Constants.LUNCH]] and \
 		stages[Constants.LOBBY_TASKS[Constants.NETWORK]] and \
 		stages[Constants.LOBBY_TASKS[Constants.TRAFFIC]]
