@@ -1,4 +1,4 @@
-[gd_scene load_steps=207 format=2]
+[gd_scene load_steps=208 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Flipper.tscn" type="PackedScene" id=2]
@@ -54,6 +54,7 @@
 [ext_resource path="res://center-open-1.png" type="Texture" id=52]
 [ext_resource path="res://center-open-0.png" type="Texture" id=53]
 [ext_resource path="res://center-open-00.png" type="Texture" id=54]
+[ext_resource path="res://BirdSpawn.tscn" type="PackedScene" id=55]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/side-rail.png-9fa92fee8cb3161206de5ddfba53ffee.stex"
@@ -914,7 +915,7 @@ material = SubResource( 33 )
 position = Vector2( 192, -280 )
 frames = SubResource( 34 )
 animation = "idle_0"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CopierSection" parent="Cubicle" instance=ExtResource( 34 )]
@@ -1456,13 +1457,12 @@ one_way_collision = true
 [node name="ACFanSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 9.0013, 124.989 )
 frames = SubResource( 98 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 16.0013, 238.747 )
 frames = SubResource( 102 )
-frame = 1
 playing = true
 
 [node name="ElevatorDoor" type="StaticBody2D" parent="."]
@@ -1624,19 +1624,19 @@ remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite2")
 remote_path = NodePath("../../../../../SpritesYSort/LobbyWorkerSprite3")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="1"]
-frame = 6
+frame = 4
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite1")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="1"]
-frame = 6
+frame = 4
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath2/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite2")
 
 [node name="AnimatedSprite" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="1"]
-frame = 6
+frame = 4
 
 [node name="WalkerRemoteTransform" parent="LobbyCoordinator/VisitorPaths/VisitorPath3/LobbyVisitor" index="5"]
 remote_path = NodePath("../../../../../SpritesYSort/LobbyVisitorSprite3")
@@ -1900,48 +1900,49 @@ shape = SubResource( 142 )
 
 [node name="TopWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
-frame = 3
 
 [node name="TopWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -25, -301 )
-frame = 3
 
 [node name="LiftWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 240, -228 )
-frame = 2
+frame = 0
 
 [node name="LiftWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 278, -253 )
+frame = 7
 
 [node name="LiftWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 209, -276 )
+frame = 7
 
 [node name="LiftWorkerSprite4" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 279, -301 )
+frame = 7
 
 [node name="LobbyWorkerSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 80 )
-frame = 0
+frame = 6
 
 [node name="LobbyWorkerSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, 24 )
-frame = 0
+frame = 6
 
 [node name="LobbyWorkerSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( 336, -40 )
-frame = 7
+frame = 5
 
 [node name="LobbyVisitorSprite1" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 7
+frame = 5
 
 [node name="LobbyVisitorSprite2" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 6
+frame = 4
 
 [node name="LobbyVisitorSprite3" parent="SpritesYSort" instance=ExtResource( 37 )]
 position = Vector2( -37, 310 )
-frame = 6
+frame = 4
 
 [node name="BallReturn" type="Node2D" parent="."]
 position = Vector2( 0, 310 )
@@ -1974,6 +1975,8 @@ shape = SubResource( 152 )
 
 [node name="AnimTimer" type="Timer" parent="BallReturn"]
 one_shot = true
+
+[node name="BirdSpawn" parent="." instance=ExtResource( 55 )]
 [connection signal="special_entered" from="Lobby" to="." method="_on_Lobby_special_entered"]
 [connection signal="dialog_activated" from="Lobby/OfficeAdmin" to="." method="_on_dialog_activated"]
 [connection signal="task_activated" from="Lobby/OfficeAdmin" to="." method="_on_task_activated"]
@@ -2000,11 +2003,11 @@ one_shot = true
 [connection signal="copier_hit" from="Cubicle/CopierSection" to="." method="_on_CopierSection_copier_hit"]
 [connection signal="dialog_activated" from="Cubicle/CubeMates" to="." method="_on_dialog_activated"]
 [connection signal="task_activated" from="Cubicle/CubeMates" to="." method="_on_task_activated"]
-[connection signal="ball_trapped" from="Cubicle/CubeMates/RightCubeMate" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="ball_trapped" from="Cubicle/CubeMates/RightCubeMate" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped" binds= [ true ]]
+[connection signal="ball_trapped" from="Cubicle/CubeMates/RightCubeMate" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="Cubicle/CubeMates/RightCubeMate" to="." method="_on_TrapDoor_door_timed_out"]
-[connection signal="ball_trapped" from="Cubicle/CubeMates/LeftCubeMate" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="ball_trapped" from="Cubicle/CubeMates/LeftCubeMate" to="Cubicle/CubeMates" method="_on_TrapDoor_ball_trapped" binds= [ false ]]
+[connection signal="ball_trapped" from="Cubicle/CubeMates/LeftCubeMate" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="Cubicle/CubeMates/LeftCubeMate" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="Cubicle/CubeMates/LeftDeskArea" to="Cubicle/CubeMates" method="_on_DeskBumper_body_entered"]
 [connection signal="body_entered" from="Cubicle/CubeMates/RightDeskArea" to="Cubicle/CubeMates" method="_on_DeskBumper_body_entered"]
@@ -2034,10 +2037,10 @@ one_shot = true
 [connection signal="timeout" from="ElevatorDoor2/Timer" to="." method="_on_ElevatorDoorTimer_timeout"]
 [connection signal="body_entered" from="Janitor/BathroomArea" to="Janitor" method="_on_BathroomArea_body_entered"]
 [connection signal="timeout" from="Janitor/MoveTimer" to="Janitor" method="_on_MoveTimer_timeout"]
-[connection signal="ball_trapped" from="RightDoorBlocker/DoorManKicker" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="ball_trapped" from="RightDoorBlocker/DoorManKicker" to="RightDoorBlocker" method="_on_TrapDoor_ball_trapped"]
-[connection signal="door_timed_out" from="RightDoorBlocker/DoorManKicker" to="." method="_on_TrapDoor_door_timed_out"]
+[connection signal="ball_trapped" from="RightDoorBlocker/DoorManKicker" to="." method="_on_TrapDoor_ball_trapped"]
 [connection signal="door_timed_out" from="RightDoorBlocker/DoorManKicker" to="RightDoorBlocker" method="_on_TrapDoor_door_timed_out"]
+[connection signal="door_timed_out" from="RightDoorBlocker/DoorManKicker" to="." method="_on_TrapDoor_door_timed_out"]
 [connection signal="body_entered" from="RightDoorBlocker/RightDoorArea" to="RightDoorBlocker" method="_on_RightDoorArea_body_entered"]
 [connection signal="timeout" from="RightDoorBlocker/TrapDoorTimer" to="RightDoorBlocker" method="_on_TrapDoorTimer_timeout"]
 [connection signal="timeout" from="RightDoorBlocker/FrontDoorTimer" to="RightDoorBlocker" method="_on_FrontDoorTimer_timeout"]

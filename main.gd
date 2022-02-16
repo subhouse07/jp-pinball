@@ -7,6 +7,7 @@ var current_scene = "MainBoard"
 
 
 func _ready():
+	randomize()
 	if !dev_mode_enabled:
 		$GUILayer/GUI.disable_dev_panel()
 
