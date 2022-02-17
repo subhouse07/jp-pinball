@@ -21,4 +21,15 @@ rotate = false
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -26, 126, -53, 129, -52, 409, 245, 405, 243, 387, -25, 386 )
+
+[node name="DismissTimer" type="Timer" parent="."]
+wait_time = 0.12
+one_shot = true
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="DismissTimer" to="." method="_on_DismissTimer_timeout"]

@@ -9,22 +9,21 @@ const RIGHT_JUMP = "right_jump"
 
 #var in_vec := Vector2()
 #var out_vec := Vector2()
+var origin := Vector2()
 var destination := Vector2()
 
 func _ready():
-#	var vel_y_mod = 30 + randi() % 70
-#	var vel_x_mod = 70 + randi() % 70
-#	in_vec = Vector2(vel_x_mod, vel_y_mod)
-#	out_vec = Vector2(-vel_x_mod, -vel_y_mod)
+	origin = global_position + Vector2(-30, 30)
 	$Tween.interpolate_property(self, "global_position", global_position, destination, 2.0, Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start()
 	
 
 func fly_away():
 	animation = FLY_AWAY
-
-func _on_VisibilityNotifier2D_viewport_exited(viewport):
-	queue_free()
+	if $Tween.is_active():
+		$Tween.remove(self)
+	$Tween.interpolate_property(self, "global_position", global_position, origin, 2.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.start()
 
 
 func _on_Tween_tween_completed(object, key):

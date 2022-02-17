@@ -347,3 +347,7 @@ func _on_TrafficTask_task_car_captured():
 
 
 
+
+
+func _on_Launcher_launcher_started():
+	$BirdSpawn.dismiss_wire_birds()

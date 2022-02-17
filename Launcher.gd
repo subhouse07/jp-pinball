@@ -28,6 +28,7 @@ var path_follow : PathFollow2D
 
 signal ball_disembarked(coords, early_disembark)
 signal ball_captured
+signal launcher_started
 
 
 func _ready():
@@ -47,6 +48,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		if launch_status == LOADING:
 			launch_status = LAUNCHING
+			emit_signal("launcher_started")
 			$LaunchTimer.start()
 		elif launch_status == LAUNCHING and path_follow.offset >= EARLY_DISEMBARK_ALLOW_OFFSET:
 			early_disembark = true
